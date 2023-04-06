@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace Puissance_4
 {
-    public partial class page_param_JVJ : Form
+    public partial class Partie_JVJ : Form
     {
-        public page_param_JVJ()
+        public Partie_JVJ()
         {
             InitializeComponent();
-        }
-
-
-        private void button1_Click(object sender, EventArgs e) // Bouton "JOUER" Joueur VS JOUEUR
-        {
-            Partie_JVJ page_partie_JVJ = new Partie_JVJ();
-            page_partie_JVJ.Show();
         }
     }
 }

@@ -61,8 +61,9 @@
             button2.TabIndex = 2;
             button2.Text = " Joueur VS Ordi";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
             // 
-            // Form1
+            // Accueil
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -70,7 +71,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label1);
-            Name = "Form1";
+            Name = "Accueil";
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();

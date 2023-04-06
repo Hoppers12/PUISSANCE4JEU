@@ -1,6 +1,5 @@
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.AssemblyReference.cache
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Accueil.resources
-C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.page_JVJ.resources
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.GenerateResource.cache
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.GeneratedMSBuildEditorConfig.editorconfig
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.AssemblyInfoInputs.cache
@@ -16,3 +15,6 @@ C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-win
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.pdb
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.genruntimeconfig.cache
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\ref\Puissance 4.dll
+C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.page_param_JVIA.resources
+C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.page_param_JVJ.resources
+C:\Bureau\COURS\SAE2.01(puissance4)\puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Partie_JVJ.resources
