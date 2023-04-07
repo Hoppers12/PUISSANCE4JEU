@@ -119,6 +119,7 @@
             button1.TabIndex = 9;
             button1.Text = "JOUER";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // page_param_JVIA
             // 

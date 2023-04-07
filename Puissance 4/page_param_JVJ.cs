@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Puissance_4;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,11 +18,11 @@ namespace Puissance_4
             InitializeComponent();
         }
 
-
         private void button1_Click(object sender, EventArgs e) // Bouton "JOUER" Joueur VS JOUEUR
         {
             Partie_JVJ page_partie_JVJ = new Partie_JVJ();
             page_partie_JVJ.Show();
+
         }
     }
 }
