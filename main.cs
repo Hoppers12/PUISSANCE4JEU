@@ -2,29 +2,45 @@ using System;
 
 public class Program
 {
+    class Joueur
+    {
+        private string pseudo;
+        private bool couleurPion;       //true=rouge; false= bleu  
+        private bool type;      // true=Joueur; false=IA
+        
+        public Joueur(string pseudoJoueur, bool couleur, bool typeJoueur)
+        {
+            pseudo = pseudoJoueur ;
+            couleurPion = couleur ;
+            type = typeJoueur ; 
+        }
+    }
+    
+    
     class Puissance4
     {
-        private string pseudo1;
-        private string pseudo2;
-        private int[,] grille1 = new int[7,6];
-        private int[,] grille2 = new int[6,5];
-        private int choixGrille; // 1 = grille 1 ; 2 = grille 2
+        private Joueur J1;
+        private Joueur J2;
+        private int[,] grille1 = new int[6,7];
+        private int[,] grille2 = new int[5,6];
+        private int choixGrille; // 1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire
         private bool choixMode; // true = JVJ ; false = JVIA ;
-        private int gagnant;
+        private int gagnant;    // 1 = J1; 2 = J2; 0 = match nul
+        private bool joueurSuivant; //True = J1 ; False = J2/IA
 
         //On initialise le plateau de jeu dans le constructeur
-        public Puissance4(string prenom1, string prenom2, int choixG, bool Mode)
+        public Puissance4(string prenom1, string prenom2, int choixG, bool mode)
         {
-            pseudo1 = prenom1 ;
-            pseudo2 = prenom2 ; 
             choixGrille = choixG ;
-            choixMode = Mode ;
-
+            choixMode = mode ;
+            J1=new Joueur(prenom1,true,true);
+            J2=new Joueur(prenom2,false,choixMode);
+            
             if (choixGrille == 1)
             {
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < 6; i++)
                 {
-                    for (int j = 0; j<6 ; j++) {
+                    for (int j = 0; j<7 ; j++) {
                         grille1[i,j] = 0;           //On initalise chaque case à 0 (= case vide)
                     }
 
@@ -32,9 +48,9 @@ public class Program
             }
             else if (choixGrille == 2)
             {
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 5; i++)
                 {
-                    for (int j = 0; j<5 ; j++) {
+                    for (int j = 0; j<6 ; j++) {
                         grille2[i,j] = 0;           //On initalise chaque case à 0 (= case vide)
                     }
 
@@ -50,10 +66,10 @@ public class Program
         {
             if(choixGrille == 1) 
             {
-                for (int i = 0 ; i<=6 ; i++) // 0 à 6 lignes (donc 7)
+                for (int i = 0 ; i<=5 ; i++) // 0 à 6 lignes (donc 7)
                 {
                     Console.WriteLine(" ") ;
-                    for (int j = 0 ; j <= 5 ; j++) 
+                    for (int j = 0 ; j <= 6 ; j++) 
                     {
                         Console.Write(grille1[i,j] + " " );
                     }
@@ -61,10 +77,10 @@ public class Program
                 
         //Affichage grille 6 x 5
             }else if(choixGrille == 2) {
-                for (int i = 0 ; i<=5 ; i++) 
+                for (int i = 0 ; i<5 ; i++) 
                 {
                     Console.WriteLine(" ") ;
-                    for (int j = 0 ; j <= 4 ; j++) 
+                    for (int j = 0 ; j <6 ; j++) 
                     {
                         Console.Write(grille2[i,j] + " " );
                     }
@@ -80,11 +96,11 @@ public class Program
             if (choixGrille == 1) {
                 
                 //Si le joueur a choisie une colonne qui existe (d'indices [0][0] à [6][5] max)
-                if (colonne<= 5 && colonne >= 0 && grille1[0,colonne] == 0) {
+                if (colonne<= 6 && colonne >= 0 && grille1[0,colonne] == 0) {
 
                     int ligne = 0 ;
                     
-                    while (ligne <= 6 && grille1[ligne,colonne] == 0 && (ligne+1) <= 6 && grille1[ligne+1,colonne] == 0 ) {
+                    while (ligne <= 5 && grille1[ligne,colonne] == 0 && (ligne+1) <= 5 && grille1[ligne+1,colonne] == 0 ) {
                         ligne ++ ;  // On remplie une case si l'une d'elle et disponible ET si celle d'aprés est déjà comblée
                     }
                     
@@ -101,11 +117,11 @@ public class Program
             } else if (choixGrille == 2) {
                 
                 //Si le joueur a choisie une colonne qui existe (d'indices [0][0] à [5][4] max)
-                if (colonne<= 4 && colonne >= 0 && grille2[0,colonne] == 0) {
+                if (colonne<= 5 && colonne >= 0 && grille2[0,colonne] == 0) {
 
                     int ligne = 0 ;
                     
-                    while (ligne <= 5 && grille2[ligne,colonne] == 0 && (ligne+1) <= 5 && grille2[ligne+1,colonne] == 0 ) {
+                    while (ligne <= 4 && grille2[ligne,colonne] == 0 && (ligne+1) <= 4 && grille2[ligne+1,colonne] == 0 ) {
                         ligne ++ ;  // On remplie une case si l'une d'elle et disponible ET si celle d'aprés est déjà comblée
                     }
                     
@@ -141,4 +157,3 @@ public class Program
         
     }
 }
-
