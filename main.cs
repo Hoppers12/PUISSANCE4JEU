@@ -60,44 +60,28 @@ public class Program
  
         // Fonction qui affiche la grille dans la console
         
-        //Affichage grille 7 x 6 (1 = PION J1 ; 0 = CASE VIDE ; 2 = PION J2)
-        
-        public void AfficheGrille () 
+        public void AfficheGrille (int[,] grilleUtilisee, int limiteLigne, int limiteColonne) 
         {
-            if(choixGrille == 1) 
+            for (int i = 0 ; i<limiteLigne ; i++) // 0 à 6 lignes (donc 7)
             {
-                for (int i = 0 ; i<=5 ; i++) // 0 à 6 lignes (donc 7)
+                Console.WriteLine(" ") ;
+                for (int j = 0 ; j < limiteColonne ; j++) 
                 {
-                    Console.WriteLine(" ") ;
-                    for (int j = 0 ; j <= 6 ; j++) 
-                    {
-                        Console.Write(grille1[i,j] + " " );
-                    }
-                }    
-                
-        //Affichage grille 6 x 5
-            }else if(choixGrille == 2) {
-                for (int i = 0 ; i<5 ; i++) 
-                {
-                    Console.WriteLine(" ") ;
-                    for (int j = 0 ; j <6 ; j++) 
-                    {
-                        Console.Write(grille2[i,j] + " " );
-                    }
-                }  
-            }
+                    Console.Write(grilleUtilisee[i,j] + " " );
+                }
+            }    
         }
         
         public void jouer_pion(int[,] grilleUtilisee, int limiteLigne, int limiteColonne, int indColonneJoue){
             int ligne = 0 ;
-            if (indColonneJoue<limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0,indColonneJoue] == 0) {
-                    while (ligne <limiteLigne && grilleUtilisee[ligne,indColonneJoue] == 0 && (ligne+1) < limiteLigne && grilleUtilisee[ligne+1,indColonneJoue] == 0 ) {
+            if (indColonneJoue < limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0,indColonneJoue] == 0) {
+                    while (ligne < limiteLigne && grilleUtilisee[ligne,indColonneJoue] == 0 && (ligne+1) < limiteLigne && grilleUtilisee[ligne+1,indColonneJoue] == 0 ) {
                         ligne ++ ;  // On remplie une case si l'une d'elle et disponible ET si celle d'aprés est déjà comblée
                     }
                     if (joueurSuivant==true){
                         grilleUtilisee[ligne,indColonneJoue] = 1 ; //Remplissage de la case pour joueur 1 
                         joueurSuivant=false;    //change le joueur qui joue 
-                        this.AfficheGrille();
+                        this.AfficheGrille(grilleUtilisee,limiteLigne,limiteColonne);
                         Console.WriteLine("");
                         if(!choixMode){       //si c'est joueurVsIA
                             //pose un pion aleatoirement
@@ -109,7 +93,7 @@ public class Program
                     else{
                         grilleUtilisee[ligne,indColonneJoue] = 2 ;  //Remplissage de la case pour joueur 2
                         joueurSuivant=true;   //change le joueur qui joue 
-                        this.AfficheGrille();
+                        this.AfficheGrille(grilleUtilisee,limiteLigne,limiteColonne);
                         Console.WriteLine("");
                     }
                     
@@ -141,7 +125,6 @@ public class Program
     {
         Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2", 2, true);
         
-        jeu.AfficheGrille();
         Console.WriteLine(" ") ;
         jeu.jouer_pion(4) ;
         jeu.jouer_pion(4) ;
