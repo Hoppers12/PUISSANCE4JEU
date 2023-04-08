@@ -81,7 +81,7 @@ public class Program
             }    
         }
         
-        public void jouer_pion(int[,] grilleUtilisee, int limiteLigne, int limiteColonne, int indColonneJoue){
+        public void JouerPionDansGrille(int[,] grilleUtilisee, int limiteLigne, int limiteColonne, int indColonneJoue){
             int ligne = 0 ;
             if (indColonneJoue < limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0,indColonneJoue] == 0) {
                     while (ligne < limiteLigne && grilleUtilisee[ligne,indColonneJoue] == 0 && (ligne+1) < limiteLigne && grilleUtilisee[ligne+1,indColonneJoue] == 0 ) {
@@ -96,7 +96,7 @@ public class Program
                             //pose un pion aleatoirement
                             Random aleatoire = new Random();        
                             int colonneAleatoire = aleatoire.Next(1, limiteColonne+1);
-                            this.jouer_pion(colonneAleatoire);
+                            this.JouerTour(colonneAleatoire);
                         }
                     }
                     else{
@@ -113,16 +113,16 @@ public class Program
         }
         
         // Méthode appelé lorsque un joueur souhaite poser un pion dans une colonne
-        public void jouer_pion(int colonne) {
+        public void JouerTour(int colonne) {
             colonne = colonne - 1 ; // On retire 1 car colonne 1 son indice = 0 ...
             
             if (choixGrille == 1) {
                 
-                this.jouer_pion(grille1, 6, 7, colonne);
+                this.JouerPionDansGrille(grille1, 6, 7, colonne);
                 
             } else if (choixGrille == 2) {
                 
-                this.jouer_pion(grille2, 5, 6, colonne);
+                this.JouerPionDansGrille(grille2, 5, 6, colonne);
                 
             }
         }
@@ -135,10 +135,11 @@ public class Program
         Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2",0,true);
         
         Console.WriteLine(" ") ;
-        jeu.jouer_pion(4) ;
-        jeu.jouer_pion(4) ;
-        jeu.jouer_pion(4) ;
-        jeu.jouer_pion(4) ;
+        jeu.JouerTour(4) ;
+        jeu.JouerTour(4) ;
+        jeu.JouerTour(4) ;
+        jeu.JouerTour(4) ;
         
     }
 }
+
