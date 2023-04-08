@@ -88,7 +88,7 @@ public class Program
             else{
                 valeur=1;
             }
-            while(grilleUtilisee[ligne,colonneJoue]==0){
+            while(grilleUtilisee[ligne,colonneJoue]==0&&ligne>=0){
                 ligne--;
             }
             while(grilleUtilisee[ligne,colonneJoue]==valeur&&ligne>=0){
@@ -153,9 +153,10 @@ public class Program
         
         public void JouerPionDansGrille(int[,] grilleUtilisee, int indColonneJoue){
             int ligne = 0 ;
+            
             if (indColonneJoue < limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0,indColonneJoue] == 0) {
-                    while (ligne < limiteLigne && grilleUtilisee[ligne,indColonneJoue] == 0 && (ligne+1) < limiteLigne && grilleUtilisee[ligne+1,indColonneJoue] == 0 ) {
-                        ligne ++ ;  // On remplie une case si l'une d'elle et disponible ET si celle d'aprés est déjà comblée
+                    while ((ligne+1) < limiteLigne && grilleUtilisee[ligne+1,indColonneJoue] == 0 ) {
+                        ligne ++ ;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
                     }
                     if (joueurSuivant==true){
                         grilleUtilisee[ligne,indColonneJoue] = 1 ; //Remplissage de la case pour joueur 1 
@@ -168,14 +169,14 @@ public class Program
                             int colonneAleatoire = aleatoire.Next(1, limiteColonne+1);
                             this.JouerTour(colonneAleatoire);
                         }
-                        this.Victoire(grilleUtilisee,indColonneJoue);
+                        //this.Victoire(grilleUtilisee,indColonneJoue);
                     }
                     else{
                         grilleUtilisee[ligne,indColonneJoue] = 2 ;  //Remplissage de la case pour joueur 2
                         joueurSuivant=true;   //change le joueur qui joue 
                         this.AfficheGrille(grilleUtilisee);
                         Console.WriteLine("");
-                        this.Victoire(grilleUtilisee,indColonneJoue);
+                        //this.Victoire(grilleUtilisee,indColonneJoue);
                     }
                     
             } else {
@@ -207,6 +208,14 @@ public class Program
         Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2",0,true);
         
         Console.WriteLine(" ") ;
+        jeu.JouerTour(4) ;
+        jeu.JouerTour(5) ;
+        jeu.JouerTour(4) ;
+        jeu.JouerTour(5) ;
+        jeu.JouerTour(4) ;
+        jeu.JouerTour(5) ;
+        jeu.JouerTour(4) ;
+        jeu.JouerTour(5) ;
         jeu.JouerTour(4) ;
         jeu.JouerTour(5) ;
         jeu.JouerTour(4) ;
