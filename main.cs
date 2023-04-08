@@ -38,22 +38,31 @@ public class Program
             joueurSuivant=true;
             if (choixGrille == 1)
             {
-                for (int i = 0; i < 6; i++)
-                {
-                    for (int j = 0; j<7 ; j++) {
-                        grille1[i,j] = 0;           //On initalise chaque case à 0 (= case vide)
-                    }
-
-                }
+                initGrille(grille1,6,7);
             }
             else if (choixGrille == 2)
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    for (int j = 0; j<6 ; j++) {
-                        grille2[i,j] = 0;           //On initalise chaque case à 0 (= case vide)
-                    }
-
+                initGrille(grille2,5,6);
+            }
+            else{
+                Random aleatoire = new Random();        
+                choixGrille = aleatoire.Next(1,3);
+                Console.WriteLine("") ;
+                Console.WriteLine("La grille tiree aleatoirement est la grille " + choixGrille + ".") ;
+                if (choixGrille==1){
+                    this.initGrille(grille1,6,7);
+                }
+                else{
+                    this.initGrille(grille2,5,6);
+                }
+            }
+        }
+        
+        public void initGrille(int[,] grilleUtilisee, int limiteLigne, int limiteColonne){
+            for (int i = 0; i < limiteLigne; i++)
+            {
+                for (int j = 0; j<limiteColonne ; j++) {
+                    grilleUtilisee[i,j] = 0;           //On initalise chaque case à 0 (= case vide)
                 }
             }
         }
@@ -86,7 +95,7 @@ public class Program
                         if(!choixMode){       //si c'est joueurVsIA
                             //pose un pion aleatoirement
                             Random aleatoire = new Random();        
-                            int colonneAleatoire = aleatoire.Next(1, 7);
+                            int colonneAleatoire = aleatoire.Next(1, limiteColonne+1);
                             this.jouer_pion(colonneAleatoire);
                         }
                     }
@@ -123,7 +132,7 @@ public class Program
     // MAIN
     private static void Main(string[] args)
     {
-        Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2", 2, true);
+        Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2",0,true);
         
         Console.WriteLine(" ") ;
         jeu.jouer_pion(4) ;
