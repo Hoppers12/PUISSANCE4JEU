@@ -4,9 +4,9 @@ public class Program
 {
     class Joueur
     {
-        private string pseudo;
-        private bool couleurPion;       //true=rouge; false= bleu  
-        private bool type;      // true=Joueur; false=IA
+        public string pseudo;
+        public bool couleurPion;       //true=rouge; false= bleu  
+        public bool type;      // true=Joueur; false=IA
         
         public Joueur(string pseudoJoueur, bool couleur, bool typeJoueur)
         {
@@ -35,7 +35,7 @@ public class Program
             choixMode = mode ;
             J1=new Joueur(prenom1,true,true);
             J2=new Joueur(prenom2,false,choixMode);
-            
+            joueurSuivant=true;
             if (choixGrille == 1)
             {
                 for (int i = 0; i < 6; i++)
@@ -88,6 +88,36 @@ public class Program
             }
         }
         
+        public void jouer_pion(int[,] grilleUtilisee, int limiteLigne, int limiteColonne, int indColonneJoue){
+            int ligne = 0 ;
+            if (indColonneJoue<limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0,indColonneJoue] == 0) {
+                    while (ligne <limiteLigne && grilleUtilisee[ligne,indColonneJoue] == 0 && (ligne+1) < limiteLigne && grilleUtilisee[ligne+1,indColonneJoue] == 0 ) {
+                        ligne ++ ;  // On remplie une case si l'une d'elle et disponible ET si celle d'aprés est déjà comblée
+                    }
+                    if (joueurSuivant==true){
+                        grilleUtilisee[ligne,indColonneJoue] = 1 ; //Remplissage de la case pour joueur 1 
+                        joueurSuivant=false;    //change le joueur qui joue 
+                        this.AfficheGrille();
+                        Console.WriteLine("");
+                        if(!choixMode){       //si c'est joueurVsIA
+                            //pose un pion aleatoirement
+                            Random aleatoire = new Random();        
+                            int colonneAleatoire = aleatoire.Next(1, 7);
+                            this.jouer_pion(colonneAleatoire);
+                        }
+                    }
+                    else{
+                        grilleUtilisee[ligne,indColonneJoue] = 2 ;  //Remplissage de la case pour joueur 2
+                        joueurSuivant=true;   //change le joueur qui joue 
+                        this.AfficheGrille();
+                        Console.WriteLine("");
+                    }
+                    
+            } else {
+                Console.WriteLine("") ;
+                Console.WriteLine("Impossible de placer un pion dans cette colonne") ;
+            }
+        }
         
         // Méthode appelé lorsque un joueur souhaite poser un pion dans une colonne
         public void jouer_pion(int colonne) {
@@ -95,50 +125,14 @@ public class Program
             
             if (choixGrille == 1) {
                 
-                //Si le joueur a choisie une colonne qui existe (d'indices [0][0] à [6][5] max)
-                if (colonne<= 6 && colonne >= 0 && grille1[0,colonne] == 0) {
-
-                    int ligne = 0 ;
-                    
-                    while (ligne <= 5 && grille1[ligne,colonne] == 0 && (ligne+1) <= 5 && grille1[ligne+1,colonne] == 0 ) {
-                        ligne ++ ;  // On remplie une case si l'une d'elle et disponible ET si celle d'aprés est déjà comblée
-                    }
-                    
-                    grille1[ligne,colonne] = 1 ; //Remplissage de la case
-                    this.AfficheGrille() ;
-                    Console.WriteLine("");
-                
-                    
-                } else {
-                    Console.WriteLine("") ;
-                    Console.WriteLine("Impossible de placer un pion dans cette colonne") ;
-                }
+                this.jouer_pion(grille1, 6, 7, colonne);
                 
             } else if (choixGrille == 2) {
                 
-                //Si le joueur a choisie une colonne qui existe (d'indices [0][0] à [5][4] max)
-                if (colonne<= 5 && colonne >= 0 && grille2[0,colonne] == 0) {
-
-                    int ligne = 0 ;
-                    
-                    while (ligne <= 4 && grille2[ligne,colonne] == 0 && (ligne+1) <= 4 && grille2[ligne+1,colonne] == 0 ) {
-                        ligne ++ ;  // On remplie une case si l'une d'elle et disponible ET si celle d'aprés est déjà comblée
-                    }
-                    
-                    grille2[ligne,colonne] = 2 ; //Remplissage de la case
-                    this.AfficheGrille() ;
-                    Console.WriteLine("") ;
+                this.jouer_pion(grille2, 5, 6, colonne);
                 
-                    
-                } else {
-                    Console.WriteLine("") ;
-                    Console.WriteLine("Impossible de placer un pion dans cette colonne") ;
-                }
             }
         }
-        
-        
-        
         
     }
     
@@ -153,7 +147,6 @@ public class Program
         jeu.jouer_pion(4) ;
         jeu.jouer_pion(4) ;
         jeu.jouer_pion(4) ;
-
         
     }
 }
