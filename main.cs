@@ -42,7 +42,7 @@ public class Program
             {
                 limiteLigne=6;
                 limiteColonne=7;
-                initGrille(grille1);
+                initGrille(grille1); // Appel de la méthode qui initGrille qui créee la grille
                 
             }
             else if (choixGrille == 2)
@@ -78,61 +78,74 @@ public class Program
             }
         }
  
- 
+        
+        // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même colonne "colonneJoue"
         public bool AlignementVertical(int[,] grilleUtilisee,int colonneJoue){
-            int cptr=0,ligne=limiteLigne-1,valeur;
+            int cptr_pion_aligne=0, ligne=limiteLigne-1 ,valeur;
             bool quatreAligne=false;
+            
+            // Choix du prochain joueur qui jouera (valeur 2 = J2/IA ; valeur 1 = J1)
             if (joueurSuivant){
-                valeur=2;
+                valeur=2; 
             }
             else{
-                valeur=1;
+                valeur=1; 
             }
-            while(grilleUtilisee[ligne,colonneJoue]==0&&ligne>=0){
+            
+            // Recherche d'un pion dans la colonne 
+            while(grilleUtilisee[ligne,colonneJoue]==0 && ligne>=0){
                 ligne--;
             }
-            while(grilleUtilisee[ligne,colonneJoue]==valeur&&ligne>=0){
+            
+            // Comptage du nombre de pion du même jouer alignés
+            while(grilleUtilisee[ligne,colonneJoue]==valeur && ligne>=0){
                 ligne--;
-                cptr++;
+                cptr_pion_aligne++;
             }
-            if(cptr==4){
+            
+            // Enregistrement du numéro du gagnant 
+            if(cptr_pion_aligne==4){
                 quatreAligne=true;
                 gagnant=valeur;
             }
+            
             return quatreAligne;
         }
         
+        
         public bool GrilleComplete(int[,] grilleUtilisee){
             bool complet=false;
-            int caseVide=0;
-            for(int j=0;j<limiteColonne;j++){
-                if(grilleUtilisee[limiteLigne-1,j]==0){
-                    caseVide++;
-                }
+            int case_ligne1_occupe=0;
+            
+            for(int j=0;j<limiteColonne;j++){  // On vérifie si toutes les cases de la ligne la + haute son comblées
+                if(grilleUtilisee[0,j]!=0){    
+                    case_ligne1_occupe++;
+               }
             }
-            if(caseVide==0){
+            if(case_ligne1_occupe==limiteColonne){ // Si oui alors la grille est complète
                 complet=true;
             }
             gagnant=0;
             return complet;
         }
         
+        
         public bool Victoire(int[,] grilleUtilisee,int colonneJoue){
             bool resultat=false;
             if (/*AlignementHorizontal(colonneJoue)||*/AlignementVertical(grilleUtilisee, colonneJoue)/*||AlignementDiagonalCroissant(colonneJoue)||AlignementDiagonalDecroissant(colonneJoue)*/){
                 resultat=true;
                 if(gagnant==1){
-                    Console.WriteLine(" ") ;
+                    Console.WriteLine(" ") ;                         // J1 vainqueur
                     Console.WriteLine(J1.pseudo+" a gagne la partie");
                 }
                 else if(gagnant==2){
-                    Console.WriteLine(" ") ;
+                    Console.WriteLine(" ") ;                         // J2/IA vainqueur
                     Console.WriteLine(J2.pseudo+" a gagne la partie");
                 }
                 
             }else if (GrilleComplete(grilleUtilisee)){
-                Console.WriteLine(" ") ;
-                Console.WriteLine("Match nul");
+                Console.WriteLine(" ") ;                             // Egalité 
+                Console.WriteLine("Match nul (Grille pleine) ");
             }
             return resultat;
         }
@@ -154,7 +167,9 @@ public class Program
         public void JouerPionDansGrille(int[,] grilleUtilisee, int indColonneJoue){
             int ligne = 0 ;
             
+            // Si colonne choisie valide (pas pleine + existante)
             if (indColonneJoue < limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0,indColonneJoue] == 0) {
+                
                     while ((ligne+1) < limiteLigne && grilleUtilisee[ligne+1,indColonneJoue] == 0 ) {
                         ligne ++ ;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
                     }
@@ -169,14 +184,14 @@ public class Program
                             int colonneAleatoire = aleatoire.Next(1, limiteColonne+1);
                             this.JouerTour(colonneAleatoire);
                         }
-                        //this.Victoire(grilleUtilisee,indColonneJoue);
+                        this.Victoire(grilleUtilisee,indColonneJoue); //
                     }
                     else{
                         grilleUtilisee[ligne,indColonneJoue] = 2 ;  //Remplissage de la case pour joueur 2
                         joueurSuivant=true;   //change le joueur qui joue 
                         this.AfficheGrille(grilleUtilisee);
                         Console.WriteLine("");
-                        //this.Victoire(grilleUtilisee,indColonneJoue);
+                        this.Victoire(grilleUtilisee,indColonneJoue); //
                     }
                     
             } else {
@@ -205,23 +220,16 @@ public class Program
     // MAIN
     private static void Main(string[] args)
     {
-        Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2",0,true);
+        Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2",1,true);
         
         Console.WriteLine(" ") ;
-        jeu.JouerTour(4) ;
-        jeu.JouerTour(5) ;
-        jeu.JouerTour(4) ;
-        jeu.JouerTour(5) ;
-        jeu.JouerTour(4) ;
-        jeu.JouerTour(5) ;
-        jeu.JouerTour(4) ;
-        jeu.JouerTour(5) ;
-        jeu.JouerTour(4) ;
-        jeu.JouerTour(5) ;
-        jeu.JouerTour(4) ;
-        jeu.JouerTour(5) ;
-        jeu.JouerTour(4) ;
-        jeu.JouerTour(5) ;
-        jeu.JouerTour(4) ;
+        
+        
+        jeu.JouerTour(1);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(2);jeu.JouerTour(1);jeu.JouerTour(2);
+        jeu.JouerTour(1);jeu.JouerTour(2);
+
+        
+        
     }
-}
+        }
+
