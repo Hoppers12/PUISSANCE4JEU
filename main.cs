@@ -41,8 +41,9 @@ public class Program
             joueurSuivant = true;
             if (choixGrille == 1)
             {
-                limiteLigne = 6;
-                limiteColonne = 7;
+
+                limiteLigne=6;
+                limiteColonne=7;
                 initGrille(grille1); // Appel de la méthode qui initGrille qui créee la grille
 
             }
@@ -83,6 +84,7 @@ public class Program
                 }
             }
         }
+
 
 
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même ligne
@@ -329,6 +331,7 @@ public class Program
         }
 
 
+
         public bool Victoire(int[,] grilleUtilisee, int colonneJoue)
         {
             bool resultat = false;
@@ -350,6 +353,7 @@ public class Program
             else if (GrilleComplete(grilleUtilisee))
             {
                 Console.WriteLine(" ");                             // Egalité 
+        
                 Console.WriteLine("Match nul (Grille pleine) ");
             }
             return resultat;
@@ -368,6 +372,7 @@ public class Program
                 }
             }
         }
+
 
         public void JouerPionDansGrille(int[,] grilleUtilisee, int indColonneJoue)
         {
@@ -410,6 +415,7 @@ public class Program
             {
                 Console.WriteLine("");
                 Console.WriteLine("Impossible de placer un pion dans cette colonne");
+
             }
         }
 
@@ -437,6 +443,7 @@ public class Program
     // MAIN
     private static void Main(string[] args)
     {
+
         Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2", 1, true);
 
         Console.WriteLine(" ");
@@ -455,3 +462,4 @@ public class Program
 
     }
 }
+
