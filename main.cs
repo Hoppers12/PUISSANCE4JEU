@@ -114,11 +114,22 @@ public class Program
             {
                 colonne--;
                 cptr_pion_aligne++;
+
+                // Gestion du cas lors duquel le pion est situé sur le bord gauche
+                if (grilleUtilisee[ligne, colonne] == valeur && colonne == 0)
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
+            //Remise à 0 du compteur si il n'a pas atteint 4 lors du test précédent
+            if (cptr_pion_aligne < 4 )
+            {
+                cptr_pion_aligne = 0;
+            }
 
-            // Comptage du nombre de pion du même jouer alignés vers la droite
-            colonne = colonneJoue + 1;
+            // Comptage du nombre de pion du même joueur alignés vers la droite
+            colonne = colonneJoue ;
             while (grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne)
             {
                 colonne++;
@@ -450,16 +461,25 @@ public class Program
 
 
         /*test AlignementDiagonalDecroissant*/
-        jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(2);
-        jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
+        //jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(2);
+        //jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
 
         //test AlignementDiagonalCroissant
         /*jeu.JouerTour(5);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);
         jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);jeu.JouerTour(2);jeu.JouerTour(4);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);*/
 
-        //test AlignementHorizontal
+        //test AlignementHorizontal (droite vers gauche) OK
         //jeu.JouerTour(1);jeu.JouerTour(1);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);
 
+        //Test alignementHorizontal (gauche vers droite PAS COLLE A DROITE) OK
+        //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(3);
+
+        //Test alignement vertical OK
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1);
+    
+        // IL RESTE A TESTER ALIGNEMENT HORIZONTAL VERS LA DROITE COLLEE A DROITE + LES DIAGONALES
+    
+    
     }
 }
 
