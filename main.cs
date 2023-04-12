@@ -2,10 +2,10 @@ using System;
 
 public class Program
 {
-    class Joueur
+    public class Joueur
     {
         public string pseudo;
-        public bool couleurPion;       //true=rouge; false= bleu  
+        public bool couleurPion;       // true=rouge; false= bleu  
         public bool type;      // true=Joueur; false=IA
 
 
@@ -18,7 +18,8 @@ public class Program
     }
 
 
-    class Puissance4
+
+    public class Puissance4
     {
         private Joueur J1;
         private Joueur J2;
@@ -122,7 +123,6 @@ public class Program
                     cptr_pion_aligne++;
                 }
             }
-            Console.WriteLine(cptr_pion_aligne);
 
             //Remise à 0 du compteur si il n'a pas atteint 4 lors du test précédent
             if (cptr_pion_aligne < 4)
@@ -145,7 +145,7 @@ public class Program
                 cptr_pion_aligne++;
             }
 
-            Console.WriteLine(cptr_pion_aligne);
+     
 
             // Enregistrement du numéro du gagnant 
             if (cptr_pion_aligne >= 4)
@@ -231,7 +231,6 @@ public class Program
             {
                 ligne++; colonne--;
                 cptr_pion_aligne++;
-                Console.WriteLine("compteur : " + cptr_pion_aligne);
             }
 
 
@@ -268,7 +267,7 @@ public class Program
             {
                 cptr_pion_aligne++;
             }
-            Console.WriteLine("compteur : " + cptr_pion_aligne);
+    
 
             // Enregistrement du numéro du gagnant 
             if (cptr_pion_aligne >= 4)
@@ -524,11 +523,30 @@ public class Program
         jeu.JouerTour(4); jeu.JouerTour(4); */
 
 
-        //Diagonal décroissante qui finie en haut à droite
+        //Diagonal décroissante qui finie en haut à droite OK
         //jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4);
         //jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5);
         //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(1); jeu.JouerTour(6);
         //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(1);  jeu.JouerTour(7);
+
+
+        //Tester horizontal haut droite OK
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(4); jeu.JouerTour(1); jeu.JouerTour(5); jeu.JouerTour(2); jeu.JouerTour(6); jeu.JouerTour(3); jeu.JouerTour(7);
+
+        //Tester vertical haut droite OK
+        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);
+        jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);
+        jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(7);
+        jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5);
+        jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(5);
+        jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(5); jeu.JouerTour(5);
+        jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(5);
+        jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(3);
 
     }
 }
