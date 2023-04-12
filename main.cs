@@ -26,7 +26,7 @@ public class Program
         private int[,] grille2 = new int[5, 6];
         private int choixGrille; // 1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire
         private bool choixMode; // true = JVJ ; false = JVIA ;
-        private int gagnant;    // 1 = J1; 2 = J2; 0 = match nul
+        public int gagnant;    // 1 = J1; 2 = J2; 0 = match nul
         private bool joueurSuivant; //True = J1 ; False = J2/IA
         private int limiteLigne;
         private int limiteColonne;
@@ -42,8 +42,8 @@ public class Program
             if (choixGrille == 1)
             {
 
-                limiteLigne=6;
-                limiteColonne=7;
+                limiteLigne = 6;
+                limiteColonne = 7;
                 initGrille(grille1); // Appel de la méthode qui initGrille qui créee la grille
 
             }
@@ -72,6 +72,7 @@ public class Program
                     this.initGrille(grille2);
                 }
             }
+            gagnant = -1;
         }
 
         public void initGrille(int[,] grilleUtilisee)
@@ -122,26 +123,33 @@ public class Program
                 }
             }
 
+            Console.WriteLine(cptr_pion_aligne);
+
             //Remise à 0 du compteur si il n'a pas atteint 4 lors du test précédent
-            if (cptr_pion_aligne < 4 )
+            if (cptr_pion_aligne < 4)
             {
                 cptr_pion_aligne = 0;
             }
 
             // Comptage du nombre de pion du même joueur alignés vers la droite
-            colonne = colonneJoue ;
+
+            colonne = colonneJoue;
+
             while (grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne)
             {
                 colonne++;
                 cptr_pion_aligne++;
             }
+
             if (grilleUtilisee[ligne, colonne] == valeur && colonne == limiteColonne - 1)
             {
                 cptr_pion_aligne++;
             }
 
+            Console.WriteLine(cptr_pion_aligne);
+
             // Enregistrement du numéro du gagnant 
-            if (cptr_pion_aligne == 4)
+            if (cptr_pion_aligne >= 4)
             {
                 quatreAligne = true;
                 gagnant = valeur;
@@ -364,7 +372,6 @@ public class Program
             else if (GrilleComplete(grilleUtilisee))
             {
                 Console.WriteLine(" ");                             // Egalité 
-        
                 Console.WriteLine("Match nul (Grille pleine) ");
             }
             return resultat;
@@ -451,35 +458,66 @@ public class Program
 
     }
 
+    private static void Jouer()
+    {
+        //char replay = '1' ;
+        Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2", 1, true);
+        while (jeu.gagnant == -1)
+        {
+            Console.WriteLine("Entrez une colonne");
+            int i = Convert.ToInt32(Console.ReadLine());
+            jeu.JouerTour(i);
+            Console.WriteLine(jeu.gagnant);
+        }
+
+    }
+
+
+
     // MAIN
     private static void Main(string[] args)
     {
 
         Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2", 1, true);
 
+
+
         Console.WriteLine(" ");
 
-
+        Jouer();
         /*test AlignementDiagonalDecroissant*/
         //jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(2);
         //jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
 
+
         //test AlignementDiagonalCroissant
-        /*jeu.JouerTour(5);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);
-        jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);jeu.JouerTour(2);jeu.JouerTour(4);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);*/
+
+        //jeu.JouerTour(5);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);
+        //jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);jeu.JouerTour(2);jeu.JouerTour(4);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);
 
         //test AlignementHorizontal (droite vers gauche) OK
         //jeu.JouerTour(1);jeu.JouerTour(1);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);
+
+
 
         //Test alignementHorizontal (gauche vers droite PAS COLLE A DROITE) OK
         //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(3);
 
         //Test alignement vertical OK
         //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1);
-    
-        // IL RESTE A TESTER ALIGNEMENT HORIZONTAL VERS LA DROITE COLLEE A DROITE + LES DIAGONALES
-    
-    
+
+
+        //Test alignement horizontal vers la droite collée à droite OK
+
+        //jeu.JouerTour(7) ;jeu.JouerTour(1) ;jeu.JouerTour(6) ;jeu.JouerTour(6) ;jeu.JouerTour(5) ;jeu.JouerTour(5) ;jeu.JouerTour(4) ;
+
+        // IL RESTE A TESTER LES DIAGONALES
+
+
+
+
+
     }
 }
+
 
