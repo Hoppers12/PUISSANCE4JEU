@@ -122,7 +122,6 @@ public class Program
                     cptr_pion_aligne++;
                 }
             }
-
             Console.WriteLine(cptr_pion_aligne);
 
             //Remise à 0 du compteur si il n'a pas atteint 4 lors du test précédent
@@ -225,37 +224,54 @@ public class Program
             }
 
             stockLigne = ligne;
+            
 
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
             while (grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne + 1) < limiteLigne)
             {
                 ligne++; colonne--;
                 cptr_pion_aligne++;
+                Console.WriteLine("compteur : " + cptr_pion_aligne);
             }
+
+
             if (grilleUtilisee[ligne, colonne] == valeur && (ligne == limiteLigne - 1 || colonne == 0))
             {
                 cptr_pion_aligne++;
             }
+
+            ligne = stockLigne;
+            colonne = colonneJoue;
             //S'assure que le pion est pas aux limite de la grille pour chercher a droite
-            if ((ligne - 1) >= 0 && (colonne + 1) < limiteColonne)
+            if ((stockLigne - 1) >= 0 && (colonneJoue + 1) < limiteColonne)
             {
-                ligne = stockLigne - 1;
-                colonne = colonneJoue + 1;
+                ligne--;
+                colonne++;
             }
 
-            // Comptage du nombre de pion du même jouer alignés diagonalement en haut a droite
+
+            // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
+
             while (grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne && (ligne - 1) >= 0)
             {
-                ligne--; colonne++;
+                ligne--; 
+                colonne++;
                 cptr_pion_aligne++;
+
+                if (ligne - 1 <= 0|| (colonne + 1) >= limiteColonne)
+                {
+                    break;
+                }
+
             }
             if (grilleUtilisee[ligne, colonne] == valeur && (colonne == limiteColonne - 1 || ligne == 0))
             {
                 cptr_pion_aligne++;
             }
+            Console.WriteLine("compteur : " + cptr_pion_aligne);
 
             // Enregistrement du numéro du gagnant 
-            if (cptr_pion_aligne == 4)
+            if (cptr_pion_aligne >= 4)
             {
                 quatreAligne = true;
                 gagnant = valeur;
@@ -292,7 +308,8 @@ public class Program
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
             while (grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne - 1) >= 0)
             {
-                ligne--; colonne--;
+                ligne--; 
+                colonne--;
                 cptr_pion_aligne++;
             }
             if (grilleUtilisee[ligne, colonne] == valeur && (ligne == 0 || colonne == 0))
@@ -458,19 +475,6 @@ public class Program
 
     }
 
-    private static void Jouer()
-    {
-        //char replay = '1' ;
-        Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2", 1, true);
-        while (jeu.gagnant == -1)
-        {
-            Console.WriteLine("Entrez une colonne");
-            int i = Convert.ToInt32(Console.ReadLine());
-            jeu.JouerTour(i);
-            Console.WriteLine(jeu.gagnant);
-        }
-
-    }
 
 
 
@@ -484,7 +488,6 @@ public class Program
 
         Console.WriteLine(" ");
 
-        Jouer();
         /*test AlignementDiagonalDecroissant*/
         //jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(2);
         //jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
@@ -513,9 +516,19 @@ public class Program
 
         // IL RESTE A TESTER LES DIAGONALES
 
+        //Diagonale croissante qui commence en haut à droite OK
+        /*
+        jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(7);
+        jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6);
+        jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(5);
+        jeu.JouerTour(4); jeu.JouerTour(4); */
 
 
-
+        //Diagonal décroissante qui finie en haut à droite
+        //jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4);
+        //jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5);
+        //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(1); jeu.JouerTour(6);
+        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(1);  jeu.JouerTour(7);
 
     }
 }
