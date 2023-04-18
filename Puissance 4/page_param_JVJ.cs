@@ -24,5 +24,14 @@ namespace Puissance_4
             page_partie_JVJ.Show();
 
         }
+
+
+        //Retour à l'accueil sur le click du bouton accueil 
+        private void button_retour_accueil(object sender, EventArgs e)
+        {
+            Accueil pageAccueil = new Accueil();
+            pageAccueil.Show(this);
+            this.Hide();
+        }
     }
 }

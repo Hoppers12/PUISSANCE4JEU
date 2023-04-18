@@ -1,7 +1,11 @@
-﻿namespace Puissance_4
+﻿
+using System;
+namespace Puissance_4
 {
+
     partial class Partie_JVJ
     {
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -41,6 +45,7 @@
             label1.Size = new Size(275, 35);
             label1.TabIndex = 0;
             label1.Text = "Partie Joueur VS Joueur";
+            label1.Click += label1_Click;
             // 
             // tableLayoutPanel1
             // 

@@ -36,6 +36,7 @@
             label3 = new Label();
             textBox1 = new TextBox();
             button1 = new Button();
+            button_accueil = new Button();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,7 +71,7 @@
             radioButton2.Size = new Size(61, 24);
             radioButton2.TabIndex = 1;
             radioButton2.TabStop = true;
-            radioButton2.Text = "6 x 6";
+            radioButton2.Text = "6 x 5";
             radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
@@ -119,13 +120,23 @@
             button1.TabIndex = 9;
             button1.Text = "JOUER";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            // 
+            // button_accueil
+            // 
+            button_accueil.Location = new Point(31, 27);
+            button_accueil.Name = "button_accueil";
+            button_accueil.Size = new Size(94, 29);
+            button_accueil.TabIndex = 10;
+            button_accueil.Text = "ACCUEIL";
+            button_accueil.UseVisualStyleBackColor = true;
+            button_accueil.Click += button_retour_accueil;
             // 
             // page_param_JVIA
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button_accueil);
             Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(label3);
@@ -149,5 +160,6 @@
         private Label label3;
         private TextBox textBox1;
         private Button button1;
+        private Button button_accueil;
     }
 }
