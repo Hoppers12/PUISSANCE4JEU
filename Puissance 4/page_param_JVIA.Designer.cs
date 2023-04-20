@@ -84,6 +84,7 @@
             radioButton1.TabStop = true;
             radioButton1.Text = "6 x 7";
             radioButton1.UseVisualStyleBackColor = true;
+
             // 
             // label1
             // 

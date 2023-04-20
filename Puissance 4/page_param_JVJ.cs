@@ -13,6 +13,7 @@ namespace Puissance_4
 {
     public partial class page_param_JVJ : Form
     {
+        public int choixGrilleRadioButton;
         public page_param_JVJ()
         {
             InitializeComponent();
@@ -20,6 +21,21 @@ namespace Puissance_4
 
         private void button1_Click(object sender, EventArgs e) // Bouton "JOUER" Joueur VS JOUEUR
         {
+            // On enregistre le numero de la grille choisie en fonction du radiobutton qui a été coché
+            if (radioButton1.CausesValidation == true)
+            {
+                choixGrilleRadioButton = 1;
+            }
+            else
+            {
+                if (radioButton2.CausesValidation == true)
+                {
+                    choixGrilleRadioButton = 2;
+                } else
+                {
+                    choixGrilleRadioButton = 0;
+                }
+            }
             Partie_JVJ page_partie_JVJ = new Partie_JVJ();
             page_partie_JVJ.Show();
 

@@ -33,7 +33,7 @@ namespace Puissance_4
         private void InitializeComponent()
         {
             label1 = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            label2 = new Label();
             Colonne1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -41,7 +41,7 @@ namespace Puissance_4
             button5 = new Button();
             button6 = new Button();
             button7 = new Button();
-            label2 = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
             SuspendLayout();
             // 
             // label1
@@ -53,34 +53,15 @@ namespace Puissance_4
             label1.Size = new Size(275, 35);
             label1.TabIndex = 0;
             label1.Text = "Partie Joueur VS Joueur";
-            label1.Click += label1_Click;
             // 
-            // tableLayoutPanel1
+            // label2
             // 
-            tableLayoutPanel1.BackColor = SystemColors.ActiveCaption;
-            tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
-            tableLayoutPanel1.ColumnCount = 7;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.65502F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.34498F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 124F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 98F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));
-            tableLayoutPanel1.ForeColor = SystemColors.Highlight;
-            tableLayoutPanel1.Location = new Point(40, 87);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 6;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 43.51852F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 56.48148F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 54F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 49F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.Size = new Size(748, 351);
-            tableLayoutPanel1.TabIndex = 1;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+            label2.AutoSize = true;
+            label2.Location = new Point(380, 21);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 9;
+            label2.Text = "label2";
             // 
             // Colonne1
             // 
@@ -144,22 +125,15 @@ namespace Puissance_4
             // 
             // button7
             // 
-            button7.Location = new Point(721, 58);
-            button7.Name = "button7";
-            button7.Size = new Size(100, 29);
-            button7.TabIndex = 8;
-            button7.Text = "button7";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += Colonne7_Click;
+
             // 
-            // label2
+            // tableLayoutPanel1
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(380, 21);
-            label2.Name = "label2";
-            label2.Size = new Size(50, 20);
-            label2.TabIndex = 9;
-            label2.Text = "label2";
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Location = new Point(123, 159);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Size = new Size(622, 218);
+            tableLayoutPanel1.TabIndex = 10;
             // 
             // Partie_JVJ
             // 
@@ -185,7 +159,7 @@ namespace Puissance_4
         #endregion
 
         private Label label1;
-        private TableLayoutPanel tableLayoutPanel1;
+        private Label label2;
         private Button Colonne1;
         private Button button2;
         private Button button3;
@@ -193,7 +167,7 @@ namespace Puissance_4
         private Button button5;
         private Button button6;
         private Button button7;
-        private Label label2;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 
 }

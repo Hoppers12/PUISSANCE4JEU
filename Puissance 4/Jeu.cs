@@ -25,7 +25,7 @@ public class Program
         private Joueur J2;
         public int[,] grille1 = new int[6, 7];
         public int[,] grille2 = new int[5, 6];
-        private int choixGrille; // 1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire
+        public int choixGrille; // 1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire
         private bool choixMode; // true = JVJ ; false = JVIA ;
         public int gagnant;    // 1 = J1; 2 = J2; 0 = match nul
         private bool joueurSuivant; //True = J1 ; False = J2/IA

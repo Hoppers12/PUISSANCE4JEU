@@ -26,5 +26,7 @@ namespace Puissance_4
             pageAccueil.Show(this);
             this.Hide();
         }
+
+
     }
 }
