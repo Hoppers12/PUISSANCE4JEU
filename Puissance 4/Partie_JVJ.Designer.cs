@@ -33,15 +33,13 @@ namespace Puissance_4
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
+            LabelTailleGrille = new Label();
             Colonne1 = new Button();
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
-            button7 = new Button();
-            tableLayoutPanel1 = new TableLayoutPanel();
             SuspendLayout();
             // 
             // label1
@@ -54,14 +52,14 @@ namespace Puissance_4
             label1.TabIndex = 0;
             label1.Text = "Partie Joueur VS Joueur";
             // 
-            // label2
+            // LabelTailleGrille
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(380, 21);
-            label2.Name = "label2";
-            label2.Size = new Size(50, 20);
-            label2.TabIndex = 9;
-            label2.Text = "label2";
+            LabelTailleGrille.AutoSize = true;
+            LabelTailleGrille.Location = new Point(380, 21);
+            LabelTailleGrille.Name = "LabelTailleGrille";
+            LabelTailleGrille.Size = new Size(50, 20);
+            LabelTailleGrille.TabIndex = 9;
+            LabelTailleGrille.Text = "label2";
             // 
             // Colonne1
             // 
@@ -123,32 +121,18 @@ namespace Puissance_4
             button6.UseVisualStyleBackColor = true;
             button6.Click += Colonne6_Click;
             // 
-            // button7
-            // 
-
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Location = new Point(123, 159);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Size = new Size(622, 218);
-            tableLayoutPanel1.TabIndex = 10;
-            // 
             // Partie_JVJ
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(label2);
-            Controls.Add(button7);
+            ClientSize = new Size(1182, 753);
+            Controls.Add(LabelTailleGrille);
             Controls.Add(button3);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button2);
             Controls.Add(Colonne1);
-            Controls.Add(tableLayoutPanel1);
             Controls.Add(label1);
             Name = "Partie_JVJ";
             Text = "Form1";
@@ -159,15 +143,13 @@ namespace Puissance_4
         #endregion
 
         private Label label1;
-        private Label label2;
+        private Label LabelTailleGrille;
         private Button Colonne1;
         private Button button2;
         private Button button3;
         private Button button4;
         private Button button5;
         private Button button6;
-        private Button button7;
-        private TableLayoutPanel tableLayoutPanel1;
     }
 
 }

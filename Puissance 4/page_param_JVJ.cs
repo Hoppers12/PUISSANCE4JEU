@@ -22,22 +22,33 @@ namespace Puissance_4
         private void button1_Click(object sender, EventArgs e) // Bouton "JOUER" Joueur VS JOUEUR
         {
             // On enregistre le numero de la grille choisie en fonction du radiobutton qui a été coché
-            if (radioButton1.CausesValidation == true)
+            if (radioButton1.Checked == true)
             {
+                
                 choixGrilleRadioButton = 1;
+                Label label3 = new Label();
+                this.Controls.Add(label3);
+                label3.Text = choixGrilleRadioButton.ToString();
             }
             else
             {
-                if (radioButton2.CausesValidation == true)
+                if (radioButton2.Checked == true)
                 {
                     choixGrilleRadioButton = 2;
-                } else
+                }
+                else
                 {
                     choixGrilleRadioButton = 0;
                 }
+
+
             }
-            Partie_JVJ page_partie_JVJ = new Partie_JVJ();
+            Label label4 = new Label();
+            this.Controls.Add(label4);
+            label4.Text = choixGrilleRadioButton.ToString();
+            Partie_JVJ page_partie_JVJ = new Partie_JVJ(this); // On passe this en paramétre pour que la partie pusise connaitre ce qui a été coché ici
             page_partie_JVJ.Show();
+
 
         }
 

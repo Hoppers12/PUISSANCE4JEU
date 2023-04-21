@@ -120,7 +120,6 @@
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(91, 24);
             radioButton3.TabIndex = 2;
-            radioButton3.TabStop = true;
             radioButton3.Text = "Aléatoire";
             radioButton3.UseVisualStyleBackColor = true;
             // 
@@ -131,13 +130,13 @@
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(61, 24);
             radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
             radioButton2.Text = "6 x 5";
             radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
             radioButton1.AutoSize = true;
+            radioButton1.Checked = true;
             radioButton1.Location = new Point(122, 54);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(61, 24);
