@@ -234,18 +234,8 @@ public class Program
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même diagonale
         public bool AlignementDiagonalDecroissant(int[,] grilleUtilisee, int colonneJoue)
         {
-            int cptr_pion_aligne = 0, stockLigne, ligne = 0, colonne = colonneJoue, valeur;
+            int cptr_pion_aligne = 1, stockLigne, ligne = 0, colonne = colonneJoue, valeur;
             bool quatreAligne = false;
-
-            // Determine la valeur a chercher
-            if (joueurSuivant)
-            {
-                valeur = 2;
-            }
-            else
-            {
-                valeur = 1;
-            }
 
             // Recherche d'un pion dans la colonne 
             while (grilleUtilisee[ligne, colonneJoue] == 0)
@@ -253,34 +243,35 @@ public class Program
                 ligne++;
             }
 
+            // Determine la valeur a chercher
+            valeur = grilleUtilisee[ligne, colonneJoue];
             stockLigne = ligne;
 
-            // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne - 1) >= 0)
+
+            // Comptage du nombre de pion du même jouer alignés diagonalement en haut a gauche
+            if (colonneJoue != 0 && ligne != 0)
             {
-                ligne--; colonne--;
-                cptr_pion_aligne++;
-            }
-            if (grilleUtilisee[ligne, colonne] == valeur && (ligne == 0 || colonne == 0))
-            {
-                cptr_pion_aligne++;
-            }
-            //S'assure que le pion est pas aux limite de la grille pour chercher a droite
-            if ((stockLigne + 1) < limiteLigne && (colonneJoue + 1) < limiteColonne)
-            {
-                ligne = stockLigne + 1;
-                colonne = colonneJoue + 1;
+                for (ligne = ligne - 1, colonne = colonneJoue - 1; grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne - 1) >= 0; ligne--, colonne--)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleUtilisee[ligne, colonne] == valeur && (ligne == 0 || colonne == 0))
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
-            // Comptage du nombre de pion du même jouer alignés diagonalement en haut a droite
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne && (ligne + 1) < limiteLigne)
+            // Comptage du nombre de pion du même joueur alignés diagonalement en bas a droite
+            if (colonneJoue != limiteColonne - 1 && stockLigne != limiteLigne - 1)
             {
-                ligne++; colonne++;
-                cptr_pion_aligne++;
-            }
-            if (grilleUtilisee[ligne, colonne] == valeur && (colonne == limiteColonne - 1 || ligne == limiteLigne - 1))
-            {
-                cptr_pion_aligne++;
+                for (ligne = stockLigne + 1, colonne = colonneJoue + 1; grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne && (ligne + 1) < limiteLigne; ligne++, colonne++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleUtilisee[ligne, colonne] == valeur && (ligne == limiteLigne - 1 || colonne == limiteColonne - 1))
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
             // Enregistrement du numéro du gagnant 
