@@ -87,21 +87,10 @@ public class Program
 
 
 
-        // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même ligne
         public bool AlignementHorizontal(int[,] grilleUtilisee, int colonneJoue)
         {
-            int cptr_pion_aligne = 0, ligne = 0, colonne = colonneJoue, valeur;
+            int cptr_pion_aligne = 1, ligne = 0, colonne, valeur;
             bool quatreAligne = false;
-
-            // Determine la valeur a chercher
-            if (joueurSuivant)
-            {
-                valeur = 2;
-            }
-            else
-            {
-                valeur = 1;
-            }
 
             // Recherche d'un pion dans la colonne 
             while (grilleUtilisee[ligne, colonneJoue] == 0)
@@ -109,28 +98,37 @@ public class Program
                 ligne++;
             }
 
+            // Determine la valeur a chercher
+            valeur = grilleUtilisee[ligne, colonneJoue];
+
             // Comptage du nombre de pion du même jouer alignés vers la gauche
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0)
+            if (colonneJoue != 0)
             {
-                colonne--;
-                cptr_pion_aligne++;
+                for (colonne = colonneJoue - 1; grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0; colonne--)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (colonne == 0 && grilleUtilisee[ligne, colonne] == valeur)
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
-
-            // Comptage du nombre de pion du même jouer alignés vers la droite
-            colonne = colonneJoue + 1;
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne)
+            // Comptage du nombre de pion du même joueur alignés vers la droite
+            else if (colonneJoue != limiteColonne - 1)
             {
-                colonne++;
-                cptr_pion_aligne++;
-            }
-            if (grilleUtilisee[ligne, colonne] == valeur && colonne == limiteColonne - 1)
-            {
-                cptr_pion_aligne++;
+                for (colonne = colonneJoue + 1; grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne; colonne++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (colonne == limiteColonne - 1 && grilleUtilisee[ligne, colonne] == valeur)
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
-            // Enregistrement du numéro du gagnant 
-            if (cptr_pion_aligne == 4)
+            // Enregistrement du numéro du gagnant
+            if (cptr_pion_aligne >= 4)
             {
                 quatreAligne = true;
                 gagnant = valeur;
