@@ -141,18 +141,8 @@ public class Program
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même colonne "colonneJoue"
         public bool AlignementVertical(int[,] grilleUtilisee, int colonneJoue)
         {
-            int cptr_pion_aligne = 0, ligne = 0, valeur;
+            int cptr_pion_aligne = 1, ligne = 0, valeur;
             bool quatreAligne = false;
-
-            // Determine la valeur a chercher
-            if (joueurSuivant)
-            {
-                valeur = 2;
-            }
-            else
-            {
-                valeur = 1;
-            }
 
             // Recherche d'un pion dans la colonne 
             while (grilleUtilisee[ligne, colonneJoue] == 0)
@@ -160,15 +150,20 @@ public class Program
                 ligne++;
             }
 
+            // Determine la valeur a chercher
+            valeur = grilleUtilisee[ligne, colonneJoue];
+
             // Comptage du nombre de pion du même jouer alignés
-            while (grilleUtilisee[ligne, colonneJoue] == valeur && (ligne + 1) < limiteLigne)
+            if (ligne < limiteLigne - 3)
             {
-                ligne++;
-                cptr_pion_aligne++;
-            }
-            if (grilleUtilisee[ligne, colonneJoue] == valeur && ligne == limiteLigne - 1)
-            {
-                cptr_pion_aligne++;
+                for (ligne = ligne + 1; grilleUtilisee[ligne, colonneJoue] == valeur && (ligne + 1) < limiteLigne; ligne++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleUtilisee[ligne, colonneJoue] == valeur && ligne == limiteLigne - 1)
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
             // Enregistrement du numéro du gagnant 
