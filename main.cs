@@ -2,10 +2,10 @@ using System;
 
 public class Program
 {
-    class Joueur
+    public class Joueur
     {
         public string pseudo;
-        public bool couleurPion;       //true=rouge; false= bleu  
+        public bool couleurPion;       // true=rouge; false= bleu  
         public bool type;      // true=Joueur; false=IA
 
 
@@ -15,10 +15,28 @@ public class Program
             couleurPion = couleur;
             type = typeJoueur;
         }
+
+        public int ChoixColonne(int limiteDeColonne)
+        {
+            int coupJoué;
+            if (type)
+            {
+                Console.WriteLine("Rentrez la colonne dans la quelle vous voulez jouer.");
+                Console.WriteLine("(Veuillez rentrer -1 si abandon)");
+                coupJoué = Convert.ToInt32(Console.ReadLine());
+            }
+            else
+            {
+                Random aleatoire = new Random();
+                coupJoué = aleatoire.Next(1, limiteDeColonne + 1);
+            }
+            return coupJoué;
+        }
     }
 
 
-    class Puissance4
+
+    public class Puissance4
     {
         private Joueur J1;
         private Joueur J2;
@@ -26,7 +44,7 @@ public class Program
         private int[,] grille2 = new int[5, 6];
         private int choixGrille; // 1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire
         private bool choixMode; // true = JVJ ; false = JVIA ;
-        private int gagnant;    // 1 = J1; 2 = J2; 0 = match nul
+        public int gagnant;    // 1 = J1; 2 = J2; 0 = match nul
         private bool joueurSuivant; //True = J1 ; False = J2/IA
         private int limiteLigne;
         private int limiteColonne;
@@ -42,8 +60,8 @@ public class Program
             if (choixGrille == 1)
             {
 
-                limiteLigne=6;
-                limiteColonne=7;
+                limiteLigne = 6;
+                limiteColonne = 7;
                 initGrille(grille1); // Appel de la méthode qui initGrille qui créee la grille
 
             }
@@ -84,7 +102,6 @@ public class Program
                 }
             }
         }
-
 
 
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même ligne
@@ -177,6 +194,7 @@ public class Program
             return quatreAligne;
         }
 
+
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même diagonale
         public bool AlignementDiagonalCroissant(int[,] grilleUtilisee, int colonneJoue)
         {
@@ -248,7 +266,7 @@ public class Program
             stockLigne = ligne;
 
 
-            // Comptage du nombre de pion du même jouer alignés diagonalement en haut a gauche
+            // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
             if (colonneJoue != 0 && ligne != 0)
             {
                 for (ligne = ligne - 1, colonne = colonneJoue - 1; grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne - 1) >= 0; ligne--, colonne--)
@@ -261,7 +279,7 @@ public class Program
                 }
             }
 
-            // Comptage du nombre de pion du même joueur alignés diagonalement en bas a droite
+            // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
             if (colonneJoue != limiteColonne - 1 && stockLigne != limiteLigne - 1)
             {
                 for (ligne = stockLigne + 1, colonne = colonneJoue + 1; grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne && (ligne + 1) < limiteLigne; ligne++, colonne++)
@@ -329,7 +347,6 @@ public class Program
             else if (GrilleComplete(grilleUtilisee))
             {
                 Console.WriteLine(" ");                             // Egalité 
-        
                 Console.WriteLine("Match nul (Grille pleine) ");
             }
             return resultat;
@@ -357,7 +374,6 @@ public class Program
             // Si colonne choisie valide (pas pleine + existante)
             if (indColonneJoue < limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0, indColonneJoue] == 0)
             {
-
                 while ((ligne + 1) < limiteLigne && grilleUtilisee[ligne + 1, indColonneJoue] == 0)
                 {
                     ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
@@ -368,14 +384,6 @@ public class Program
                     joueurSuivant = false;    //change le joueur qui joue 
                     this.AfficheGrille(grilleUtilisee);
                     Console.WriteLine("");
-                    if (!choixMode)
-                    {       //si c'est joueurVsIA
-                            //pose un pion aleatoirement
-                        Random aleatoire = new Random();
-                        int colonneAleatoire = aleatoire.Next(1, limiteColonne + 1);
-                        this.JouerTour(colonneAleatoire);
-                    }
-                    this.Victoire(grilleUtilisee, indColonneJoue); //
                 }
                 else
                 {
@@ -383,9 +391,7 @@ public class Program
                     joueurSuivant = true;   //change le joueur qui joue 
                     this.AfficheGrille(grilleUtilisee);
                     Console.WriteLine("");
-                    this.Victoire(grilleUtilisee, indColonneJoue); //
                 }
-
             }
             else
             {
@@ -402,19 +408,59 @@ public class Program
 
             if (choixGrille == 1)
             {
-
                 this.JouerPionDansGrille(grille1, colonne);
-
             }
-            else if (choixGrille == 2)
+            else
             {
-
                 this.JouerPionDansGrille(grille2, colonne);
-
             }
         }
 
+        // Méthode du déroulement du jeu et qui s'arrête en temps voulu
+        public void Jeu()
+        {
+            int[,] grilleJouee;
+            int colonneJouee;
+            bool abandon = false;
+
+            if (choixGrille == 1)
+            {
+                grilleJouee = grille1;
+            }
+            else
+            {
+                grilleJouee = grille2;
+            }
+
+            do
+            {
+
+                if (this.joueurSuivant)
+                {
+                    Console.WriteLine("Au tour de " + J1.pseudo + '.');
+                    colonneJouee = J1.ChoixColonne(limiteColonne);
+                }
+                else
+                {
+                    Console.WriteLine("Au tour de " + J2.pseudo + '.');
+                    colonneJouee = J2.ChoixColonne(limiteColonne);
+                }
+                if (colonneJouee != -1)
+                {
+                    JouerTour(colonneJouee);
+                }
+                else
+                {
+                    abandon = true;
+                }
+
+            } while (!abandon && !this.Victoire(grilleJouee, colonneJouee - 1) && !GrilleComplete(grilleJouee));
+        }
     }
+
+
+
+
 
     // MAIN
     private static void Main(string[] args)
@@ -424,7 +470,7 @@ public class Program
 
         Console.WriteLine(" ");
 
-
+        jeu.Jeu();
         //test AlignementHorizontal (droite vers gauche) OK
         //jeu.JouerTour(1);jeu.JouerTour(1);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);
 
@@ -478,6 +524,11 @@ public class Program
         //jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(2);
         //jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
 
+
+
+
     }
 }
+
+
 
