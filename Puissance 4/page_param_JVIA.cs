@@ -17,9 +17,16 @@ namespace Puissance_4
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
 
+
+        //Retour à l'accueil sur le click du bouton accueil 
+        private void button_retour_accueil(object sender, EventArgs e)
+        {
+            Accueil pageAccueil = new Accueil();
+            pageAccueil.Show(this);
+            this.Hide();
         }
+
+
     }
 }

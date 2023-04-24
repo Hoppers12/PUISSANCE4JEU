@@ -4,13 +4,13 @@
     <Compile Update="Accueil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Partie_JVJ.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="page_param_JVIA.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="page_param_JVJ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Partie_JVJ.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
