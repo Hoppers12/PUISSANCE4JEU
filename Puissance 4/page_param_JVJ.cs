@@ -14,10 +14,15 @@ namespace Puissance_4
     public partial class page_param_JVJ : Form
     {
         public int choixGrilleRadioButton;
+        public string pseudoJ1;
+        public string pseudoJ2;
+  
+
         public page_param_JVJ()
         {
             InitializeComponent();
-        }
+
+    }
 
         private void button1_Click(object sender, EventArgs e) // Bouton "JOUER" Joueur VS JOUEUR
         {
@@ -26,9 +31,6 @@ namespace Puissance_4
             {
                 
                 choixGrilleRadioButton = 1;
-                Label label3 = new Label();
-                this.Controls.Add(label3);
-                label3.Text = choixGrilleRadioButton.ToString();
             }
             else
             {
@@ -37,16 +39,19 @@ namespace Puissance_4
                     choixGrilleRadioButton = 2;
                 }
                 else
-                {
-                    choixGrilleRadioButton = 0;
+                {if (radioButton3.Checked == true)
+                    {
+                        choixGrilleRadioButton = 0;
+                    }
+                    
                 }
 
 
             }
-            Label label4 = new Label();
-            this.Controls.Add(label4);
-            label4.Text = choixGrilleRadioButton.ToString();
-            Partie_JVJ page_partie_JVJ = new Partie_JVJ(this); // On passe this en paramétre pour que la partie pusise connaitre ce qui a été coché ici
+            pseudoJ1 = textBox1.Text; 
+            pseudoJ2 = textBox2.Text;    // Gestion des pseudos dans un attribut pour les récupérer + tard
+
+            Partie_JVJ page_partie_JVJ = new Partie_JVJ(this); // On passe this en paramétre pour que la partie puisse connaitre ce qui a été coché ici
             page_partie_JVJ.Show();
 
 

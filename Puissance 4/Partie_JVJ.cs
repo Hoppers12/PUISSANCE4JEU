@@ -29,6 +29,12 @@ namespace Puissance_4
         public Puissance4 Jeu;
         public TableLayoutPanel tableLayoutPanel1;
 
+        Label J1 = new Label();
+        Label J2 = new Label();
+        Label JActif = new Label();
+        Label VS = new Label();
+        Label JoueurActifPhrase = new Label();  
+       
 
         int nbColonne;
         int nbLigne;
@@ -36,20 +42,41 @@ namespace Puissance_4
         public Partie_JVJ(page_param_JVJ param)
         {
             InitializeComponent();
+            LabelTailleGrille.Location = new Point(600, 0);
             choixGrille = param.choixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
             tableLayoutPanel1 = new TableLayoutPanel();
             Jeu = new Puissance4("Joueur 1", "Joueur 2", choixGrille, true);
 
+            JoueurActifPhrase.Text = "Au tour de : ";
+            this.Controls.Add(J1);
+            this.Controls.Add(J2);
+            this.Controls.Add(JActif);
+            this.Controls.Add(VS);
+            this.Controls.Add(JoueurActifPhrase);
+
+
+            J1.Location = new Point(250,0);
+            VS.Location = new Point(275, 0); // Placement des pseudos des joueurs sur la page
+            J2.Location = new Point(300, 0);
+            JoueurActifPhrase.Location = new Point(400);
+            JActif.Location = new Point(480, 0);
+
+            JActif.BackColor = Color.Red;
+            J1.Text = param.pseudoJ1; // On attribue la valeur entrée dans les input de la page param aux labels d'ici
+            J2.Text = param.pseudoJ2;
+
+
+            JActif.Text =J1.Text; // On initialise le pseudo du J actif à J1 car c'est lui qui commence
 
             // creation de la grille en fonction du choix (Grille 1  / 2 ou Aléatoire entre ces 2)
-            if (Jeu.choixGrille == 1)
+            if (choixGrille == 1)
             {
                 LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
                 initGrille1();
             }
             else
             {
-                if (Jeu.choixGrille == 2)
+                if (choixGrille == 2)
                 {
                     LabelTailleGrille.Text = " Taille de la Grille : 6 x 5 ";
                     initGrille2();
@@ -58,10 +85,9 @@ namespace Puissance_4
                 }
                 else
                 {
-                    Random aleatoire = new Random();
-                    int grilleAleatoire = aleatoire.Next(1, 2);
+                    choixGrille = Jeu.choixGrille;
 
-                    if (grilleAleatoire == 1)
+                    if (choixGrille == 1)
                     {
                         LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
                         initGrille1();
@@ -202,43 +228,62 @@ namespace Puissance_4
 
         }
 
-
+        //Fonction qui changer le pseudo dans le label du joueur actif 
+        private void changerPseudoJActif()
+        {
+            if (JActif.Text == J2.Text)
+            {
+                JActif.Text = J1.Text;
+                JActif.BackColor = Color.Red;
+            }else
+            {
+                JActif.Text= J2.Text;
+                JActif.BackColor = Color.Yellow;
+            }
+            
+        }
 
         //Placement d'un pion dans la colonne 1
         private void Colonne1_Click(object sender, EventArgs e)
         {
             Jeu.JouerTour(1);
             MajGrille();
+            changerPseudoJActif();
         }
         //Placement d'un pion dans la colonne 2
         private void Colonne2_Click(object sender, EventArgs e)
         {
             Jeu.JouerTour(2);
             MajGrille();
+            changerPseudoJActif();
         }
         //Placement d'un pion dans la colonne 3
         private void Colonne3_Click(object sender, EventArgs e)
         {
             Jeu.JouerTour(3);
             MajGrille();
+            changerPseudoJActif();
         }
         //Placement d'un pion dans la colonne 4
         private void Colonne4_Click(object sender, EventArgs e)
         {
             Jeu.JouerTour(4);
             MajGrille();
+            changerPseudoJActif();
         }
         //Placement d'un pion dans la colonne 5
         private void Colonne5_Click(object sender, EventArgs e)
         {
             Jeu.JouerTour(5);
             MajGrille();
+            changerPseudoJActif();
         }
         //Placement d'un pion dans la colonne 6
         private void Colonne6_Click(object sender, EventArgs e)
         {
             Jeu.JouerTour(6);
             MajGrille();
+            changerPseudoJActif();
         }
 
         // Placement d'un pion dans la colonne 7
@@ -246,19 +291,29 @@ namespace Puissance_4
         {
             Jeu.JouerTour(7);
             MajGrille();
+            changerPseudoJActif();
         }
 
         // Fonction de Mise à jour de la grille en fonction des modifications apportées
         private void MajGrille()
 
         {
+            if (choixGrille == 1)
+            {
+                nbLigne = 6;
+                nbColonne = 7;
+            }else
+            {
+                nbLigne = 5;
+                nbColonne = 6;
+            }
 
             for (int IndiceLigne = 0; IndiceLigne < nbLigne; IndiceLigne++)
             {
                 for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
                 {
                     // Modification de la la cellule en fonction de la nouvelle grille modifiée
-                    if (Jeu.choixGrille == 1)
+                    if (choixGrille == 1)
                     {
                         // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du jeu ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
                         if (Jeu.grille1[IndiceLigne, IndiceColonne] == 1)
@@ -278,8 +333,11 @@ namespace Puissance_4
                     }
                     else
                     {
-                        if (Jeu.choixGrille == 2)
+                        if (choixGrille == 2)
                         {
+
+                            Label label3 = new Label();
+                            label3.Text = IndiceColonne.ToString();
                             if (Jeu.grille2[IndiceLigne, IndiceColonne] == 1)
                             {
                                 tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
