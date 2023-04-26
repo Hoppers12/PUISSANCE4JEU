@@ -12,11 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Puissance_4;
-
-
-
 using static Program;
-
 namespace Puissance_4
 {
 
@@ -24,49 +20,67 @@ namespace Puissance_4
 
     public partial class Partie_JVJ : Form
     {
-        private page_param_JVJ param;
         private int choixGrille;
-        public Puissance4 Jeu;
+        public Puissance4 Partie;
         public TableLayoutPanel tableLayoutPanel1;
 
         Label J1 = new Label();
         Label J2 = new Label();
         Label JActif = new Label();
         Label VS = new Label();
-        Label JoueurActifPhrase = new Label();  
-       
+        Label JoueurActifPhrase = new Label();
+        Label vainqueur = new Label();
+
+
 
         int nbColonne;
         int nbLigne;
 
+        public void creationGrille ()
+        {
+
+        }
         public Partie_JVJ(page_param_JVJ param)
         {
             InitializeComponent();
-            LabelTailleGrille.Location = new Point(600, 0);
+            //Nomenclature des joueurs pour facilité la compréhension
+            string PremierJoueur = param.pseudoJ1;
+            string SecondJoueur = param.pseudoJ2;
+
             choixGrille = param.choixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
             tableLayoutPanel1 = new TableLayoutPanel();
-            Jeu = new Puissance4("Joueur 1", "Joueur 2", choixGrille, true);
 
+            Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, true);
+            
+            // Ajout des composants crées en attribut
             JoueurActifPhrase.Text = "Au tour de : ";
             this.Controls.Add(J1);
             this.Controls.Add(J2);
             this.Controls.Add(JActif);
-            this.Controls.Add(VS);
+            this.Controls.Add(VS);                       
             this.Controls.Add(JoueurActifPhrase);
+            this.Controls.Add(vainqueur);
 
+            // Placement des labels sur la page
+            LabelTailleGrille.Location = new Point(600, 0); 
+            J1.Location = new Point(250, 0);
+            VS.Location = new Point(350, 0); 
+            J2.Location = new Point(400, 0);
+            JoueurActifPhrase.Location = new Point(500);
+            JActif.Location = new Point(650, 0);
+            LabelTailleGrille.Location = new Point(800, 0);
+            vainqueur.Size = new Size(500, 50);
 
-            J1.Location = new Point(250,0);
-            VS.Location = new Point(275, 0); // Placement des pseudos des joueurs sur la page
-            J2.Location = new Point(300, 0);
-            JoueurActifPhrase.Location = new Point(400);
-            JActif.Location = new Point(480, 0);
-
+            // Indique la couleur du joueur actif
             JActif.BackColor = Color.Red;
-            J1.Text = param.pseudoJ1; // On attribue la valeur entrée dans les input de la page param aux labels d'ici
-            J2.Text = param.pseudoJ2;
 
+            // On attribue la valeur entrée dans les input de la page param aux labels d'ici
+            J1.Text = PremierJoueur; 
+            VS.Text = "VS";
+            J2.Text = SecondJoueur;
 
-            JActif.Text =J1.Text; // On initialise le pseudo du J actif à J1 car c'est lui qui commence
+            // On initialise le pseudo du J actif à J1 car c'est lui qui commence
+            JActif.Text = PremierJoueur; 
 
             // creation de la grille en fonction du choix (Grille 1  / 2 ou Aléatoire entre ces 2)
             if (choixGrille == 1)
@@ -85,7 +99,7 @@ namespace Puissance_4
                 }
                 else
                 {
-                    choixGrille = Jeu.choixGrille;
+                    choixGrille = Partie.choixGrille;
 
                     if (choixGrille == 1)
                     {
@@ -109,6 +123,11 @@ namespace Puissance_4
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
 
             // Initialisation de la grille (tout vide) on met des labels dans chaque case
+            initLabelDansGrille();
+        }
+
+        private void initLabelDansGrille()
+        {
             for (int IndiceLigne = 0; IndiceLigne < nbLigne; IndiceLigne++)
             {
                 for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
@@ -155,8 +174,6 @@ namespace Puissance_4
 
             this.Controls.Add(tableLayoutPanel1);
         }
-
-
         private void initGrille1()
         {
             nbColonne = 7;
@@ -235,62 +252,102 @@ namespace Puissance_4
             {
                 JActif.Text = J1.Text;
                 JActif.BackColor = Color.Red;
-            }else
+            }
+            else
             {
-                JActif.Text= J2.Text;
+                JActif.Text = J2.Text;
                 JActif.BackColor = Color.Yellow;
             }
-            
+
+        }
+        // Fonction qui affiche le résultat de la partie à l'écran
+        private void affichageGagnant()
+        {
+            if (Partie.gagnant == 1)
+            {
+                vainqueur.Text = Partie.J2.pseudo + " a remporté la partie";
+                vainqueur.Location = new Point(0, 700);
+                vainqueur.BackColor = Color.Red;
+                ResultatJVJ pageResultat = new ResultatJVJ(Partie.J1); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                pageResultat.Show();
+                this.Hide();// On ferme la page du Partie
+
+            }
+            else
+            {
+                if (Partie.gagnant == 2)
+                {
+                    vainqueur.Text = Partie.J2.pseudo + " a remporté la partie";
+                    vainqueur.Location = new Point(0, 700);
+                    vainqueur.BackColor = Color.Yellow;
+                    ResultatJVJ pageResultat = new ResultatJVJ(Partie.J2); //On ouvre une nouvelle page et on lui donne le joueur gagnant
+                    pageResultat.Show();
+                    this.Hide();  // On ferme la page du jeu
+                }
+            }
         }
 
         //Placement d'un pion dans la colonne 1
         private void Colonne1_Click(object sender, EventArgs e)
         {
-            Jeu.JouerTour(1);
+
+            Partie.Jeu(1);
             MajGrille();
+
+            affichageGagnant();
+
             changerPseudoJActif();
         }
         //Placement d'un pion dans la colonne 2
         private void Colonne2_Click(object sender, EventArgs e)
         {
-            Jeu.JouerTour(2);
+            Partie.Jeu(2);
             MajGrille();
+            affichageGagnant();
             changerPseudoJActif();
         }
         //Placement d'un pion dans la colonne 3
         private void Colonne3_Click(object sender, EventArgs e)
         {
-            Jeu.JouerTour(3);
+            Partie.Jeu(3);
             MajGrille();
+            affichageGagnant();
             changerPseudoJActif();
+
         }
         //Placement d'un pion dans la colonne 4
         private void Colonne4_Click(object sender, EventArgs e)
         {
-            Jeu.JouerTour(4);
+            Partie.Jeu(4);
             MajGrille();
+            affichageGagnant();
             changerPseudoJActif();
+
         }
         //Placement d'un pion dans la colonne 5
         private void Colonne5_Click(object sender, EventArgs e)
         {
-            Jeu.JouerTour(5);
+            Partie.Jeu(5);
             MajGrille();
+            affichageGagnant();
             changerPseudoJActif();
         }
         //Placement d'un pion dans la colonne 6
         private void Colonne6_Click(object sender, EventArgs e)
         {
-            Jeu.JouerTour(6);
+            Partie.Jeu(6);
             MajGrille();
+            affichageGagnant();
             changerPseudoJActif();
         }
+
 
         // Placement d'un pion dans la colonne 7
         private void Colonne7_Click(object sender, EventArgs e)
         {
-            Jeu.JouerTour(7);
+            Partie.Jeu(7);
             MajGrille();
+            affichageGagnant();
             changerPseudoJActif();
         }
 
@@ -302,7 +359,8 @@ namespace Puissance_4
             {
                 nbLigne = 6;
                 nbColonne = 7;
-            }else
+            }
+            else
             {
                 nbLigne = 5;
                 nbColonne = 6;
@@ -315,21 +373,23 @@ namespace Puissance_4
                     // Modification de la la cellule en fonction de la nouvelle grille modifiée
                     if (choixGrille == 1)
                     {
-                        // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du jeu ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
-                        if (Jeu.grille1[IndiceLigne, IndiceColonne] == 1)
+                        // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
+                        if (Partie.grille1[IndiceLigne, IndiceColonne] == 1)
                         {
                             tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
-                        }else
+                        }
+                        else
                         {
-                            if (Jeu.grille1[IndiceLigne, IndiceColonne] == 2)
+                            if (Partie.grille1[IndiceLigne, IndiceColonne] == 2)
                             {
                                 tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
-                            }else
+                            }
+                            else
                             {
                                 tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
                             }
                         }
-                        
+
                     }
                     else
                     {
@@ -338,26 +398,30 @@ namespace Puissance_4
 
                             Label label3 = new Label();
                             label3.Text = IndiceColonne.ToString();
-                            if (Jeu.grille2[IndiceLigne, IndiceColonne] == 1)
+                            if (Partie.grille2[IndiceLigne, IndiceColonne] == 1)
                             {
                                 tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
-                            }else
+                            }
+                            else
                             {
-                                if (Jeu.grille2[IndiceLigne, IndiceColonne] == 2)
+                                if (Partie.grille2[IndiceLigne, IndiceColonne] == 2)
                                 {
                                     tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
-                                }else
+                                }
+                                else
                                 {
                                     tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
                                 }
                             }
-                            
+
                         }
                     }
 
                 }
             }
         }
+
+
 
         //Ajouter les appels de methode des verifs de victoire + de grille pleine/colonne pleine + ^passage pseudo sur l'autre page + faire J V IA 
 
