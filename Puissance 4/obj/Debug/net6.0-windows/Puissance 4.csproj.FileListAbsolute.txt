@@ -19,3 +19,4 @@ C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-win
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.page_param_JVJ.resources
 C:\Bureau\COURS\SAE2.01(puissance4)\puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Partie_JVJ.resources
 C:\Bureau\COURS\SAE2.01(puissance4)\puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Properties.Resources.resources
+C:\Bureau\COURS\SAE2.01(puissance4)\puissance 4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.ResultatJVJ.resources

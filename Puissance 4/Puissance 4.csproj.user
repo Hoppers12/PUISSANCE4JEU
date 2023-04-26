@@ -4,6 +4,9 @@
     <Compile Update="Accueil.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ResultatJVJ.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="page_param_JVIA.cs">
       <SubType>Form</SubType>
     </Compile>

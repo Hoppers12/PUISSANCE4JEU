@@ -82,6 +82,7 @@
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 2;
             textBox1.Text = "Naruto";
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label3
             // 
