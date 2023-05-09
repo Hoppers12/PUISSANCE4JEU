@@ -66,6 +66,7 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Choix Pseudos";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // textBox2
             // 
@@ -113,6 +114,7 @@
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Choix Grille";
+            groupBox2.Enter += groupBox2_Enter;
             // 
             // radioButton3
             // 
