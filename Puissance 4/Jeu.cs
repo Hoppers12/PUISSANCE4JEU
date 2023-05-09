@@ -380,23 +380,42 @@ public class Program
 
         public void JouerPionDansGrille(int[,] grilleUtilisee, int indColonneJoue)
         {
-            int ligne = 0;
-
+            int ligne = 0, indColonneJoueIA;
+            while ((ligne + 1) < limiteLigne && grilleUtilisee[ligne + 1, indColonneJoue] == 0)
+            {
+                ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
+            }
             // Si colonne choisie valide (pas pleine + existante)
             if (indColonneJoue < limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0, indColonneJoue] == 0)
             {
-                while ((ligne + 1) < limiteLigne && grilleUtilisee[ligne + 1, indColonneJoue] == 0)
-                {
-                    ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
-                }
+             
                 if (joueurSuivant == true)
                 {
                     grilleUtilisee[ligne, indColonneJoue] = 1; //Remplissage de la case pour joueur 1 
                     joueurSuivant = false;    //change le joueur qui joue 
                     this.AfficheGrille(grilleUtilisee);
                     Console.WriteLine("");
-                    Victoire(grilleUtilisee, indColonneJoue); // Verification de la victoire aprés avoir joué
-                    GrilleComplete(grilleUtilisee);
+
+                    
+                    if (this.choixMode == false)
+                    {
+
+
+                        Random ColonneRandom = new Random();
+                        indColonneJoueIA = ColonneRandom.Next(0, limiteColonne + 1);
+                        while ((ligne + 1) < limiteLigne && grilleUtilisee[ligne + 1, indColonneJoueIA] == 0)
+                        {
+                            ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
+                        }
+                        Console.WriteLine(indColonneJoueIA);
+                        grilleUtilisee[ligne, indColonneJoueIA] = 2;  //Remplissage de la case pour joueur 2
+                        joueurSuivant = true;
+                        this.AfficheGrille(grilleUtilisee);
+                        Console.WriteLine("");
+
+
+                    }
+
                 }
                 else
                 {
@@ -404,8 +423,10 @@ public class Program
                     joueurSuivant = true;   //change le joueur qui joue 
                     this.AfficheGrille(grilleUtilisee);
                     Console.WriteLine("");
-                    Victoire(grilleUtilisee, indColonneJoue); // Verification de la victoire aprés avoir joué
-                    GrilleComplete(grilleUtilisee);
+
+
+
+
                 }
             }
             else
@@ -442,7 +463,14 @@ public class Program
                     Console.WriteLine("");
                     Console.WriteLine("Au tour de " + J1.pseudo + '.');
                     this.JouerPionDansGrille(grilleJouee, colonne-1);
+                    if (this.choixMode == true)
+                {
                     joueurSuivant = false;
+                }else
+                {
+                    joueurSuivant= true;
+                }
+                    
                 }
                 else
                 {

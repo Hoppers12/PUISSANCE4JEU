@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Puissance_4;
 using static Program;
 namespace Puissance_4
 {
-
-
-
-    public partial class Partie_JVJ : Form
+    public partial class Partie_JVIA : Form
     {
         private int choixGrille;
         public Puissance4 Partie;
@@ -40,17 +32,16 @@ namespace Puissance_4
         {
 
         }
-        public Partie_JVJ(page_param_JVJ param)
+        public Partie_JVIA(page_param_JVIA param)
         {
             InitializeComponent();
             //Nomenclature des joueurs pour facilité la compréhension
-            string PremierJoueur = param.pseudoJ1;
-            string SecondJoueur = param.pseudoJ2;
+            string PremierJoueur = param.pseudoJ;
 
             choixGrille = param.choixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
             tableLayoutPanel1 = new TableLayoutPanel();
 
-            Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, true);
+            Partie = new Puissance4(PremierJoueur, "IA", choixGrille, false);
 
             // Ajout des composants crées en attribut
             JoueurActifPhrase.Text = "Au tour de : ";
@@ -77,7 +68,7 @@ namespace Puissance_4
             // On attribue la valeur entrée dans les input de la page param aux labels d'ici
             J1.Text = PremierJoueur;
             VS.Text = "VS";
-            J2.Text = SecondJoueur;
+            J2.Text = "IA";
 
             // On initialise le pseudo du J actif à J1 car c'est lui qui commence
             JActif.Text = PremierJoueur;

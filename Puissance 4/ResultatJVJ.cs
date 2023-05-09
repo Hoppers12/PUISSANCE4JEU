@@ -15,7 +15,7 @@ namespace Puissance_4
 {
     public partial class ResultatJVJ : Form
     {
-        
+
         string pseudoGagnant;
         Label labelAffichageVainqueur = new Label();
 
@@ -29,6 +29,11 @@ namespace Puissance_4
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ResultatJVJ_Load(object sender, EventArgs e)
         {
 
         }

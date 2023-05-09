@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Puissance_4
 {
@@ -47,12 +48,12 @@ namespace Puissance_4
                     {
                         choixGrilleRadioButton = 0;
                     }
-
                 }
 
 
             }
-
+            pseudoJ1 = textBox1.Text;
+            pseudoJ2 = textBox2.Text;
             Partie_JVJ page_partie_JVJ = new Partie_JVJ(this); // On passe this en paramétre pour que la partie puisse connaitre ce qui a été coché ici
             page_partie_JVJ.Show();
 
@@ -69,6 +70,16 @@ namespace Puissance_4
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

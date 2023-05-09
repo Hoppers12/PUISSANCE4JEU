@@ -1,11 +1,7 @@
-﻿
-using System;
-namespace Puissance_4
+﻿namespace Puissance_4
 {
-
-    partial class Partie_JVJ
+    partial class Partie_JVIA
     {
-
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -152,5 +148,4 @@ namespace Puissance_4
         private Button button5;
         private Button button6;
     }
-
 }
