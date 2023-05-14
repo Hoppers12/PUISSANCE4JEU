@@ -1,5 +1,4 @@
 using System;
-using Math;
 
 public class Program
 {
@@ -9,12 +8,12 @@ public class Program
         #region définition des attributs
         private Joueur J1;
         private Joueur J2;
-        private int[,] grille1 = new int[6, 7];
-        private int[,] grille2 = new int[5, 6];
-        private int choixGrille; // 1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire
+        public int[,] grille1 = new int[6, 7];
+        public int[,] grille2 = new int[5, 6];
+        public int choixGrille; // 1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire
         private bool choixMode; // true = JVJ ; false = JVIA ;
         public int gagnant;    // 1 = J1; 2 = J2; 0 = match nul
-        private bool joueurSuivant; //True = J1 ; False = J2/IA
+        public bool joueurSuivant; //True = J1 ; False = J2/IA
         private int limiteLigne;
         private int limiteColonne;
         #endregion
@@ -25,9 +24,6 @@ public class Program
         {
             choixGrille = choixG;
             choixMode = mode;
-            J1 = new Joueur(prenom1, true, true);
-            J2 = new Joueur(prenom2, false, choixMode);
-            joueurSuivant = true;
             if (choixGrille == 1)
             {
 
@@ -61,8 +57,10 @@ public class Program
                     this.initGrille(grille2);
                 }
             }
+            J1 = new Joueur(prenom1, true, true,limiteColonne);
+            J2 = new Joueur(prenom2, false, choixMode,limiteColonne);
+            joueurSuivant = true;
         }
-
         public void initGrille(int[,] grilleUtilisee)
         {
             for (int i = 0; i < limiteLigne; i++)
@@ -278,6 +276,7 @@ public class Program
 
             return quatreAligne;
         }
+            #endregion
         #endregion
 
         #region grille complete
@@ -419,12 +418,12 @@ public class Program
                 if(this.joueurSuivant)
                 {
                     Console.WriteLine("Au tour de " + J1.pseudo + '.');
-                    colonneJouee = J1.ChoixColonne(limiteColonne);
+                    colonneJouee = J1.ChoixColonne(this);
                 }
                 else
                 {
                     Console.WriteLine("Au tour de " + J2.pseudo + '.');
-                    colonneJouee = J2.ChoixColonne(limiteColonne);
+                    colonneJouee = J2.ChoixColonne(this);
                 }
                 if(colonneJouee!=-1)
                 {
@@ -470,7 +469,7 @@ public class Program
         
         #region déterminer le coup à faire
             #region pour joueur
-        public int ChoixColonne(int grilleJeu)
+        public int ChoixColonne(Puissance4 jeu)
         {
             int coupJoué;
             if (type)
@@ -481,21 +480,30 @@ public class Program
             }
             else
             {
-                coupJoué=CoupIA(grilleJeu);
+                if(jeu.choixGrille==1)
+                    coupJoué=CoupIA(jeu);
+                else
+                    coupJoué=CoupIA(jeu);
             }
             return coupJoué;
         }
             #endregion
             #region pour IA
                 #region attribution des points aux différents coups
-        public int CoupIA(int [,] grilleJeu)
+                
+        public int CoupIA(Puissance4 jeu)
         {
-            int i,j,colonneJoueeIA,alignementIA=0;
-            initGrilleIA();
+            int i,j,colonneJoueeIA = 1,alignementIA=0;
+            int [,] grilleJeu;
+            if (jeu.choixGrille==1)
+                grilleJeu = jeu.grille1;
+            else 
+                grilleJeu = jeu.grille2;
+            
             for (i=0;i<nbreColonnes;i++)
             {
-                for (j = nbreLignes ; j!=0 && grilleJeu[i,j] != 0 ; j--);
-                alignementIA=determineAlignementsIA(grilleJeu,i,j);
+                for (j = nbreLignes - 1 ; j>=0 && grilleJeu[i,j] != 0 ; j--);
+                alignementIA=determineAlignementsIA(jeu,i,j);
                 switch(alignementIA)
                 {
                     case 4:
@@ -522,11 +530,12 @@ public class Program
             }
             return colonneJoueeIA;
         }
-            #endregion
+                #endregion
                 #region alignements possibles par l'IA 
+                
         public int alignementsIAHorizontal(int [,] grilleJeu, int colonne, int ligne)
         {
-            int cptr_pion_aligne = 1;
+            int cptr_pion_aligne = 1,i;
 
             // Comptage du nombre de pion de l'IA alignés vers la gauche
             if(colonne!=0)
@@ -539,7 +548,7 @@ public class Program
                 {
                     cptr_pion_aligne++;
                 }
-            }
+            }   
 
             // Comptage du nombre de pion de l'IA alignés vers la droite
             if(colonne!=nbreColonnes-1)
@@ -558,38 +567,126 @@ public class Program
         
         public int alignementsIAVertical(int [,] grilleJeu, int colonne, int ligne)
         {
+            int cptr_pion_aligne = 1;
             
+            // Comptage du nombre de pion du même jouer alignés
+            if(ligne < nbreLignes - 3)
+            {
+                for(ligne = ligne + 1; grilleJeu[ligne, colonne] == 2 && (ligne + 1) < nbreLignes ; ligne++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleJeu[ligne, colonne] == 2 && ligne == nbreLignes - 1)
+                {
+                    cptr_pion_aligne++;
+                }
+            }
+            return cptr_pion_aligne;
         }
         
         public int alignementsIADiagonalCroissant(int [,] grilleJeu, int colonne, int ligne)
         {
+            int cptr_pion_aligne = 1, stockLigne, stockColonne;
+
+            stockLigne = ligne;
             
+
+            // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
+            if(colonne != 0 && ligne != nbreLignes - 1)
+            {
+                for (ligne = ligne + 1, stockColonne = colonne - 1 ; grilleJeu[ligne, stockColonne] == 2 && (stockColonne - 1) >= 0 && (ligne + 1) < nbreLignes ; ligne ++ , stockColonne --)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleJeu[ligne, stockColonne] == 2 && (ligne == nbreLignes - 1 || stockColonne == 0))
+                {
+                    cptr_pion_aligne++;
+                }
+            }
+            
+            // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
+            if(colonne != nbreColonnes - 1 && stockLigne != 0)
+            {
+                for (ligne = stockLigne - 1, stockColonne = colonne + 1 ; grilleJeu[ligne, stockColonne] == 2 && (stockColonne + 1) < nbreColonnes && (ligne - 1) >= 0 ; ligne -- , stockColonne ++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleJeu[ligne, stockColonne] == 2 && (ligne == 0 || stockColonne == nbreColonnes - 1))
+                {
+                    cptr_pion_aligne++;
+                }
+            }
+            return cptr_pion_aligne;
         }
         
         public int alignementsIADiagonalDecroissant(int [,] grilleJeu, int colonne, int ligne)
         {
+            int cptr_pion_aligne = 1, stockLigne, stockColonne = colonne;
             
+            stockLigne = ligne;
+            
+
+            // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
+            if(colonne != 0 && ligne != 0)
+            {
+                for (ligne = ligne - 1, stockColonne = colonne - 1 ; grilleJeu[ligne, stockColonne] == 2 && (stockColonne - 1) >= 0 && (ligne - 1) >= 0 ; ligne -- , stockColonne --)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleJeu[ligne, stockColonne] == 2 && (ligne == 0 || stockColonne == 0))
+                {
+                    cptr_pion_aligne++;
+                }
+            }
+            
+            // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
+            if(colonne != nbreColonnes - 1 && stockLigne != nbreLignes - 1)
+            {
+                for (ligne = stockLigne + 1, stockColonne = colonne + 1 ; grilleJeu[ligne, stockColonne] == 2 && (stockColonne + 1) < nbreColonnes && (ligne + 1) < nbreLignes ; ligne ++ , stockColonne ++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleJeu[ligne, stockColonne] == 2 && (ligne == nbreLignes - 1 || stockColonne == nbreColonnes - 1))
+                {
+                    cptr_pion_aligne++;
+                }
+            }
+            return cptr_pion_aligne;
         }
         
-        public int determineAlignementsIA(int [,] grilleJeu, int colonne, int ligne)
+        public int determineAlignementsIA(Puissance4 jeu, int colonne, int ligne)
         {
-            int maxAlignementIA=Math.max(alignementsIAHorizontal(grilleJeu,colonne,ligne),Math.max(/*vertical*/,Math.max(/*diagonal croissant*/,/*diagonal décroissant*/)));
+            int valeur=0;
+            int [,] grilleJeu;
+            
+            if (jeu.choixGrille==1)
+                grilleJeu = jeu.grille1;
+            else 
+                grilleJeu = jeu.grille2;
+                
+            int maxAlignementIA=Math.Max(alignementsIAHorizontal(grilleJeu,colonne,ligne),Math.Max(alignementsIAVertical(grilleJeu,colonne,ligne),Math.Max(alignementsIADiagonalCroissant(grilleJeu,colonne,ligne),alignementsIADiagonalDecroissant(grilleJeu,colonne,ligne))));
+                
             if (maxAlignementIA==4)
-                return 4;
+                valeur = 4;
             else
             {
+                Console.WriteLine(grilleJeu[0,5]);
                 grilleJeu[colonne,ligne]=1;
-                if (Victoire(grilleJeu,colonne))
-                    return -1;
+                Console.WriteLine("colonne " + colonne + nbreColonnes);
+                Console.WriteLine("ligne " + ligne + nbreLignes );
+                
+                if (jeu.Victoire(grilleJeu,colonne))
+                    valeur = -1;
                 grilleJeu[colonne,ligne]=0;
                 
-                else if (maxAlignementIA==3)
-                    return 3;
+                if (valeur != -1 && maxAlignementIA==3)
+                    valeur = 3;
                 else if (maxAlignementIA==2)
-                    return 2;
+                    valeur = 2;
                 else
-                    return 1;
+                    valeur = 1;
             }
+            return valeur;
         }
             #endregion
             #endregion
