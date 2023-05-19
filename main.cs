@@ -158,7 +158,7 @@ public class Program
             }
             
             // Enregistrement du numéro du gagnant 
-            if (cptr_pion_aligne == 4)
+            if (cptr_pion_aligne >= 4)
             {
                 quatreAligne = true;
                 gagnant = valeur;
@@ -268,7 +268,7 @@ public class Program
             }
 
             // Enregistrement du numéro du gagnant 
-            if (cptr_pion_aligne == 4)
+            if (cptr_pion_aligne >= 4)
             {
                 quatreAligne = true;
                 gagnant = valeur;
@@ -474,16 +474,13 @@ public class Program
             int coupJoué;
             if (type)
             {
-                Console.WriteLine("Rentrez la colonne dans la quelle vous voulez jouer.");
+                Console.WriteLine("Rentrez la colonne dans laquelle vous voulez jouer.");
                 Console.WriteLine("(Veuillez rentrer -1 si abandon)");
                 coupJoué=Convert.ToInt32(Console.ReadLine());
             }
             else
             {
-                if(jeu.choixGrille==1)
-                    coupJoué=CoupIA(jeu);
-                else
-                    coupJoué=CoupIA(jeu);
+                coupJoué=CoupIA(jeu);
             }
             return coupJoué;
         }
@@ -502,30 +499,46 @@ public class Program
             
             for (i=0;i<nbreColonnes;i++)
             {
-                for (j = nbreLignes - 1 ; j>=0 && grilleJeu[i,j] != 0 ; j--);
-                alignementIA=determineAlignementsIA(jeu,i,j);
-                switch(alignementIA)
-                {
+                for (j = nbreLignes - 1 ; j>=0 && grilleJeu[j,i] != 0 ; j--);
+                
+                if(grilleJeu[0,i]!=0)
+                    tabPointsCoupIA[i]=-200;
+                else{
+                    alignementIA=determineAlignementsIA(jeu,i,j);
+                    switch(alignementIA)
+                    {
                     case 4:
-                        tabPointsCoupIA[j]=200;
+                        tabPointsCoupIA[i]=200;
                         break;
                     case -1:
-                        tabPointsCoupIA[j]=150;
+                        tabPointsCoupIA[i]=150;
                         break;
                     case 3:
-                        tabPointsCoupIA[j]=100;
+                        tabPointsCoupIA[i]=100;
                         break;
                     case 2:
-                        tabPointsCoupIA[j]=50;
+                        tabPointsCoupIA[i]=50;
                         break;
                     default:
-                        tabPointsCoupIA[j]=0;
+                        tabPointsCoupIA[i]=0;
                         break;
+                    }
                 }
-                if(alignementIA<tabPointsCoupIA[j])
+                
+                Console.WriteLine(' ');
+                if(alignementIA<tabPointsCoupIA[i])
                 {
-                    alignementIA=tabPointsCoupIA[j];
-                    colonneJoueeIA=j;
+                    alignementIA = tabPointsCoupIA[i];
+                    colonneJoueeIA = i+1;
+                }
+                else if (alignementIA == tabPointsCoupIA[i])
+                {
+                    Random aleatoire = new Random();
+                    int coup = aleatoire.Next(1, 3);
+                    if(coup == 2)
+                    {
+                        colonneJoueeIA = i+1;
+                    }
                 }
             }
             return colonneJoueeIA;
@@ -540,11 +553,7 @@ public class Program
             // Comptage du nombre de pion de l'IA alignés vers la gauche
             if(colonne!=0)
             {
-                for(i = colonne-1 ; grilleJeu[ligne, i] == 2 && (i - 1) >= 0 ; i--)
-                {
-                    cptr_pion_aligne++;
-                }
-                if(i == 0 && grilleJeu[ligne, i] == 2)
+                for(i = colonne-1 ; i >= 0 && grilleJeu[ligne, i] == 2 ; i--)
                 {
                     cptr_pion_aligne++;
                 }
@@ -553,11 +562,7 @@ public class Program
             // Comptage du nombre de pion de l'IA alignés vers la droite
             if(colonne!=nbreColonnes-1)
             {
-                for(i = colonne+1 ; grilleJeu[ligne, i] == 2 && (i + 1) < nbreColonnes ; i++)
-                {
-                    cptr_pion_aligne++;
-                }
-                if(i == nbreColonnes -1 && grilleJeu[ligne, i] == 2)
+                for(i = colonne+1 ; i < nbreColonnes && grilleJeu[ligne, i] == 2 ; i++)
                 {
                     cptr_pion_aligne++;
                 }
@@ -666,25 +671,19 @@ public class Program
                 
             int maxAlignementIA=Math.Max(alignementsIAHorizontal(grilleJeu,colonne,ligne),Math.Max(alignementsIAVertical(grilleJeu,colonne,ligne),Math.Max(alignementsIADiagonalCroissant(grilleJeu,colonne,ligne),alignementsIADiagonalDecroissant(grilleJeu,colonne,ligne))));
                 
-            if (maxAlignementIA==4)
+            if (maxAlignementIA>=4)
                 valeur = 4;
             else
             {
-                Console.WriteLine(grilleJeu[0,5]);
-                grilleJeu[colonne,ligne]=1;
-                Console.WriteLine("colonne " + colonne + nbreColonnes);
-                Console.WriteLine("ligne " + ligne + nbreLignes );
+                grilleJeu[ligne,colonne]=1;
                 
                 if (jeu.Victoire(grilleJeu,colonne))
                     valeur = -1;
-                grilleJeu[colonne,ligne]=0;
-                
-                if (valeur != -1 && maxAlignementIA==3)
-                    valeur = 3;
-                else if (maxAlignementIA==2)
-                    valeur = 2;
-                else
-                    valeur = 1;
+                grilleJeu[ligne,colonne]=0;
+                if(valeur != -1)
+                {
+                    valeur = maxAlignementIA;
+                }
             }
             return valeur;
         }
@@ -704,61 +703,14 @@ public class Program
         Console.WriteLine(" ");
         
         jeu.Jeu();
-        
-        
-        
-        //test AlignementHorizontal (droite vers gauche) OK
-        //jeu.JouerTour(1);jeu.JouerTour(1);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);
-        
-        //Test alignementHorizontal (gauche vers droite PAS COLLE A DROITE) OK
-        //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(3);
-        
-        //Test alignement horizontal vers la droite collée à droite OK
-        //jeu.JouerTour(7) ;jeu.JouerTour(1) ;jeu.JouerTour(6) ;jeu.JouerTour(6) ;jeu.JouerTour(5) ;jeu.JouerTour(5) ;jeu.JouerTour(4) ;
 
-        //Tester horizontal haut droite OK
-        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
-        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
-        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
-        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
-        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
-        //jeu.JouerTour(4); jeu.JouerTour(1); jeu.JouerTour(5); jeu.JouerTour(2); jeu.JouerTour(6); jeu.JouerTour(3); jeu.JouerTour(7);
-        
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //Test alignement vertical OK
-        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1);
-        
-        //Tester vertical milieu OK
-        //jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
-        
-        //Tester vertical haut droite OK
-        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);//jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);
-        
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //Diagonale croissante qui commence en haut à droite OK
-        
-        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(7);
-        //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6);
-        //jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(5);
-        //jeu.JouerTour(4); jeu.JouerTour(4);
-
-        //test AlignementDiagonalCroissant milieu OK
-        //jeu.JouerTour(5);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);
-        //jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);jeu.JouerTour(2);jeu.JouerTour(4);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        //Diagonal décroissante qui finie en haut à droite OK
-        //jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4);
-        //jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5);
-        //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(1); jeu.JouerTour(6);
-        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(1);  jeu.JouerTour(7);
-
-        /*test AlignementDiagonalDecroissant en bas milieu*/
-        //jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(2);
-        //jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
     }
     #endregion
 }
+
+
+
+
+
+
+
