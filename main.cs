@@ -4,6 +4,7 @@ public class Program
 {
     /// <summary>
     /// Classe qui définit une partie de puissance 4
+    ///
     /// J1 -> Joueur 1 de type Joueur
     /// J2 -> Joueur 2 de type Joueur
     /// grilleJeu -> Grille du jeu (tableau bidimentionnel d'entiers)
@@ -13,6 +14,7 @@ public class Program
     /// joueurSuivant -> Booléen qui désigne le joueur qui jouera le tour suivant (True = J1 ; False = J2/IA)
     /// limiteLigne -> Nombre de lignes de la grille utilisée
     /// limiteColonne -> Nombre de colonnes de la grille utilisée
+    ///
     /// </summary>
     public class Puissance4
     {
@@ -618,14 +620,13 @@ public class Program
             else
             {
                 jeu.GrilleJeu[ligne, colonne] = 1;
-
-                if (jeu.Victoire(colonne))
+                if (jeu.AlignementHorizontal(colonne) || jeu.AlignementVertical(colonne) || jeu.AlignementDiagonalCroissant(colonne) || jeu.AlignementDiagonalDecroissant(colonne))
                     valeur = -1;
-                jeu.GrilleJeu[ligne, colonne] = 0;
-                if (valeur != -1)
-                {
+                else
                     valeur = maxAlignementIA;
-                }
+                jeu.GrilleJeu[ligne, colonne] = 0;
+
+
             }
             return valeur;
         }
@@ -642,6 +643,7 @@ public class Program
             int i;
             int j;
             int colonneJoueeIA = 1;
+            int maxPoints = 0;
             int alignementIA = 0;
             for (i = 0; i < nbreColonnes; i++)
             {
@@ -658,7 +660,12 @@ public class Program
                             tabPointsCoupIA[i] = 200;
                             break;
                         case -1:
-                            tabPointsCoupIA[i] = 150;
+                            Random aleatoire = new Random();
+                            int contrer = aleatoire.Next(1, 3);
+                            if (contrer == 1)
+                                tabPointsCoupIA[i] = 150;
+                            else
+                                tabPointsCoupIA[i] = 0;
                             break;
                         case 3:
                             tabPointsCoupIA[i] = 100;
@@ -671,14 +678,12 @@ public class Program
                             break;
                     }
                 }
-
-                Console.WriteLine(' ');
-                if (alignementIA < tabPointsCoupIA[i])
+                if (maxPoints < tabPointsCoupIA[i])
                 {
-                    alignementIA = tabPointsCoupIA[i];
+                    maxPoints = tabPointsCoupIA[i];
                     colonneJoueeIA = i + 1;
                 }
-                else if (alignementIA == tabPointsCoupIA[i])
+                else if (maxPoints == tabPointsCoupIA[i])
                 {
                     Random aleatoire = new Random();
                     int coup = aleatoire.Next(1, 3);
