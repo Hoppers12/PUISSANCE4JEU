@@ -18,7 +18,6 @@ namespace Puissance_4
         public page_param_JVIA()
         {
             InitializeComponent();
-            
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -54,6 +53,13 @@ namespace Puissance_4
             pseudoJ = pseudoJ1.Text;
             Partie_JVIA page_partieJVIA = new Partie_JVIA(this);
             page_partieJVIA.Show();
+            this.Hide();
+        }
+
+        private void button_accueil_Click(object sender, EventArgs e)
+        {
+            Accueil retour_accueil = new Accueil();
+            retour_accueil.Show();
             this.Hide();
         }
     }
