@@ -131,6 +131,7 @@
             button_accueil.TabIndex = 10;
             button_accueil.Text = "ACCUEIL";
             button_accueil.UseVisualStyleBackColor = true;
+            button_accueil.Click += button_accueil_Click;
             // 
             // page_param_JVIA
             // 

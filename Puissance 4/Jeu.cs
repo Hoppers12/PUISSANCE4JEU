@@ -32,6 +32,7 @@ public class Program
             }
             return coupJoué;
         }
+    
     }
 
 
@@ -52,6 +53,8 @@ public class Program
         //On initialise le plateau de jeu dans le constructeur
         public Puissance4(string prenom1, string prenom2, int choixG, bool mode)
         {
+
+
             choixGrille = choixG;
             choixMode = mode;
             J1 = new Joueur(prenom1, true, true);
@@ -59,7 +62,6 @@ public class Program
             joueurSuivant = true;
             if (choixGrille == 1)
             {
-
                 limiteLigne = 6;
                 limiteColonne = 7;
                 initGrille(grille1); // Appel de la méthode qui initGrille qui créee la grille
