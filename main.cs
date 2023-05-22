@@ -89,7 +89,10 @@ public class Program
         /// <returns> Le booléen qui décrit si les 4 pions sont bien alignés</returns>
         public bool AlignementHorizontal(int colonneJoue)
         {
-            int cptr_pion_aligne = 1, ligne = 0, colonne, valeur;
+            int cptr_pion_aligne = 1;
+            int ligne = 0;
+            int colonne;
+            int valeur;
             bool quatreAligne = false;
 
             // Recherche d'un pion dans la colonne 
@@ -137,7 +140,9 @@ public class Program
         /// <returns>Le booléen qui décrit si les 4 pions sont bien alignés</returns>
         public bool AlignementVertical(int colonneJoue)
         {
-            int cptr_pion_aligne = 1, ligne = 0, valeur;
+            int cptr_pion_aligne = 1;
+            int ligne = 0;
+            int valeur;
             bool quatreAligne = false;
 
             // Recherche d'un pion dans la colonne 
@@ -176,7 +181,11 @@ public class Program
         /// <returns>Le booléen qui décrit si les 4 pions sont bien alignés</returns>
         public bool AlignementDiagonalCroissant(int colonneJoue)
         {
-            int cptr_pion_aligne = 1, stockLigne, ligne = 0, colonne, valeur;
+            int cptr_pion_aligne = 1;
+            int stockLigne;
+            int ligne = 0;
+            int colonne;
+            int valeur;
             bool quatreAligne = false;
 
             // Recherche d'un pion dans la colonne 
@@ -226,7 +235,11 @@ public class Program
         /// <returns>Le booléen qui décrit si les 4 pions sont bien alignés</returns>
         public bool AlignementDiagonalDecroissant(int colonneJoue)
         {
-            int cptr_pion_aligne = 1, stockLigne, ligne = 0, colonne = colonneJoue, valeur;
+            int cptr_pion_aligne = 1;
+            int stockLigne;
+            int ligne = 0;
+            int colonne = colonneJoue;
+            int valeur;
             bool quatreAligne = false;
 
             // Recherche d'un pion dans la colonne 
@@ -455,85 +468,6 @@ public class Program
         }
 
 
-        /// <summary>
-        /// Méthode qui permet de choisir la colonne dans laquelle on veut poser un pion
-        /// </summary>
-        /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        /// <returns>La colonne choisie</returns>
-        public int ChoixColonne(Puissance4 jeu)
-        {
-            int coupJoué;
-            if (type)
-            {
-                Console.WriteLine("Rentrez la colonne dans laquelle vous voulez jouer.");
-                Console.WriteLine("(Veuillez rentrer -1 si abandon)");
-                coupJoué = Convert.ToInt32(Console.ReadLine());
-            }
-            else
-            {
-                coupJoué = CoupIA(jeu);
-            }
-            return coupJoué;
-        }
-
-
-
-        /// <summary>
-        /// Méthode qui détermine le coup que l'IA va faire
-        /// </summary>
-        /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        /// <returns>La colonne dans laquelle l'IA va jouer</returns>
-        public int CoupIA(Puissance4 jeu)
-        {
-            int i, j, colonneJoueeIA = 1, alignementIA = 0;
-            for (i = 0; i < nbreColonnes; i++)
-            {
-                for (j = jeu.LimiteLigne - 1; j >= 0 && jeu.GrilleJeu[j, i] != 0; j--) ;
-
-                if (jeu.GrilleJeu[0, i] != 0)
-                    tabPointsCoupIA[i] = -200;
-                else
-                {
-                    alignementIA = determineAlignementsIA(jeu, i, j);
-                    switch (alignementIA)
-                    {
-                        case 4:
-                            tabPointsCoupIA[i] = 200;
-                            break;
-                        case -1:
-                            tabPointsCoupIA[i] = 150;
-                            break;
-                        case 3:
-                            tabPointsCoupIA[i] = 100;
-                            break;
-                        case 2:
-                            tabPointsCoupIA[i] = 50;
-                            break;
-                        default:
-                            tabPointsCoupIA[i] = 0;
-                            break;
-                    }
-                }
-
-                Console.WriteLine(' ');
-                if (alignementIA < tabPointsCoupIA[i])
-                {
-                    alignementIA = tabPointsCoupIA[i];
-                    colonneJoueeIA = i + 1;
-                }
-                else if (alignementIA == tabPointsCoupIA[i])
-                {
-                    Random aleatoire = new Random();
-                    int coup = aleatoire.Next(1, 3);
-                    if (coup == 2)
-                    {
-                        colonneJoueeIA = i + 1;
-                    }
-                }
-            }
-            return colonneJoueeIA;
-        }
-
 
         /// <summary>
         /// Méthode qui détermine combien de pions de l'IA seraient alignés horizontalement s'il posait son pion aux coordonnées rentrées en paramètre 
@@ -544,7 +478,8 @@ public class Program
         /// <returns>Le nombre de pions alignés horizontalement</returns>
         public int alignementsIAHorizontal(Puissance4 jeu, int colonne, int ligne)
         {
-            int cptr_pion_aligne = 1, i;
+            int cptr_pion_aligne = 1;
+            int i;
 
             // Comptage du nombre de pion de l'IA alignés vers la gauche
             if (colonne != 0)
@@ -601,9 +536,10 @@ public class Program
         /// <returns>Le nombre de pions alignés sur la diagonale croissante</returns>
         public int alignementsIADiagonalCroissant(Puissance4 jeu, int colonne, int ligne)
         {
-            int cptr_pion_aligne = 1, stockLigne, stockColonne;
+            int cptr_pion_aligne = 1;
+            int stockLigne = ligne;
+            int stockColonne;
 
-            stockLigne = ligne;
 
 
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
@@ -638,9 +574,9 @@ public class Program
         /// <returns>Le nombre de pions alignés sur la diagonale décroissante</returns>
         public int alignementsIADiagonalDecroissant(Puissance4 jeu, int colonne, int ligne)
         {
-            int cptr_pion_aligne = 1, stockLigne, stockColonne = colonne;
-
-            stockLigne = ligne;
+            int cptr_pion_aligne = 1;
+            int stockLigne = ligne;
+            int stockColonne = colonne;
 
 
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
@@ -692,6 +628,89 @@ public class Program
                 }
             }
             return valeur;
+        }
+
+
+
+        /// <summary>
+        /// Méthode qui détermine le coup que l'IA va faire
+        /// </summary>
+        /// <param name="jeu">Puissance 4 dans lequel on joue</param>
+        /// <returns>La colonne dans laquelle l'IA va jouer</returns>
+        public int CoupIA(Puissance4 jeu)
+        {
+            int i;
+            int j;
+            int colonneJoueeIA = 1;
+            int alignementIA = 0;
+            for (i = 0; i < nbreColonnes; i++)
+            {
+                for (j = jeu.LimiteLigne - 1; j >= 0 && jeu.GrilleJeu[j, i] != 0; j--) ;
+
+                if (jeu.GrilleJeu[0, i] != 0)
+                    tabPointsCoupIA[i] = -200;
+                else
+                {
+                    alignementIA = determineAlignementsIA(jeu, i, j);
+                    switch (alignementIA)
+                    {
+                        case 4:
+                            tabPointsCoupIA[i] = 200;
+                            break;
+                        case -1:
+                            tabPointsCoupIA[i] = 150;
+                            break;
+                        case 3:
+                            tabPointsCoupIA[i] = 100;
+                            break;
+                        case 2:
+                            tabPointsCoupIA[i] = 50;
+                            break;
+                        default:
+                            tabPointsCoupIA[i] = 0;
+                            break;
+                    }
+                }
+
+                Console.WriteLine(' ');
+                if (alignementIA < tabPointsCoupIA[i])
+                {
+                    alignementIA = tabPointsCoupIA[i];
+                    colonneJoueeIA = i + 1;
+                }
+                else if (alignementIA == tabPointsCoupIA[i])
+                {
+                    Random aleatoire = new Random();
+                    int coup = aleatoire.Next(1, 3);
+                    if (coup == 2)
+                    {
+                        colonneJoueeIA = i + 1;
+                    }
+                }
+            }
+            return colonneJoueeIA;
+        }
+
+
+        /// <summary>
+        /// Méthode qui permet de choisir la colonne dans laquelle on veut poser un pion
+        /// </summary>
+        /// <param name="jeu">Puissance 4 dans lequel on joue</param>
+        /// <returns>La colonne choisie</returns>
+        public int ChoixColonne(Puissance4 jeu)
+        {
+            int coupJoué;
+            if (type)
+            {
+                Console.WriteLine("Rentrez la colonne dans laquelle vous voulez jouer.");
+                Console.WriteLine("(Veuillez rentrer -1 si abandon)");
+                coupJoué = Convert.ToInt32(Console.ReadLine());
+            }
+            else
+            {
+                coupJoué = CoupIA(jeu);
+            }
+            return coupJoué;
         }
     }
 
