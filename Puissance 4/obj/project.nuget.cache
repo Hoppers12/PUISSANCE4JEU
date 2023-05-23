@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wv1Z9KHzq+jgoFE/CLtOTv8gg9gaAKNtzpR6uTjXy2qlEdZbUBoj0XtoeYYMhw8z/lyDAJMHhlzuGVkJ1wY0TQ==",
+
+  "dgSpecHash": "Cb2tSylpnR08K502gF7PLMHpD6AFKawcOP8fh/nt4EleuqGG+K9c8yD1NtJfPWWCEfxN87QLh6DKZwx/UkHZTA==",
+
   "success": true,
-  "projectFilePath": "C:\\Bureau\\COURS\\SAE2.01(puissance4)\\puissance 4\\Puissance 4\\Puissance 4.csproj",
+  "projectFilePath": "C:\\Users\\clair\\Documents\\SAE 2.2\\GroupeC2_SAE_PUISSANCE4\\Puissance 4\\Puissance 4.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
