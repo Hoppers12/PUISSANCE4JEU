@@ -15,26 +15,46 @@ public class Program
             couleurPion = couleur;
             type = typeJoueur;
         }
+
+        public int ChoixColonne(int limiteDeColonne)
+        {
+            int coupJoué;
+            if (type)
+            {
+                Console.WriteLine("Rentrez la colonne dans la quelle vous voulez jouer.");
+                Console.WriteLine("(Veuillez rentrer -1 si abandon)");
+                coupJoué = Convert.ToInt32(Console.ReadLine());
+            }
+            else
+            {
+                Random aleatoire = new Random();
+                coupJoué = aleatoire.Next(1, limiteDeColonne + 1);
+            }
+            return coupJoué;
+        }
+    
     }
 
 
 
     public class Puissance4
     {
-        private Joueur J1;
-        private Joueur J2;
+        public Joueur J1;
+        public Joueur J2;
         public int[,] grille1 = new int[6, 7];
         public int[,] grille2 = new int[5, 6];
         public int choixGrille; // 1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire
         private bool choixMode; // true = JVJ ; false = JVIA ;
         public int gagnant;    // 1 = J1; 2 = J2; 0 = match nul
-        private bool joueurSuivant; //True = J1 ; False = J2/IA
+        private bool joueurSuivant = true; //True = J1 ; False = J2/IA
         private int limiteLigne;
         private int limiteColonne;
 
         //On initialise le plateau de jeu dans le constructeur
         public Puissance4(string prenom1, string prenom2, int choixG, bool mode)
         {
+
+
             choixGrille = choixG;
             choixMode = mode;
             J1 = new Joueur(prenom1, true, true);
@@ -42,7 +62,6 @@ public class Program
             joueurSuivant = true;
             if (choixGrille == 1)
             {
-
                 limiteLigne = 6;
                 limiteColonne = 7;
                 initGrille(grille1); // Appel de la méthode qui initGrille qui créee la grille
@@ -88,22 +107,11 @@ public class Program
         }
 
 
-
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même ligne
         public bool AlignementHorizontal(int[,] grilleUtilisee, int colonneJoue)
         {
-            int cptr_pion_aligne = 0, ligne = 0, colonne = colonneJoue, valeur;
+            int cptr_pion_aligne = 1, ligne = 0, colonne, valeur;
             bool quatreAligne = false;
-
-            // Determine la valeur a chercher
-            if (joueurSuivant)
-            {
-                valeur = 2;
-            }
-            else
-            {
-                valeur = 1;
-            }
 
             // Recherche d'un pion dans la colonne 
             while (grilleUtilisee[ligne, colonneJoue] == 0)
@@ -111,43 +119,40 @@ public class Program
                 ligne++;
             }
 
-            // Comptage du nombre de pion du même jouer alignés vers la gauche
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0)
-            {
-                colonne--;
-                cptr_pion_aligne++;
+            // Determine la valeur a chercher
+            valeur = grilleUtilisee[ligne, colonneJoue];
 
-                // Gestion du cas lors duquel le pion est situé sur le bord gauche
-                if (grilleUtilisee[ligne, colonne] == valeur && colonne == 0)
+            // Comptage du nombre de pion du même jouer alignés vers la gauche
+            if (colonneJoue != 0)
+            {
+
+                for (colonne = colonneJoue - 1; grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0; colonne--)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (colonne == 0 && grilleUtilisee[ligne, colonne] == valeur)
                 {
                     cptr_pion_aligne++;
                 }
             }
 
-            //Remise à 0 du compteur si il n'a pas atteint 4 lors du test précédent
-            if (cptr_pion_aligne < 4)
-            {
-                cptr_pion_aligne = 0;
-            }
-
             // Comptage du nombre de pion du même joueur alignés vers la droite
+            if (colonneJoue != limiteColonne - 1)
 
-            colonne = colonneJoue;
-
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne)
             {
-                colonne++;
-                cptr_pion_aligne++;
+                for (colonne = colonneJoue + 1; grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne; colonne++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (colonne == limiteColonne - 1 && grilleUtilisee[ligne, colonne] == valeur)
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
-            if (grilleUtilisee[ligne, colonne] == valeur && colonne == limiteColonne - 1)
-            {
-                cptr_pion_aligne++;
-            }
 
-     
+            // Enregistrement du numéro du gagnant
 
-            // Enregistrement du numéro du gagnant 
             if (cptr_pion_aligne >= 4)
             {
                 quatreAligne = true;
@@ -161,18 +166,8 @@ public class Program
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même colonne "colonneJoue"
         public bool AlignementVertical(int[,] grilleUtilisee, int colonneJoue)
         {
-            int cptr_pion_aligne = 0, ligne = 0, valeur;
+            int cptr_pion_aligne = 1, ligne = 0, valeur;
             bool quatreAligne = false;
-
-            // Determine la valeur a chercher
-            if (joueurSuivant)
-            {
-                valeur = 2;
-            }
-            else
-            {
-                valeur = 1;
-            }
 
             // Recherche d'un pion dans la colonne 
             while (grilleUtilisee[ligne, colonneJoue] == 0)
@@ -180,15 +175,20 @@ public class Program
                 ligne++;
             }
 
+            // Determine la valeur a chercher
+            valeur = grilleUtilisee[ligne, colonneJoue];
+
             // Comptage du nombre de pion du même jouer alignés
-            while (grilleUtilisee[ligne, colonneJoue] == valeur && (ligne + 1) < limiteLigne)
+            if (ligne < limiteLigne - 3)
             {
-                ligne++;
-                cptr_pion_aligne++;
-            }
-            if (grilleUtilisee[ligne, colonneJoue] == valeur && ligne == limiteLigne - 1)
-            {
-                cptr_pion_aligne++;
+                for (ligne = ligne + 1; grilleUtilisee[ligne, colonneJoue] == valeur && (ligne + 1) < limiteLigne; ligne++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleUtilisee[ligne, colonneJoue] == valeur && ligne == limiteLigne - 1)
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
             // Enregistrement du numéro du gagnant 
@@ -201,21 +201,12 @@ public class Program
             return quatreAligne;
         }
 
+
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même diagonale
         public bool AlignementDiagonalCroissant(int[,] grilleUtilisee, int colonneJoue)
         {
-            int cptr_pion_aligne = 0, stockLigne, ligne = 0, colonne = colonneJoue, valeur;
+            int cptr_pion_aligne = 1, stockLigne, ligne = 0, colonne, valeur;
             bool quatreAligne = false;
-
-            // Determine la valeur a chercher
-            if (joueurSuivant)
-            {
-                valeur = 2;
-            }
-            else
-            {
-                valeur = 1;
-            }
 
             // Recherche d'un pion dans la colonne 
             while (grilleUtilisee[ligne, colonneJoue] == 0)
@@ -223,51 +214,40 @@ public class Program
                 ligne++;
             }
 
+            // Determine la valeur a chercher
+            valeur = grilleUtilisee[ligne, colonneJoue];
             stockLigne = ligne;
-            
+
+
 
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne + 1) < limiteLigne)
+            if (colonneJoue != 0 && ligne != limiteLigne - 1)
             {
-                ligne++; colonne--;
-                cptr_pion_aligne++;
+
+                for (ligne = ligne + 1, colonne = colonneJoue - 1; grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne + 1) < limiteLigne; ligne++, colonne--)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleUtilisee[ligne, colonne] == valeur && (ligne == limiteLigne - 1 || colonne == 0))
+                {
+                    cptr_pion_aligne++;
+                }
             }
-
-
-            if (grilleUtilisee[ligne, colonne] == valeur && (ligne == limiteLigne - 1 || colonne == 0))
-            {
-                cptr_pion_aligne++;
-            }
-
-            ligne = stockLigne;
-            colonne = colonneJoue;
-            //S'assure que le pion est pas aux limite de la grille pour chercher a droite
-            if ((stockLigne - 1) >= 0 && (colonneJoue + 1) < limiteColonne)
-            {
-                ligne--;
-                colonne++;
-            }
-
 
             // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
+            if (colonneJoue != limiteColonne - 1 && stockLigne != 0)
 
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne && (ligne - 1) >= 0)
             {
-                ligne--; 
-                colonne++;
-                cptr_pion_aligne++;
-
-                if (ligne - 1 <= 0|| (colonne + 1) >= limiteColonne)
+                for (ligne = stockLigne - 1, colonne = colonneJoue + 1; grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne && (ligne - 1) >= 0; ligne--, colonne++)
                 {
-                    break;
+                    cptr_pion_aligne++;
                 }
+                if (grilleUtilisee[ligne, colonne] == valeur && (ligne == 0 || colonne == limiteColonne - 1))
+                {
+                    cptr_pion_aligne++;
+                }
+            }
 
-            }
-            if (grilleUtilisee[ligne, colonne] == valeur && (colonne == limiteColonne - 1 || ligne == 0))
-            {
-                cptr_pion_aligne++;
-            }
-    
 
             // Enregistrement du numéro du gagnant 
             if (cptr_pion_aligne >= 4)
@@ -283,18 +263,8 @@ public class Program
         // Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même diagonale
         public bool AlignementDiagonalDecroissant(int[,] grilleUtilisee, int colonneJoue)
         {
-            int cptr_pion_aligne = 0, stockLigne, ligne = 0, colonne = colonneJoue, valeur;
+            int cptr_pion_aligne = 1, stockLigne, ligne = 0, colonne = colonneJoue, valeur;
             bool quatreAligne = false;
-
-            // Determine la valeur a chercher
-            if (joueurSuivant)
-            {
-                valeur = 2;
-            }
-            else
-            {
-                valeur = 1;
-            }
 
             // Recherche d'un pion dans la colonne 
             while (grilleUtilisee[ligne, colonneJoue] == 0)
@@ -302,35 +272,37 @@ public class Program
                 ligne++;
             }
 
+            // Determine la valeur a chercher
+            valeur = grilleUtilisee[ligne, colonneJoue];
             stockLigne = ligne;
 
+
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne - 1) >= 0)
+
+            if (colonneJoue != 0 && ligne != 0)
+
             {
-                ligne--; 
-                colonne--;
-                cptr_pion_aligne++;
-            }
-            if (grilleUtilisee[ligne, colonne] == valeur && (ligne == 0 || colonne == 0))
-            {
-                cptr_pion_aligne++;
-            }
-            //S'assure que le pion est pas aux limite de la grille pour chercher a droite
-            if ((stockLigne + 1) < limiteLigne && (colonneJoue + 1) < limiteColonne)
-            {
-                ligne = stockLigne + 1;
-                colonne = colonneJoue + 1;
+                for (ligne = ligne - 1, colonne = colonneJoue - 1; grilleUtilisee[ligne, colonne] == valeur && (colonne - 1) >= 0 && (ligne - 1) >= 0; ligne--, colonne--)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleUtilisee[ligne, colonne] == valeur && (ligne == 0 || colonne == 0))
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
-            // Comptage du nombre de pion du même jouer alignés diagonalement en haut a droite
-            while (grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne && (ligne + 1) < limiteLigne)
+            // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
+            if (colonneJoue != limiteColonne - 1 && stockLigne != limiteLigne - 1)
             {
-                ligne++; colonne++;
-                cptr_pion_aligne++;
-            }
-            if (grilleUtilisee[ligne, colonne] == valeur && (colonne == limiteColonne - 1 || ligne == limiteLigne - 1))
-            {
-                cptr_pion_aligne++;
+                for (ligne = stockLigne + 1, colonne = colonneJoue + 1; grilleUtilisee[ligne, colonne] == valeur && (colonne + 1) < limiteColonne && (ligne + 1) < limiteLigne; ligne++, colonne++)
+                {
+                    cptr_pion_aligne++;
+                }
+                if (grilleUtilisee[ligne, colonne] == valeur && (ligne == limiteLigne - 1 || colonne == limiteColonne - 1))
+                {
+                    cptr_pion_aligne++;
+                }
             }
 
             // Enregistrement du numéro du gagnant 
@@ -410,30 +382,42 @@ public class Program
 
         public void JouerPionDansGrille(int[,] grilleUtilisee, int indColonneJoue)
         {
-            int ligne = 0;
-
+            int ligne = 0, indColonneJoueIA;
+            while ((ligne + 1) < limiteLigne && grilleUtilisee[ligne + 1, indColonneJoue] == 0)
+            {
+                ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
+            }
             // Si colonne choisie valide (pas pleine + existante)
             if (indColonneJoue < limiteColonne && indColonneJoue >= 0 && grilleUtilisee[0, indColonneJoue] == 0)
             {
-
-                while ((ligne + 1) < limiteLigne && grilleUtilisee[ligne + 1, indColonneJoue] == 0)
-                {
-                    ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
-                }
+             
                 if (joueurSuivant == true)
                 {
                     grilleUtilisee[ligne, indColonneJoue] = 1; //Remplissage de la case pour joueur 1 
                     joueurSuivant = false;    //change le joueur qui joue 
                     this.AfficheGrille(grilleUtilisee);
                     Console.WriteLine("");
-                    if (!choixMode)
-                    {       //si c'est joueurVsIA
-                            //pose un pion aleatoirement
-                        Random aleatoire = new Random();
-                        int colonneAleatoire = aleatoire.Next(1, limiteColonne + 1);
-                        this.JouerTour(colonneAleatoire);
+
+                    
+                    if (this.choixMode == false)
+                    {
+
+
+                        Random ColonneRandom = new Random();
+                        indColonneJoueIA = ColonneRandom.Next(0, limiteColonne + 1);
+                        while ((ligne + 1) < limiteLigne && grilleUtilisee[ligne + 1, indColonneJoueIA] == 0)
+                        {
+                            ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
+                        }
+                        Console.WriteLine(indColonneJoueIA);
+                        grilleUtilisee[ligne, indColonneJoueIA] = 2;  //Remplissage de la case pour joueur 2
+                        joueurSuivant = true;
+                        this.AfficheGrille(grilleUtilisee);
+                        Console.WriteLine("");
+
+
                     }
-                    this.Victoire(grilleUtilisee, indColonneJoue); 
+
                 }
                 else
                 {
@@ -441,9 +425,11 @@ public class Program
                     joueurSuivant = true;   //change le joueur qui joue 
                     this.AfficheGrille(grilleUtilisee);
                     Console.WriteLine("");
-                    this.Victoire(grilleUtilisee, indColonneJoue); //
-                }
 
+
+
+
+                }
             }
             else
             {
@@ -453,52 +439,121 @@ public class Program
             }
         }
 
-        // Méthode appelé lorsque un joueur souhaite poser un pion dans une colonne
-        public void JouerTour(int colonne)
-        {
-            colonne = colonne - 1; // On retire 1 car colonne 1 son indice = 0 ...
 
+
+
+
+        // Méthode du déroulement du jeu et qui s'arrête en temps voulu
+        public void Jeu(int colonne)
+        {
+
+            int[,] grilleJouee;
+
+            //On choisis la grille demandée
             if (choixGrille == 1)
             {
-
-                this.JouerPionDansGrille(grille1, colonne);
-
+                grilleJouee = grille1;
             }
-            else if (choixGrille == 2)
+            else
             {
+                grilleJouee = grille2;
+            }
 
-                this.JouerPionDansGrille(grille2, colonne);
+                // On fait avancer la valeur du booléen pour savoir quel joueur est le suivant
+                if (joueurSuivant == true )
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Au tour de " + J1.pseudo + '.');
+                    this.JouerPionDansGrille(grilleJouee, colonne-1);
+                    if (this.choixMode == true)
+                {
+                    joueurSuivant = false;
+                }else
+                {
+                    joueurSuivant= true;
+                }
+                    
+                }
+                else
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Au tour de " + J2.pseudo + '.');
+                    this.JouerPionDansGrille(grilleJouee, colonne-1);
+                    joueurSuivant = true;
+            }
 
+            if (this.Victoire(grilleJouee, colonne - 1) || GrilleComplete(grilleJouee))
+            {
+                Console.WriteLine("La partie est terminée"); // Indique si la partie est terminée (pleine ou vainqueur)
             }
         }
-
     }
 
 
 
 
     // MAIN
-    //private static void Main(string[] args)
-    //{
-        
-        //Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2", 1, true);
+  //  private static void Main(string[] args)
+  //  {
+
+      //  Puissance4 jeu = new Puissance4("Joueur 1", "Joueur 2", 1, true);
 
 
+     //   jeu.Jeu();
+        //test AlignementHorizontal (droite vers gauche) OK
+        //jeu.JouerTour(1);jeu.JouerTour(1);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);
 
-        //Console.WriteLine(" ");
+        //Test alignementHorizontal (gauche vers droite PAS COLLE A DROITE) OK
+        //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(3);
 
-        /*test AlignementDiagonalDecroissant*/
+        //Test alignement horizontal vers la droite collée à droite OK
+        //jeu.JouerTour(7) ;jeu.JouerTour(1) ;jeu.JouerTour(6) ;jeu.JouerTour(6) ;jeu.JouerTour(5) ;jeu.JouerTour(5) ;jeu.JouerTour(4) ;
+
+        //Tester horizontal haut droite OK
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(4); jeu.JouerTour(5); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(4); jeu.JouerTour(1); jeu.JouerTour(5); jeu.JouerTour(2); jeu.JouerTour(6); jeu.JouerTour(3); jeu.JouerTour(7);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Test alignement vertical OK
+        //jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1); jeu.JouerTour(2); jeu.JouerTour(1);
+
+        //Tester vertical milieu OK
+        //jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
+
+        //Tester vertical haut droite OK
+        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);//jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Diagonale croissante qui commence en haut à droite OK
+
+        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(7);
+        //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6);
+        //jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(5);
+        //jeu.JouerTour(4); jeu.JouerTour(4);
+
+        //test AlignementDiagonalCroissant milieu OK
+        //jeu.JouerTour(5);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);
+        //jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);jeu.JouerTour(2);jeu.JouerTour(4);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Diagonal décroissante qui finie en haut à droite OK
+        //jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4);
+        //jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5);
+        //jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(1); jeu.JouerTour(6);
+        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(1);  jeu.JouerTour(7);
+
+        /*test AlignementDiagonalDecroissant en bas milieu*/
         //jeu.JouerTour(5); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(2);
         //jeu.JouerTour(3); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(3); jeu.JouerTour(2);
 
 
-        //test AlignementDiagonalCroissant
-
-        //jeu.JouerTour(5);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);
-        //jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);jeu.JouerTour(2);jeu.JouerTour(4);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);jeu.JouerTour(5);
-
-        //test AlignementHorizontal (droite vers gauche) OK
-        //jeu.JouerTour(1);jeu.JouerTour(1);jeu.JouerTour(2);jeu.JouerTour(2);jeu.JouerTour(3);jeu.JouerTour(3);jeu.JouerTour(4);jeu.JouerTour(4);
 
 
 
@@ -539,18 +594,17 @@ public class Program
         //jeu.JouerTour(4); jeu.JouerTour(1); jeu.JouerTour(5); jeu.JouerTour(2); jeu.JouerTour(6); jeu.JouerTour(3); jeu.JouerTour(7);
 
         //Tester vertical haut droite OK
-        /*
-        jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);
-        jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);
+        //jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);
+  /*      jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7); jeu.JouerTour(5); jeu.JouerTour(7); jeu.JouerTour(6); jeu.JouerTour(7);
         jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(6); jeu.JouerTour(7);
         jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5); jeu.JouerTour(5);
         jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(4); jeu.JouerTour(5);
         jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(3); jeu.JouerTour(5); jeu.JouerTour(5);
         jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(2); jeu.JouerTour(5);
         jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(1); jeu.JouerTour(3);
-        
-        */
-    //}
+
+    }*/
 }
 
 
+//faire l'affichage du vainqueur par rapport au joueur actif et pas par rapport au label²

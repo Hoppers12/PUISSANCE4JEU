@@ -8,15 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Puissance_4
 {
     public partial class page_param_JVJ : Form
     {
         public int choixGrilleRadioButton;
+        public string pseudoJ1;
+        public string pseudoJ2;
+
+
         public page_param_JVJ()
         {
             InitializeComponent();
+            pseudoJ1 = textBox1.Text;
+            pseudoJ2 = textBox2.Text;    // Gestion des pseudos dans un attribut pour les récupérer + tard
+
+
         }
 
         private void button1_Click(object sender, EventArgs e) // Bouton "JOUER" Joueur VS JOUEUR
@@ -24,11 +33,8 @@ namespace Puissance_4
             // On enregistre le numero de la grille choisie en fonction du radiobutton qui a été coché
             if (radioButton1.Checked == true)
             {
-                
+
                 choixGrilleRadioButton = 1;
-                Label label3 = new Label();
-                this.Controls.Add(label3);
-                label3.Text = choixGrilleRadioButton.ToString();
             }
             else
             {
@@ -38,15 +44,17 @@ namespace Puissance_4
                 }
                 else
                 {
-                    choixGrilleRadioButton = 0;
+                    if (radioButton3.Checked == true)
+                    {
+                        choixGrilleRadioButton = 0;
+                    }
                 }
 
 
             }
-            Label label4 = new Label();
-            this.Controls.Add(label4);
-            label4.Text = choixGrilleRadioButton.ToString();
-            Partie_JVJ page_partie_JVJ = new Partie_JVJ(this); // On passe this en paramétre pour que la partie pusise connaitre ce qui a été coché ici
+            pseudoJ1 = textBox1.Text;
+            pseudoJ2 = textBox2.Text;
+            Partie_JVJ page_partie_JVJ = new Partie_JVJ(this); // On passe this en paramétre pour que la partie puisse connaitre ce qui a été coché ici
             page_partie_JVJ.Show();
 
 
@@ -59,6 +67,21 @@ namespace Puissance_4
             Accueil pageAccueil = new Accueil();
             pageAccueil.Show(this);
             this.Hide();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

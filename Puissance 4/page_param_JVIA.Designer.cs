@@ -34,7 +34,7 @@
             radioButton1 = new RadioButton();
             label1 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
+            pseudoJ1 = new TextBox();
             button1 = new Button();
             button_accueil = new Button();
             groupBox2.SuspendLayout();
@@ -51,6 +51,7 @@
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "Choix Grille";
+            groupBox2.Enter += groupBox2_Enter;
             // 
             // radioButton3
             // 
@@ -84,7 +85,6 @@
             radioButton1.TabStop = true;
             radioButton1.Text = "6 x 7";
             radioButton1.UseVisualStyleBackColor = true;
-
             // 
             // label1
             // 
@@ -105,13 +105,13 @@
             label3.TabIndex = 7;
             label3.Text = "Entrez votre pseudo :";
             // 
-            // textBox1
+            // pseudoJ1
             // 
-            textBox1.Location = new Point(225, 273);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 8;
-            textBox1.Text = "ThéoDu33";
+            pseudoJ1.Location = new Point(225, 273);
+            pseudoJ1.Name = "pseudoJ1";
+            pseudoJ1.Size = new Size(125, 27);
+            pseudoJ1.TabIndex = 8;
+            pseudoJ1.Text = "ThéoDu33";
             // 
             // button1
             // 
@@ -121,6 +121,7 @@
             button1.TabIndex = 9;
             button1.Text = "JOUER";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button_accueil
             // 
@@ -130,7 +131,7 @@
             button_accueil.TabIndex = 10;
             button_accueil.Text = "ACCUEIL";
             button_accueil.UseVisualStyleBackColor = true;
-            button_accueil.Click += button_retour_accueil;
+            button_accueil.Click += button_accueil_Click;
             // 
             // page_param_JVIA
             // 
@@ -139,7 +140,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(button_accueil);
             Controls.Add(button1);
-            Controls.Add(textBox1);
+            Controls.Add(pseudoJ1);
             Controls.Add(label3);
             Controls.Add(groupBox2);
             Controls.Add(label1);
@@ -159,7 +160,7 @@
         private RadioButton radioButton1;
         private Label label1;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox pseudoJ1;
         private Button button1;
         private Button button_accueil;
     }

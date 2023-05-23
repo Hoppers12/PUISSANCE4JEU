@@ -28,59 +28,160 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
+            boutonJvj = new Button();
+            boutonJvia = new Button();
+            label2 = new Label();
+            infoJVJ = new PictureBox();
+            infoJVIA = new PictureBox();
+            pictureBox1 = new PictureBox();
             label1 = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)infoJVJ).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)infoJVIA).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
+            // 
+            // boutonJvj
+            // 
+            boutonJvj.AccessibleRole = AccessibleRole.None;
+            boutonJvj.BackColor = Color.RoyalBlue;
+            boutonJvj.Font = new Font("Segoe UI Black", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            boutonJvj.ForeColor = Color.Yellow;
+            boutonJvj.Location = new Point(393, 417);
+            boutonJvj.Name = "boutonJvj";
+            boutonJvj.Size = new Size(278, 77);
+            boutonJvj.TabIndex = 1;
+            boutonJvj.Text = " Joueur VS Joueur ";
+            boutonJvj.UseVisualStyleBackColor = false;
+            boutonJvj.Click += boutonJvjClick;
+            // 
+            // boutonJvia
+            // 
+            boutonJvia.BackColor = Color.RoyalBlue;
+            boutonJvia.Font = new Font("Segoe UI Black", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            boutonJvia.ForeColor = Color.Yellow;
+            boutonJvia.Location = new Point(393, 520);
+            boutonJvia.Name = "boutonJvia";
+            boutonJvia.Size = new Size(278, 77);
+            boutonJvia.TabIndex = 2;
+            boutonJvia.Text = " Joueur VS Ordi";
+            boutonJvia.UseVisualStyleBackColor = false;
+            boutonJvia.Click += boutonJvjClick;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Source Sans Pro Black", 40F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.Yellow;
+            label2.Location = new Point(310, 241);
+            label2.Name = "label2";
+            label2.Size = new Size(422, 84);
+            label2.TabIndex = 3;
+            label2.Text = "Modes de jeu";
+            // 
+            // infoJVJ
+            // 
+            infoJVJ.BackColor = Color.White;
+            infoJVJ.Image = (Image)resources.GetObject("infoJVJ.Image");
+            infoJVJ.Location = new Point(675, 417);
+            infoJVJ.Name = "infoJVJ";
+            infoJVJ.Size = new Size(18, 21);
+            infoJVJ.TabIndex = 4;
+            infoJVJ.TabStop = false;
+            infoJVJ.MouseEnter += interrogation_MouseEnter;
+            infoJVJ.MouseLeave += interrogation_MouseLeave;
+            // 
+            // infoJVIA
+            // 
+            infoJVIA.BackColor = Color.White;
+            infoJVIA.Image = (Image)resources.GetObject("infoJVIA.Image");
+            infoJVIA.Location = new Point(675, 520);
+            infoJVIA.Name = "infoJVIA";
+            infoJVIA.Size = new Size(20, 21);
+            infoJVIA.TabIndex = 6;
+            infoJVIA.TabStop = false;
+            infoJVIA.MouseEnter += interrogation_MouseEnter;
+            infoJVIA.MouseLeave += interrogation_MouseLeave;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-47, 380);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(316, 223);
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Showcard Gothic", 30F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(220, 58);
+            label1.Font = new Font("Book Antiqua", 60F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.RoyalBlue;
+            label1.Location = new Point(147, 56);
             label1.Name = "label1";
-            label1.Size = new Size(334, 62);
+            label1.Size = new Size(719, 119);
             label1.TabIndex = 0;
             label1.Text = "PUISSANCE 4";
             // 
-            // button1
+            // pictureBox2
             // 
-            button1.Location = new Point(296, 198);
-            button1.Name = "button1";
-            button1.Size = new Size(200, 50);
-            button1.TabIndex = 1;
-            button1.Text = " Joueur VS Joueur ";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(83, 12);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(217, 220);
+            pictureBox2.TabIndex = 8;
+            pictureBox2.TabStop = false;
             // 
-            // button2
+            // pictureBox3
             // 
-            button2.Location = new Point(296, 288);
-            button2.Name = "button2";
-            button2.Size = new Size(200, 50);
-            button2.TabIndex = 2;
-            button2.Text = " Joueur VS Ordi";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click_1;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(690, 5);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(221, 233);
+            pictureBox3.TabIndex = 9;
+            pictureBox3.TabStop = false;
             // 
             // Accueil
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            BackColor = Color.Gray;
+            ClientSize = new Size(982, 753);
             Controls.Add(label1);
+            Controls.Add(pictureBox2);
+            Controls.Add(pictureBox1);
+            Controls.Add(infoJVIA);
+            Controls.Add(infoJVJ);
+            Controls.Add(label2);
+            Controls.Add(boutonJvia);
+            Controls.Add(boutonJvj);
+            Controls.Add(pictureBox3);
+            MaximizeBox = false;
             Name = "Accueil";
             Text = "Form1";
+            FormClosing += Accueil_FormClosing;
+            ((System.ComponentModel.ISupportInitialize)infoJVJ).EndInit();
+            ((System.ComponentModel.ISupportInitialize)infoJVIA).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
+        private Button boutonJvj;
+        private Button boutonJvia;
+        private Label label2;
+        private PictureBox infoJVJ;
+        private PictureBox infoJVIA;
+        private PictureBox pictureBox1;
         private Label label1;
-        private Button button1;
-        private Button button2;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
     }
 }
