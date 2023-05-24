@@ -36,9 +36,9 @@ namespace Puissance_4
         {
             InitializeComponent();
             //Nomenclature des joueurs pour facilité la compréhension
-            string PremierJoueur = param.pseudoJ;
+            string PremierJoueur = param.PseudoJ;
 
-            choixGrille = param.choixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
+            choixGrille = param.ChoixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
             tableLayoutPanel1 = new TableLayoutPanel();
 
             Partie = new Puissance4(PremierJoueur, "IA", choixGrille, false);

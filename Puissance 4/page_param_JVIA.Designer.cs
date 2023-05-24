@@ -51,7 +51,6 @@
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "Choix Grille";
-            groupBox2.Enter += groupBox2_Enter;
             // 
             // radioButton3
             // 
@@ -121,7 +120,7 @@
             button1.TabIndex = 9;
             button1.Text = "JOUER";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += boutonJouer_Click;
             // 
             // button_accueil
             // 

@@ -58,6 +58,8 @@
             boutonJvj.Text = " Joueur VS Joueur ";
             boutonJvj.UseVisualStyleBackColor = false;
             boutonJvj.Click += boutonJvjClick;
+            boutonJvj.MouseEnter += bouton_Enter;
+            boutonJvj.MouseLeave += bouton_Leave;
             // 
             // boutonJvia
             // 
@@ -71,6 +73,8 @@
             boutonJvia.Text = " Joueur VS Ordi";
             boutonJvia.UseVisualStyleBackColor = false;
             boutonJvia.Click += boutonJvjClick;
+            boutonJvia.MouseEnter += bouton_Enter;
+            boutonJvia.MouseLeave += bouton_Leave;
             // 
             // label2
             // 

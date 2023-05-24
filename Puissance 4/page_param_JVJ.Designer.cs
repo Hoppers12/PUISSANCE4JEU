@@ -30,15 +30,15 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            textBoxPseudoJ2 = new TextBox();
+            textBoxPseudoJ1 = new TextBox();
             label3 = new Label();
             label2 = new Label();
             groupBox2 = new GroupBox();
             radioButton3 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
-            button1 = new Button();
+            boutonJouer = new Button();
             button_accueil = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -56,8 +56,8 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox2);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(textBoxPseudoJ2);
+            groupBox1.Controls.Add(textBoxPseudoJ1);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Location = new Point(37, 169);
@@ -66,24 +66,22 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Choix Pseudos";
-            groupBox1.Enter += groupBox1_Enter;
             // 
-            // textBox2
+            // textBoxPseudoJ2
             // 
-            textBox2.Location = new Point(162, 141);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 3;
-            textBox2.Text = "Luffy";
+            textBoxPseudoJ2.Location = new Point(162, 141);
+            textBoxPseudoJ2.Name = "textBoxPseudoJ2";
+            textBoxPseudoJ2.Size = new Size(125, 27);
+            textBoxPseudoJ2.TabIndex = 3;
+            textBoxPseudoJ2.Text = "Luffy";
             // 
-            // textBox1
+            // textBoxPseudoJ1
             // 
-            textBox1.Location = new Point(162, 51);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 2;
-            textBox1.Text = "Naruto";
-            textBox1.TextChanged += textBox1_TextChanged;
+            textBoxPseudoJ1.Location = new Point(162, 51);
+            textBoxPseudoJ1.Name = "textBoxPseudoJ1";
+            textBoxPseudoJ1.Size = new Size(125, 27);
+            textBoxPseudoJ1.TabIndex = 2;
+            textBoxPseudoJ1.Text = "Naruto";
             // 
             // label3
             // 
@@ -114,7 +112,6 @@
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Choix Grille";
-            groupBox2.Enter += groupBox2_Enter;
             // 
             // radioButton3
             // 
@@ -148,15 +145,15 @@
             radioButton1.Text = "6 x 7";
             radioButton1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // boutonJouer
             // 
-            button1.Location = new Point(304, 378);
-            button1.Name = "button1";
-            button1.Size = new Size(200, 50);
-            button1.TabIndex = 10;
-            button1.Text = "JOUER";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            boutonJouer.Location = new Point(304, 378);
+            boutonJouer.Name = "boutonJouer";
+            boutonJouer.Size = new Size(200, 50);
+            boutonJouer.TabIndex = 10;
+            boutonJouer.Text = "JOUER";
+            boutonJouer.UseVisualStyleBackColor = true;
+            boutonJouer.Click += boutonJouer_Click;
             // 
             // button_accueil
             // 
@@ -174,7 +171,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(button_accueil);
-            Controls.Add(button1);
+            Controls.Add(boutonJouer);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(label1);
@@ -192,15 +189,15 @@
 
         private Label label1;
         private GroupBox groupBox1;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox textBoxPseudoJ2;
+        private TextBox textBoxPseudoJ1;
         private Label label3;
         private Label label2;
         private GroupBox groupBox2;
         private RadioButton radioButton3;
         private RadioButton radioButton2;
         private RadioButton radioButton1;
-        private Button button1;
+        private Button boutonJouer;
         private Button button_accueil;
     }
 }

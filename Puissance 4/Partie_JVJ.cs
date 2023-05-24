@@ -44,10 +44,10 @@ namespace Puissance_4
         {
             InitializeComponent();
             //Nomenclature des joueurs pour facilité la compréhension
-            string PremierJoueur = param.pseudoJ1;
-            string SecondJoueur = param.pseudoJ2;
+            string PremierJoueur = param.PseudoJ1;
+            string SecondJoueur = param.PseudoJ2;
 
-            choixGrille = param.choixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
+            choixGrille = param.ChoixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
             tableLayoutPanel1 = new TableLayoutPanel();
 
             Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, true);
