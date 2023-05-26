@@ -152,5 +152,8 @@ namespace Puissance_4
             boutonSurvole.ForeColor = Color.Yellow;
         }
 
+
+
+
     }
 }

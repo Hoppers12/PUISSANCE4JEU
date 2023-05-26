@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Puissance_4
 {
@@ -40,7 +41,10 @@ namespace Puissance_4
             InitializeComponent();
 
 
+
         }
+
+
 
         /// <summary>
         /// Méthode événement Click sur le bouton Jouer. Elle enregistre dans les attributs
@@ -94,6 +98,43 @@ namespace Puissance_4
         }
 
 
+        /// <summary>
+        /// Méthode qui est appelée lorsque une lettre est entrée dans un TextBox
+        /// Elle affiche une alerte si un espace est entrée + le supprime
+        /// </summary>
+        /// <param name="sender"> Text box</param>
+        /// <param name="e">Appui sur une touche</param>
+        private void textBoxPseudo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            System.Windows.Forms.TextBox textBoxActive = (System.Windows.Forms.TextBox)sender;
+            DialogResult result;
+            if (e.KeyChar == ' ')
+            {
+                MessageBox.Show("L'espace n'est pas autorisé !");
+                e.Handled = true; // Annule la saisie de l'espace
+                textBoxActive.Text = textBoxActive.Text.TrimEnd(); // Supprime le dernier caractère (espace) de la TextBox
+            }
+        }
+
+        /// <summary>
+        /// Si un des 2 textBox de pseudo est vide alors le bouton n'est pas cliquable
+        /// </summary>
+        /// <param name="sender">textbox</param>
+        /// <param name="e">changement de la valeur text</param>
+        private void textBoxPseudo_TextChanged(object sender, EventArgs e)
+        {
+            // Si la zone de texte est vide alors on désactive les boutons
+            if (textBoxPseudoJ1.Text == "" || textBoxPseudoJ2.Text == "")
+            {
+                boutonJouer.Enabled = false;
+            }
+            else
+            {
+                boutonJouer.Enabled = true;
+            }
+        }
     }
+
+
 }
 

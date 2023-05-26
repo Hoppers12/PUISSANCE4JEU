@@ -107,6 +107,7 @@
             // pseudoJ1
             // 
             pseudoJ1.Location = new Point(225, 273);
+            pseudoJ1.MaxLength = 20;
             pseudoJ1.Name = "pseudoJ1";
             pseudoJ1.Size = new Size(125, 27);
             pseudoJ1.TabIndex = 8;

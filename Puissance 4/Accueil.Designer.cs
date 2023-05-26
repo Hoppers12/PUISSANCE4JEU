@@ -80,8 +80,8 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Source Sans Pro Black", 40F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Yellow;
-            label2.Location = new Point(310, 241);
+            label2.ForeColor = Color.Red;
+            label2.Location = new Point(330, 248);
             label2.Name = "label2";
             label2.Size = new Size(422, 84);
             label2.TabIndex = 3;
@@ -91,9 +91,10 @@
             // 
             infoJVJ.BackColor = Color.White;
             infoJVJ.Image = (Image)resources.GetObject("infoJVJ.Image");
-            infoJVJ.Location = new Point(675, 417);
+            infoJVJ.Location = new Point(675, 407);
             infoJVJ.Name = "infoJVJ";
-            infoJVJ.Size = new Size(18, 21);
+            infoJVJ.Size = new Size(37, 30);
+            infoJVJ.SizeMode = PictureBoxSizeMode.Zoom;
             infoJVJ.TabIndex = 4;
             infoJVJ.TabStop = false;
             infoJVJ.MouseEnter += interrogation_MouseEnter;
@@ -105,7 +106,8 @@
             infoJVIA.Image = (Image)resources.GetObject("infoJVIA.Image");
             infoJVIA.Location = new Point(675, 520);
             infoJVIA.Name = "infoJVIA";
-            infoJVIA.Size = new Size(20, 21);
+            infoJVIA.Size = new Size(37, 30);
+            infoJVIA.SizeMode = PictureBoxSizeMode.Zoom;
             infoJVIA.TabIndex = 6;
             infoJVIA.TabStop = false;
             infoJVIA.MouseEnter += interrogation_MouseEnter;
@@ -114,18 +116,20 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-47, 380);
+            pictureBox1.Location = new Point(12, 385);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(316, 223);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Book Antiqua", 60F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.RoyalBlue;
-            label1.Location = new Point(147, 56);
+            label1.ForeColor = Color.MidnightBlue;
+            label1.Location = new Point(143, 61);
             label1.Name = "label1";
             label1.Size = new Size(719, 119);
             label1.TabIndex = 0;
@@ -134,7 +138,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(83, 12);
+            pictureBox2.Location = new Point(64, 12);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(217, 220);
             pictureBox2.TabIndex = 8;
@@ -143,7 +147,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(690, 5);
+            pictureBox3.Location = new Point(722, 12);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(221, 233);
             pictureBox3.TabIndex = 9;
@@ -153,16 +157,16 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Gray;
+            BackColor = Color.RoyalBlue;
             ClientSize = new Size(982, 753);
             Controls.Add(label1);
-            Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(infoJVIA);
             Controls.Add(infoJVJ);
             Controls.Add(label2);
             Controls.Add(boutonJvia);
             Controls.Add(boutonJvj);
+            Controls.Add(pictureBox2);
             Controls.Add(pictureBox3);
             MaximizeBox = false;
             Name = "Accueil";
