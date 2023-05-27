@@ -134,6 +134,8 @@ namespace Puissance_4
             Controls.Add(button2);
             Controls.Add(Colonne1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Partie_JVJ";
             Text = "Form1";
             Load += Partie_JVJ_Load;

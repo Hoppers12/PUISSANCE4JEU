@@ -168,6 +168,7 @@
             Controls.Add(boutonJvj);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox3);
+            Location = new Point(100, 100);
             MaximizeBox = false;
             Name = "Accueil";
             Text = "Form1";

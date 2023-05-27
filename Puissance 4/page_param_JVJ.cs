@@ -39,6 +39,7 @@ namespace Puissance_4
         public page_param_JVJ()
         {
             InitializeComponent();
+            this.Size = new Size(1000, 800);
 
 
 
@@ -133,6 +134,8 @@ namespace Puissance_4
                 boutonJouer.Enabled = true;
             }
         }
+
+
     }
 
 

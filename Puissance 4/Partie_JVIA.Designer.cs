@@ -117,7 +117,7 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += Colonne6_Click;
             // 
-            // Partie_JVJ
+            // Partie_JVIA
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -130,7 +130,9 @@
             Controls.Add(button2);
             Controls.Add(Colonne1);
             Controls.Add(label1);
-            Name = "Partie_JVJ";
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "Partie_JVIA";
             Text = "Form1";
             Load += Partie_JVJ_Load;
             ResumeLayout(false);

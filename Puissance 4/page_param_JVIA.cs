@@ -33,6 +33,7 @@ namespace Puissance_4
         public page_param_JVIA()
         {
             InitializeComponent();
+            this.Size = new Size(1000, 800);
         }
 
         /// <summary>
@@ -87,5 +88,42 @@ namespace Puissance_4
         }
 
 
+        /// <summary>
+        /// Méthode qui est appelée lorsque une lettre est entrée dans un TextBox
+        /// Elle affiche une alerte si un espace est entrée + le supprime
+        /// </summary>
+        /// <param name="sender"> Text box</param>
+        /// <param name="e">Appui sur une touche</param>
+        private void textBoxPseudo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            System.Windows.Forms.TextBox textBoxActive = (System.Windows.Forms.TextBox)sender;
+            if (e.KeyChar == ' ')
+            {
+                MessageBox.Show("L'espace n'est pas autorisé !");
+                e.Handled = true; // Annule la saisie de l'espace
+                textBoxActive.Text = textBoxActive.Text.TrimEnd(); // Supprime le dernier caractère (espace) de la TextBox
+            }
+        }
+
+        /// <summary>
+        /// Si un des 2 textBox de pseudo est vide alors le bouton n'est pas cliquable
+        /// </summary>
+        /// <param name="sender">textbox</param>
+        /// <param name="e">changement de la valeur text</param>
+        private void textBoxPseudo_TextChanged(object sender, EventArgs e)
+        {
+            // Si la zone de texte est vide alors on désactive les boutons
+            if (pseudoJ1.Text == "")
+            {
+                boutonJouer.Enabled = false;
+            }
+            else
+            {
+                boutonJouer.Enabled = true;
+            }
+        }
+
+
     }
+
 }
