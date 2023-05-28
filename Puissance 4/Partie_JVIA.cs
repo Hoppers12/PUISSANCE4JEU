@@ -344,30 +344,25 @@ namespace Puissance_4
             {
                 for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
                 {
-                // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
+                    // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
                     if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 1)
-                    { 
+                    {
                         tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
                     }
                     else
                     {
                         if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 2)
                         {
-                             tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
+                            tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
                         }
                         else
                         {
-                             tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
+                            tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
                         }
                     }
 
                 }
             }
-        }
-
-        private void Partie_JVJ_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

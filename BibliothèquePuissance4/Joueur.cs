@@ -11,10 +11,44 @@ namespace BibliothèquePuissance4
     /// </summary>
     public class Joueur
     {
+        /// <summary>
+        /// Pseudo du joueur
+        /// </summary>
+        /// <example>
+        /// "Luffy", "Raph" etc.
+        /// </example>
         string pseudo;
-        bool couleurPion;       // true=rouge; false= bleu  
-        bool type;      // true=Joueur; false=IA
+
+        /// <summary>
+        /// Couleur du pion du joueur
+        /// </summary>
+        /// <example>
+        /// true (rouge) ou false (jaune)  
+        /// </example>
+        bool couleurPion;
+
+        /// <summary>
+        /// Type de joueur
+        /// </summary>
+        /// <example>
+        /// true (Joueur) ou false (IA)
+        /// </example>
+        bool type;
+
+        /// <summary>
+        /// Le nombre de colonnes de la grille de jeu
+        /// </summary>
+        /// <example>
+        /// 7 (si c'est la grille 6 x 7) ou 6 (si c'est la grille 5 x 6)
+        /// </example>
         int nbreColonnes;
+
+        /// <summary>
+        /// Tableau où sont stockés les points correspondants aux coups de l'IA 
+        /// </summary>
+        /// <example>
+        /// [200;50;150;0;0;50]
+        /// </example>
         int[] tabPointsCoupIA;
 
         public string Pseudo { get => pseudo; }

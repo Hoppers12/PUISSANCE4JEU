@@ -22,3 +22,15 @@ C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\Biblioth�
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\refint\BibliothèquePuissance4.dll
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.pdb
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\ref\BibliothèquePuissance4.dll
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\bin\Debug\net6.0\BibliothèquePuissance4.deps.json
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\bin\Debug\net6.0\BibliothèquePuissance4.dll
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\bin\Debug\net6.0\BibliothèquePuissance4.pdb
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.csproj.AssemblyReference.cache
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.AssemblyInfoInputs.cache
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.AssemblyInfo.cs
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.csproj.CoreCompileInputs.cache
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.dll
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\refint\BibliothèquePuissance4.dll
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.pdb
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\ref\BibliothèquePuissance4.dll

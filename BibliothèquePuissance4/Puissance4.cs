@@ -2,28 +2,70 @@
 {
     /// <summary>
     /// Classe qui définit une partie de puissance 4
-    ///
-    /// J1 -> Joueur 1 de type Joueur
-    /// J2 -> Joueur 2 de type Joueur
-    /// grilleJeu -> Grille du jeu (tableau bidimentionnel d'entiers)
-    /// choixGrille -> Entier qui désigne le choix de la grille (1 = grille 1 ; 2 = grille 2 ; 0 = grille aleatoire)
-    /// choixMode -> Booléen qui désigne le choix du mode de jeu (true = JVJ; false = JVIA)
-    /// gagnant -> Entier qui désigne le joueur gagnant (1 = J1; 2 = J2; 0 = match nul; -1 = match toujours en cours)
-    /// joueurSuivant -> Booléen qui désigne le joueur qui jouera le tour suivant (True = J1 ; False = J2/IA)
-    /// limiteLigne -> Nombre de lignes de la grille utilisée
-    /// limiteColonne -> Nombre de colonnes de la grille utilisée
-    ///
     /// </summary>
     public class Puissance4
     {
+        /// <summary>
+        /// Joueur 1 de type Joueur
+        /// </summary>
         Joueur J1;
+
+        /// <summary>
+        /// Joueur 2 de type Joueur
+        /// </summary>
         Joueur J2;
+
+        /// <summary>
+        /// Grille du jeu (tableau bidimentionnel d'entiers)
+        /// </summary>
         int[,] grilleJeu;
+
+        /// <summary>
+        /// Entier qui désigne le choix de la grille
+        /// </summary>
+        /// <example>
+        /// 1 (grille 1) ou 2 (grille 2) ou 0 (grille aleatoire)
+        /// </example>
         int choixGrille;
+
+        /// <summary>
+        /// Booléen qui désigne le choix du mode de jeu
+        /// </summary>
+        /// <example>
+        /// true (JVJ) ou false (JVIA)
+        /// </example>
         bool choixMode;
+
+        /// <summary>
+        /// Entier qui désigne le joueur gagnant
+        /// </summary>
+        /// <example>
+        /// 1 (J1), 2 (J2), 0 (match nul) ou -1 (match toujours en cours)
+        /// </example>
         int gagnant;
+
+        /// <summary>
+        /// Booléen qui désigne le joueur qui jouera le tour suivant
+        /// </summary>
+        /// <example>
+        /// true (J1) ou false (J2/IA)
+        /// </example>
         bool joueurSuivant;
+
+        /// <summary>
+        /// Nombre de lignes de la grille utilisée
+        /// </summary>
+        /// <example>
+        /// 6 (si c'est la grille 6 x 7) ou 5 (si c'est la grille 5 x 6)
+        /// </example>
         int limiteLigne;
+
+        /// <summary>
+        /// Nombre de colonnes de la grille utilisée
+        /// </summary>
+        /// <example>
+        /// 7 (si c'est la grille 6 x 7) ou 6 (si c'est la grille 5 x 6)
+        /// </example>
         int limiteColonne;
 
         public int[,] GrilleJeu { get => grilleJeu; set => grilleJeu = value; }

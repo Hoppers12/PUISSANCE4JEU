@@ -20,7 +20,7 @@ namespace Puissance_4
     {
         /// <summary>
         /// Attribut qui stocke le numéro de la grille choisie dans le radioBouton de la page param
-        /// (1 / 2 ou 3
+        /// (1 / 2 ou 3)
         /// </summary>
         private int choixGrille;
         /// <summary>
@@ -92,7 +92,7 @@ namespace Puissance_4
                     break;
                 //Cas ou la grille 2 a été choisie
                 case 2:
-                    LabelTailleGrille.Text = " Taille de la Grille : 6 x 5 ";
+                    LabelTailleGrille.Text = " Taille de la Grille : 5 x 6 ";
                     nbColonne = 6;
                     nbLigne = 5;
                     initGrille();
@@ -115,7 +115,7 @@ namespace Puissance_4
                     }
                     else
                     {
-                        LabelTailleGrille.Text = " Taille de la Grille : 6 x 5 ";
+                        LabelTailleGrille.Text = " Taille de la Grille : 5 x 6 ";
                         nbColonne = 6;
                         nbLigne = 5;
                         initGrille();
@@ -246,35 +246,40 @@ namespace Puissance_4
         /// <param name="e"></param>
         private void Colonne_Click(object sender, EventArgs e)
         {
+            int colonneJouee;
             PictureBox flecheClique = (PictureBox)sender;
 
             switch (flecheClique.Name)
             {
                 case "flecheColonne1":
-                    Partie.Jeu(1);
+                    colonneJouee = 1;
                     break;
                 case "flecheColonne2":
-                    Partie.Jeu(2);
+                    colonneJouee = 2;
                     break;
                 case "flecheColonne3":
-                    Partie.Jeu(3);
+                    colonneJouee = 3;
                     break;
                 case "flecheColonne4":
-                    Partie.Jeu(4);
+                    colonneJouee = 4;
                     break;
                 case "flecheColonne5":
-                    Partie.Jeu(5);
+                    colonneJouee = 5;
                     break;
                 case "flecheColonne6":
-                    Partie.Jeu(6);
+                    colonneJouee = 6;
                     break;
-                case "flecheColonne7":
-                    Partie.Jeu(7);
+                default:
+                    colonneJouee = 7;
                     break;
             }
+
+            Partie.Jeu(colonneJouee);
             MajGrille();
             affichageGagnant();
             changerPseudoJActif();
+            if (Partie.GrilleJeu[0, colonneJouee - 1] != 0)
+                flecheClique.Enabled = false;
         }
 
         /// <summary>
@@ -342,6 +347,12 @@ namespace Puissance_4
             }
         }
 
-
+        private void Partie_JVJ_Load(object sender, EventArgs e)
+        {
+            if (Partie.ChoixGrille==2)
+            {
+                flecheColonne7.Visible = false;
+            }
+        }
     }
 }

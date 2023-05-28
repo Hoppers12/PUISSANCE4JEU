@@ -42,26 +42,27 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 20);
+            label1.Location = new Point(10, 15);
             label1.Name = "label1";
-            label1.Size = new Size(275, 35);
+            label1.Size = new Size(215, 28);
             label1.TabIndex = 0;
             label1.Text = "Partie Joueur VS Joueur";
             // 
             // LabelTailleGrille
             // 
             LabelTailleGrille.AutoSize = true;
-            LabelTailleGrille.Location = new Point(380, 21);
+            LabelTailleGrille.Location = new Point(332, 16);
             LabelTailleGrille.Name = "LabelTailleGrille";
-            LabelTailleGrille.Size = new Size(50, 20);
+            LabelTailleGrille.Size = new Size(38, 15);
             LabelTailleGrille.TabIndex = 9;
             LabelTailleGrille.Text = "label2";
             // 
             // Colonne1
             // 
-            Colonne1.Location = new Point(92, 68);
+            Colonne1.Location = new Point(80, 51);
+            Colonne1.Margin = new Padding(3, 2, 3, 2);
             Colonne1.Name = "Colonne1";
-            Colonne1.Size = new Size(100, 29);
+            Colonne1.Size = new Size(88, 22);
             Colonne1.TabIndex = 2;
             Colonne1.Text = "Colonne1";
             Colonne1.UseVisualStyleBackColor = true;
@@ -69,9 +70,10 @@
             // 
             // button2
             // 
-            button2.Location = new Point(235, 68);
+            button2.Location = new Point(206, 51);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(100, 29);
+            button2.Size = new Size(88, 22);
             button2.TabIndex = 3;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = true;
@@ -79,9 +81,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(394, 68);
+            button3.Location = new Point(345, 51);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(100, 29);
+            button3.Size = new Size(88, 22);
             button3.TabIndex = 4;
             button3.Text = "button3";
             button3.UseVisualStyleBackColor = true;
@@ -89,9 +92,10 @@
             // 
             // button4
             // 
-            button4.Location = new Point(539, 68);
+            button4.Location = new Point(472, 51);
+            button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
-            button4.Size = new Size(100, 29);
+            button4.Size = new Size(88, 22);
             button4.TabIndex = 5;
             button4.Text = "button4";
             button4.UseVisualStyleBackColor = true;
@@ -99,9 +103,10 @@
             // 
             // button5
             // 
-            button5.Location = new Point(671, 68);
+            button5.Location = new Point(587, 51);
+            button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
-            button5.Size = new Size(100, 29);
+            button5.Size = new Size(88, 22);
             button5.TabIndex = 6;
             button5.Text = "button5";
             button5.UseVisualStyleBackColor = true;
@@ -109,9 +114,10 @@
             // 
             // button6
             // 
-            button6.Location = new Point(809, 68);
+            button6.Location = new Point(708, 51);
+            button6.Margin = new Padding(3, 2, 3, 2);
             button6.Name = "button6";
-            button6.Size = new Size(100, 29);
+            button6.Size = new Size(88, 22);
             button6.TabIndex = 7;
             button6.Text = "button6";
             button6.UseVisualStyleBackColor = true;
@@ -119,9 +125,9 @@
             // 
             // Partie_JVIA
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1182, 753);
+            ClientSize = new Size(1034, 565);
             Controls.Add(LabelTailleGrille);
             Controls.Add(button3);
             Controls.Add(button6);
@@ -131,10 +137,10 @@
             Controls.Add(Colonne1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Partie_JVIA";
             Text = "Form1";
-            Load += Partie_JVJ_Load;
             ResumeLayout(false);
             PerformLayout();
         }
