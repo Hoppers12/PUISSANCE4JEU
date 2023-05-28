@@ -39,6 +39,8 @@ namespace Puissance_4
         public page_param_JVJ()
         {
             InitializeComponent();
+            pseudoJ1 = textBoxPseudoJ1.Text;
+            pseudoJ2 = textBoxPseudoJ2.Text;
             this.Size = new Size(1000, 800);
 
 
@@ -108,7 +110,6 @@ namespace Puissance_4
         private void textBoxPseudo_KeyPress(object sender, KeyPressEventArgs e)
         {
             System.Windows.Forms.TextBox textBoxActive = (System.Windows.Forms.TextBox)sender;
-            DialogResult result;
             if (e.KeyChar == ' ')
             {
                 MessageBox.Show("L'espace n'est pas autorisé !");

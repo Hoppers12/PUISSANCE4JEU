@@ -21,104 +21,89 @@ namespace Puissance_4
     public partial class Partie_JVJ : Form
     {
         private int choixGrille;
-        public Puissance4 Partie;
-        public TableLayoutPanel tableLayoutPanel1;
+        private Puissance4 partie;
+        private TableLayoutPanel tableLayoutPanel1;
 
-        Label J1 = new Label();
-        Label J2 = new Label();
-        Label JActif = new Label();
-        Label VS = new Label();
-        Label JoueurActifPhrase = new Label();
+
         Label vainqueur = new Label();
+        private int nbColonne;
+        private int nbLigne;
 
+        public Puissance4 Partie { get => partie; set => partie = value; }
+        public TableLayoutPanel TableLayoutPanel1 { get => tableLayoutPanel1; set => tableLayoutPanel1 = value; }
 
-
-        int nbColonne;
-        int nbLigne;
-
-        public void creationGrille()
-        {
-
-        }
         public Partie_JVJ(page_param_JVJ param)
         {
             InitializeComponent();
             //Nomenclature des joueurs pour facilité la compréhension
             string PremierJoueur = param.PseudoJ1;
             string SecondJoueur = param.PseudoJ2;
-
-            choixGrille = param.ChoixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
-            tableLayoutPanel1 = new TableLayoutPanel();
-
-            Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, true);
-
-            // Ajout des composants crées en attribut
-            JoueurActifPhrase.Text = "Au tour de : ";
-            this.Controls.Add(J1);
-            this.Controls.Add(J2);
-            this.Controls.Add(JActif);
-            this.Controls.Add(VS);
-            this.Controls.Add(JoueurActifPhrase);
-            this.Controls.Add(vainqueur);
-
-            // Placement des labels sur la page
-            LabelTailleGrille.Location = new Point(600, 0);
-            J1.Location = new Point(250, 0);
-            VS.Location = new Point(350, 0);
-            J2.Location = new Point(400, 0);
-            JoueurActifPhrase.Location = new Point(500);
-            JActif.Location = new Point(650, 0);
-            LabelTailleGrille.Location = new Point(800, 0);
-            vainqueur.Size = new Size(500, 50);
-
-            // Indique la couleur du joueur actif
+            //On initialise le label du joueur qui commencera lors du 1er tour (J1)
+            JActif.Text = PremierJoueur;
             JActif.BackColor = Color.Red;
+           // On va chercher la propriété qui correspond au radiobutton coché dans la page parametrage
+            choixGrille = param.ChoixGrilleRadioButton; 
+            tableLayoutPanel1 = new TableLayoutPanel();
+           // Création de la partie de Puissance 4
+            Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, true);
 
             // On attribue la valeur entrée dans les input de la page param aux labels d'ici
             J1.Text = PremierJoueur;
-            VS.Text = "VS";
             J2.Text = SecondJoueur;
+            creationGrille();
 
-            // On initialise le pseudo du J actif à J1 car c'est lui qui commence
-            JActif.Text = PremierJoueur;
+        }
 
-            // creation de la grille en fonction du choix (Grille 1  / 2 ou Aléatoire entre ces 2)
-            if (choixGrille == 1)
+        /// <summary>
+        /// Méthode qui s'occupe d'initialiser la grille dans l'interface 
+        /// en fonction du choix de grille réalisé
+        /// </summary>
+        private void creationGrille()
+        {
+
+            switch (choixGrille)
             {
-                LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
-                initGrille1();
-            }
-            else
-            {
-                if (choixGrille == 2)
-                {
+                //Cas ou la grille 1 a été choisie
+                case 1:
+                    LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
+                    nbColonne = 7;
+                    nbLigne = 6;
+                    initGrille1();
+                    break;
+                //Cas ou la grille 2 a été choisie
+                case 2:
                     LabelTailleGrille.Text = " Taille de la Grille : 6 x 5 ";
+                    nbColonne = 6;
+                    nbLigne = 5;
                     initGrille2();
+                    break;
 
-
-                }
-                else
-                {
+                // Cas ou le joueur a choisie la grille aléatoire
+                default:
                     choixGrille = Partie.choixGrille;
 
                     if (choixGrille == 1)
                     {
                         LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
+                        nbColonne = 7;
+                        nbLigne = 6;
                         initGrille1();
+                        break;
 
                     }
                     else
                     {
                         LabelTailleGrille.Text = " Taille de la Grille : 6 x 5 ";
+                        nbColonne = 6;
+                        nbLigne = 5;
                         initGrille2();
+                        break;
 
                     }
-
-                }
-
-
+                    break;
 
             }
+   
 
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
 
@@ -126,6 +111,10 @@ namespace Puissance_4
             initLabelDansGrille();
         }
 
+        /// <summary>
+        /// Méthode qui est en charge de créer des labels dans chaque case de la grille
+        /// ces labels auront le rôle de jetons
+        /// </summary>
         private void initLabelDansGrille()
         {
             for (int IndiceLigne = 0; IndiceLigne < nbLigne; IndiceLigne++)
@@ -135,53 +124,28 @@ namespace Puissance_4
                     Label label = new Label();
                     label.Dock = DockStyle.Fill;
                     label.TextAlign = ContentAlignment.MiddleCenter;
-                    //label.AutoSize = false;
-                    //label.MinimumSize = new Size(80, 40);                      // Centrage dans le label 
-                    //label.MaximumSize = new Size(100, 50);
-
                     label.BorderStyle = BorderStyle.FixedSingle;
                     label.Margin = new Padding(5, 5, 5, 5);
-                    label.Margin = new Padding(label.Margin.Left + 1, label.Margin.Top, label.Margin.Right, label.Margin.Bottom); // Epaissir les bordures des cellules
-
+                    // Epaissir les bordures des cellules
+                    label.Margin = new Padding(label.Margin.Left + 1, label.Margin.Top, label.Margin.Right, label.Margin.Bottom); 
                     label.BackColor = Color.White;
                     tableLayoutPanel1.Controls.Add(label, IndiceColonne, IndiceLigne);
-
-
-
-
                 }
             }
-
-
             this.Controls.Add(tableLayoutPanel1);
         }
+
+
         private void initGrille1()
         {
-            nbColonne = 7;
-            nbLigne = 6;
 
 
             tableLayoutPanel1.Size = new Size(1000, 500); // Définition la taille du TableLayoutPanel
             tableLayoutPanel1.BackColor = Color.DarkBlue;
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;        // Initialisation du style de la grille 
             tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowOnly;
-            tableLayoutPanel1.Location = new Point(100, 100);
+            tableLayoutPanel1.Location = new Point(400, 150);
             tableLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
-
-
-
-
-            Button button7 = new Button();
-            this.Controls.Add(button7);
-            button7.Location = new Point(980, 70);
-            button7.Name = "button7";
-            button7.Size = new Size(100, 29);
-            button7.TabIndex = 8;                       // Mise en place du 7 éme bouton effectif que pour la grille 1
-            button7.Text = "button7";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += Colonne7_Click;
-
-
 
 
             // Définir la taille des colonnes en fonction du nombre de colonnes
@@ -202,13 +166,11 @@ namespace Puissance_4
         //Fonction qui crée la grille 2 
         private void initGrille2()
         {
-            nbColonne = 6;
-            nbLigne = 5;
             tableLayoutPanel1.BackColor = Color.DarkBlue;
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;        // Initialisation du style de la grille 
             tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             tableLayoutPanel1.ForeColor = SystemColors.Highlight;
-            tableLayoutPanel1.Location = new Point(100, 100);
+            tableLayoutPanel1.Location = new Point(400, 150);
 
 
             tableLayoutPanel1.Size = new Size(1000, 500); // Définition la taille du TableLayoutPanel
@@ -270,70 +232,49 @@ namespace Puissance_4
             }
         }
 
-        //Placement d'un pion dans la colonne 1
-        private void Colonne1_Click(object sender, EventArgs e)
+
+
+        /// <summary>
+        /// Fonction qui joue le pion dans la colonne demandée au click sur la flèche
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Colonne_Click(object sender, EventArgs e)
         {
-            Partie.Jeu(1);
+            PictureBox flecheClique = (PictureBox)sender;
+
+            switch (flecheClique.Name)
+            {
+                case "flecheColonne1":
+                    Partie.Jeu(1);
+                    break;
+                case "flecheColonne2":
+                    Partie.Jeu(2);
+                    break;
+                case "flecheColonne3":
+                    Partie.Jeu(3);
+                    break;
+                case "flecheColonne4":
+                    Partie.Jeu(4);
+                    break;
+                case "flecheColonne5":
+                    Partie.Jeu(5);
+                    break;
+                case "flecheColonne6":
+                    Partie.Jeu(6);
+                    break;
+                case "flecheColonne7":
+                    Partie.Jeu(7);
+                    break;
+            }
             MajGrille();
             affichageGagnant();
             changerPseudoJActif();
         }
 
-
-        //Placement d'un pion dans la colonne 2
-        private void Colonne2_Click(object sender, EventArgs e)
-        {
-            Partie.Jeu(2);
-            MajGrille();
-            affichageGagnant();
-            changerPseudoJActif();
-        }
-        //Placement d'un pion dans la colonne 3
-        private void Colonne3_Click(object sender, EventArgs e)
-        {
-            Partie.Jeu(3);
-            MajGrille();
-            affichageGagnant();
-            changerPseudoJActif();
-
-        }
-        //Placement d'un pion dans la colonne 4
-        private void Colonne4_Click(object sender, EventArgs e)
-        {
-            Partie.Jeu(4);
-            MajGrille();
-            affichageGagnant();
-            changerPseudoJActif();
-
-        }
-        //Placement d'un pion dans la colonne 5
-        private void Colonne5_Click(object sender, EventArgs e)
-        {
-            Partie.Jeu(5);
-            MajGrille();
-            affichageGagnant();
-            changerPseudoJActif();
-        }
-        //Placement d'un pion dans la colonne 6
-        private void Colonne6_Click(object sender, EventArgs e)
-        {
-            Partie.Jeu(6);
-            MajGrille();
-            affichageGagnant();
-            changerPseudoJActif();
-        }
-
-
-        // Placement d'un pion dans la colonne 7
-        private void Colonne7_Click(object sender, EventArgs e)
-        {
-            Partie.Jeu(7);
-            MajGrille();
-            affichageGagnant();
-            changerPseudoJActif();
-        }
-
-        // Fonction de Mise à jour de la grille en fonction des modifications apportées
+        /// <summary>
+        ///  Méthode qui met à jour l'affichage de la grille
+        /// </summary>
         private void MajGrille()
 
         {
@@ -403,9 +344,6 @@ namespace Puissance_4
             }
         }
 
-        private void Partie_JVJ_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

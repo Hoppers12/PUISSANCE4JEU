@@ -114,23 +114,28 @@
             // 
             // pseudoJ1
             // 
+            pseudoJ1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             pseudoJ1.Location = new Point(307, 397);
             pseudoJ1.MaxLength = 20;
             pseudoJ1.Name = "pseudoJ1";
             pseudoJ1.Size = new Size(125, 27);
             pseudoJ1.TabIndex = 8;
             pseudoJ1.Text = "ThéoDu33";
+            pseudoJ1.TextAlign = HorizontalAlignment.Center;
             pseudoJ1.TextChanged += textBoxPseudo_TextChanged;
             pseudoJ1.KeyPress += textBoxPseudo_KeyPress;
             // 
             // boutonJouer
             // 
-            boutonJouer.Location = new Point(380, 604);
+            boutonJouer.BackColor = Color.RoyalBlue;
+            boutonJouer.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            boutonJouer.ForeColor = Color.Gold;
+            boutonJouer.Location = new Point(349, 592);
             boutonJouer.Name = "boutonJouer";
-            boutonJouer.Size = new Size(200, 50);
+            boutonJouer.Size = new Size(278, 77);
             boutonJouer.TabIndex = 9;
             boutonJouer.Text = "JOUER";
-            boutonJouer.UseVisualStyleBackColor = true;
+            boutonJouer.UseVisualStyleBackColor = false;
             boutonJouer.Click += boutonJouer_Click;
             boutonJouer.KeyPress += textBoxPseudo_KeyPress;
             // 

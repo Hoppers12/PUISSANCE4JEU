@@ -33,6 +33,7 @@ namespace Puissance_4
         public page_param_JVIA()
         {
             InitializeComponent();
+            pseudoJ = pseudoJ1.Text;
             this.Size = new Size(1000, 800);
         }
 
