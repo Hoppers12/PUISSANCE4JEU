@@ -106,6 +106,7 @@ namespace Puissance_4
             richTextBox1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             richTextBox1.Location = new Point(35, 53);
             richTextBox1.Name = "richTextBox1";
+            richTextBox1.ReadOnly = true;
             richTextBox1.Size = new Size(214, 295);
             richTextBox1.TabIndex = 1;
             richTextBox1.Text = "Placez un pion lorsque votre pseudo est colorée. Le premier joueur a aligner 4 pions de sa couleur gagne la partie !";
@@ -273,7 +274,7 @@ namespace Puissance_4
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
-            ClientSize = new Size(1582, 953);
+            ClientSize = new Size(1582, 753);
             Controls.Add(flecheColonne7);
             Controls.Add(flecheColonne6);
             Controls.Add(flecheColonne5);
