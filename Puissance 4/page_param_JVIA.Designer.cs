@@ -138,6 +138,7 @@
             boutonJouer.UseVisualStyleBackColor = false;
             boutonJouer.Click += boutonJouer_Click;
             boutonJouer.KeyPress += textBoxPseudo_KeyPress;
+
             // 
             // button_accueil
             // 

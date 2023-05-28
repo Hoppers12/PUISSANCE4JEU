@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "JlDZ4tm3hjnym2j74HQGNdSkAwLIp1gR16A9AIYtKv0vwvLcjQ7pvjzS+K9CEvvX6VS6XfnYExrkCk+tYvpe1w==",
+  "dgSpecHash": "M+5E8lR84zXDD7JInjMx8VG9fh8gen8+wT4Gjt8V0cjDXYHGwa73ePsohyYJgep2vnv41l/Am7RU2sndl7yM6Q==",
   "success": true,
   "projectFilePath": "C:\\Bureau\\COURS\\SAE2.01(puissance4)\\Puissance4\\GroupeC2_SAE_PUISSANCE4\\Puissance 4\\Puissance 4.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problème de lecture du fichier cache C:\\Bureau\\COURS\\SAE2.01(puissance4)\\Puissance4\\GroupeC2_SAE_PUISSANCE4\\Puissance 4\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

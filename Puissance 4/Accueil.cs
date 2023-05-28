@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
@@ -151,9 +152,6 @@ namespace Puissance_4
 
             boutonSurvole.ForeColor = Color.Yellow;
         }
-
-
-
 
     }
 }

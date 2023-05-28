@@ -9,7 +9,7 @@ namespace BibliothèquePuissance4
     /// <summary>
     /// Classe du joueur (IA ou Humain)
     /// </summary>
-    internal class Joueur
+    public class Joueur
     {
         string pseudo;
         bool couleurPion;       // true=rouge; false= bleu  
@@ -187,12 +187,18 @@ namespace BibliothèquePuissance4
             else
             {
                 jeu.GrilleJeu[ligne, colonne] = 1;
-                if (jeu.AlignementHorizontal(colonne) || jeu.AlignementVertical(colonne) || jeu.AlignementDiagonalCroissant(colonne) || jeu.AlignementDiagonalDecroissant(colonne))
+                jeu.AlignementHorizontal(colonne);
+                jeu.AlignementVertical(colonne);
+                jeu.AlignementDiagonalCroissant(colonne);
+                jeu.AlignementDiagonalDecroissant(colonne);
+                if (jeu.Gagnant == 1)
+                {
                     valeur = -1;
+                    jeu.Gagnant = -1;
+                }             
                 else
                     valeur = maxAlignementIA;
                 jeu.GrilleJeu[ligne, colonne] = 0;
-
 
             }
             return valeur;
@@ -262,27 +268,6 @@ namespace BibliothèquePuissance4
             }
             return colonneJoueeIA;
         }
-
-
-        /// <summary>
-        /// Méthode qui permet de choisir la colonne dans laquelle on veut poser un pion
-        /// </summary>
-        /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        /// <returns>La colonne choisie</returns>
-        public int ChoixColonne(Puissance4 jeu)
-        {
-            int coupJoué;
-            if (type)
-            {
-                Console.WriteLine("Rentrez la colonne dans laquelle vous voulez jouer.");
-                Console.WriteLine("(Veuillez rentrer -1 si abandon)");
-                coupJoué = Convert.ToInt32(Console.ReadLine());
-            }
-            else
-            {
-                coupJoué = CoupIA(jeu);
-            }
-            return coupJoué;
-        }
+ 
     }
 }

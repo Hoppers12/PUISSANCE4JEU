@@ -75,10 +75,12 @@
             textBoxPseudoJ2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             textBoxPseudoJ2.Location = new Point(187, 158);
             textBoxPseudoJ2.MaxLength = 15;
+
             textBoxPseudoJ2.Name = "textBoxPseudoJ2";
             textBoxPseudoJ2.Size = new Size(125, 27);
             textBoxPseudoJ2.TabIndex = 3;
             textBoxPseudoJ2.Text = "Luffy";
+
             textBoxPseudoJ2.TextAlign = HorizontalAlignment.Center;
             textBoxPseudoJ2.TextChanged += textBoxPseudo_TextChanged;
             textBoxPseudoJ2.KeyPress += textBoxPseudo_KeyPress;
@@ -88,13 +90,16 @@
             textBoxPseudoJ1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             textBoxPseudoJ1.Location = new Point(187, 68);
             textBoxPseudoJ1.MaxLength = 15;
+
             textBoxPseudoJ1.Name = "textBoxPseudoJ1";
             textBoxPseudoJ1.Size = new Size(125, 27);
             textBoxPseudoJ1.TabIndex = 2;
             textBoxPseudoJ1.Text = "Naruto";
+
             textBoxPseudoJ1.TextAlign = HorizontalAlignment.Center;
             textBoxPseudoJ1.TextChanged += textBoxPseudo_TextChanged;
             textBoxPseudoJ1.KeyPress += textBoxPseudo_KeyPress;
+
             // 
             // label3
             // 
@@ -172,6 +177,7 @@
             // 
             // boutonJouer
             // 
+
             boutonJouer.BackColor = Color.RoyalBlue;
             boutonJouer.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
             boutonJouer.ForeColor = Color.Gold;
@@ -181,6 +187,7 @@
             boutonJouer.TabIndex = 10;
             boutonJouer.Text = "JOUER";
             boutonJouer.UseVisualStyleBackColor = false;
+
             boutonJouer.Click += boutonJouer_Click;
             // 
             // button_accueil
