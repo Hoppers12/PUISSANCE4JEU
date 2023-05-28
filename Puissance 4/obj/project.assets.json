@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "BibliothèquePuissance4/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BibliothèquePuissance4.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BibliothèquePuissance4.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "BibliothèquePuissance4/1.0.0": {
+      "type": "project",
+      "path": "../BibliothèquePuissance4/BibliothèquePuissance4.csproj",
+      "msbuildProject": "../BibliothèquePuissance4/BibliothèquePuissance4.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "BibliothèquePuissance4 >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\clair\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\clair\\Documents\\SAE 2.2\\GroupeC2_SAE_PUISSANCE4\\BibliothèquePuissance4\\BibliothèquePuissance4.csproj": {
+              "projectPath": "C:\\Users\\clair\\Documents\\SAE 2.2\\GroupeC2_SAE_PUISSANCE4\\BibliothèquePuissance4\\BibliothèquePuissance4.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -69,7 +92,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

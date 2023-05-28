@@ -9,59 +9,84 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
     public partial class page_param_JVJ : Form
     {
-        public int choixGrilleRadioButton;
-        public string pseudoJ1;
-        public string pseudoJ2;
+        /// <summary>
+        /// Attribut qui désigne la grille choisie par le joueur en fonction du radioButton coché
+        /// 1 --> Grille 1 / 2 --> Grille 2 / 0 --> Aléatoire entre les 2
+        /// </summary>
+        private int choixGrilleRadioButton;
+        /// <summary>
+        /// Attribut qui correspond au pseudo du J1 entré dans la textBox
+        /// </summary>
+        private string pseudoJ1;
+        /// <summary>
+        /// Attribut qui correspond au pseudo du J2 entré dans la TextBox
+        /// </summary>
+        private string pseudoJ2;
 
+        public int ChoixGrilleRadioButton { get => choixGrilleRadioButton; set => choixGrilleRadioButton = value; }
+        public string PseudoJ1 { get => pseudoJ1; set => pseudoJ1 = value; }
+        public string PseudoJ2 { get => pseudoJ2; set => pseudoJ2 = value; }
 
+        /// <summary>
+        /// Constructeur de la page paramètre JVJ il initialise les éléments
+        /// </summary>
         public page_param_JVJ()
         {
             InitializeComponent();
-            pseudoJ1 = textBox1.Text;
-            pseudoJ2 = textBox2.Text;    // Gestion des pseudos dans un attribut pour les récupérer + tard
 
 
         }
 
-        private void button1_Click(object sender, EventArgs e) // Bouton "JOUER" Joueur VS JOUEUR
+        /// <summary>
+        /// Méthode événement Click sur le bouton Jouer. Elle enregistre dans les attributs
+        /// les valeurs qui ont été saisies/choisies par le joueur 
+        /// et ouvre la page de partie en lui passant l'objet courant
+        /// </summary>
+        private void boutonJouer_Click(object sender, EventArgs e)
         {
             // On enregistre le numero de la grille choisie en fonction du radiobutton qui a été coché
+
             if (radioButton1.Checked == true)
             {
 
-                choixGrilleRadioButton = 1;
+                choixGrilleRadioButton = 1; // grille 1
             }
             else
             {
                 if (radioButton2.Checked == true)
                 {
-                    choixGrilleRadioButton = 2;
+                    choixGrilleRadioButton = 2; // grille 2
                 }
                 else
                 {
                     if (radioButton3.Checked == true)
                     {
-                        choixGrilleRadioButton = 0;
+                        choixGrilleRadioButton = 0; // grille 1 ou 2 (aléatoire)
                     }
                 }
 
 
             }
-            pseudoJ1 = textBox1.Text;
-            pseudoJ2 = textBox2.Text;
+            pseudoJ1 = textBoxPseudoJ1.Text;
+            pseudoJ2 = textBoxPseudoJ2.Text;
             Partie_JVJ page_partie_JVJ = new Partie_JVJ(this); // On passe this en paramétre pour que la partie puisse connaitre ce qui a été coché ici
             page_partie_JVJ.Show();
-
 
         }
 
 
-        //Retour à l'accueil sur le click du bouton accueil 
+
+        /// <summary>
+        /// Méthode qui ouvre la page d'accueil et ferme la page de paramétrage au click sur le bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_retour_accueil(object sender, EventArgs e)
         {
             Accueil pageAccueil = new Accueil();
@@ -69,19 +94,7 @@ namespace Puissance_4
             this.Hide();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }
+

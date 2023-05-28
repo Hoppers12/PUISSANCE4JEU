@@ -12,12 +12,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Puissance_4;
-using static Program;
+using BibliothèquePuissance4;
+
 namespace Puissance_4
 {
-
-
-
     public partial class Partie_JVJ : Form
     {
         private int choixGrille;
@@ -44,10 +42,10 @@ namespace Puissance_4
         {
             InitializeComponent();
             //Nomenclature des joueurs pour facilité la compréhension
-            string PremierJoueur = param.pseudoJ1;
-            string SecondJoueur = param.pseudoJ2;
+            string PremierJoueur = param.PseudoJ1;
+            string SecondJoueur = param.PseudoJ2;
 
-            choixGrille = param.choixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
+            choixGrille = param.ChoixGrilleRadioButton; // On va cherche la propriété qui correspond au radiobutton coché dans la page parametrage
             tableLayoutPanel1 = new TableLayoutPanel();
 
             Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, true);
@@ -99,7 +97,7 @@ namespace Puissance_4
                 }
                 else
                 {
-                    choixGrille = Partie.choixGrille;
+                    choixGrille = Partie.ChoixGrille;
 
                     if (choixGrille == 1)
                     {
@@ -115,8 +113,6 @@ namespace Puissance_4
                     }
 
                 }
-
-
 
             }
 
@@ -246,24 +242,24 @@ namespace Puissance_4
         // Fonction qui affiche le résultat de la partie à l'écran
         private void affichageGagnant()
         {
-            if (Partie.gagnant == 1)
+            if (Partie.Gagnant == 1)
             {
-                vainqueur.Text = Partie.J2.pseudo + " a remporté la partie";
+                vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
                 vainqueur.Location = new Point(0, 700);
                 vainqueur.BackColor = Color.Red;
-                ResultatJVJ pageResultat = new ResultatJVJ(Partie.J1); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                ResultatJVJ pageResultat = new ResultatJVJ(Partie.J1G); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                 pageResultat.Show();
                 this.Hide();// On ferme la page du Partie
 
             }
             else
             {
-                if (Partie.gagnant == 2)
+                if (Partie.Gagnant == 2)
                 {
-                    vainqueur.Text = Partie.J2.pseudo + " a remporté la partie";
+                    vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
                     vainqueur.Location = new Point(0, 700);
                     vainqueur.BackColor = Color.Yellow;
-                    ResultatJVJ pageResultat = new ResultatJVJ(Partie.J2); //On ouvre une nouvelle page et on lui donne le joueur gagnant
+                    ResultatJVJ pageResultat = new ResultatJVJ(Partie.J2G); //On ouvre une nouvelle page et on lui donne le joueur gagnant
                     pageResultat.Show();
                     this.Hide();  // On ferme la page du jeu
                 }
@@ -352,50 +348,20 @@ namespace Puissance_4
             {
                 for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
                 {
-                    // Modification de la la cellule en fonction de la nouvelle grille modifiée
-                    if (choixGrille == 1)
+                    // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
+                    if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 1)
                     {
-                        // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
-                        if (Partie.grille1[IndiceLigne, IndiceColonne] == 1)
-                        {
-                            tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
-                        }
-                        else
-                        {
-                            if (Partie.grille1[IndiceLigne, IndiceColonne] == 2)
-                            {
-                                tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
-                            }
-                            else
-                            {
-                                tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
-                            }
-                        }
-
+                        tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
                     }
                     else
                     {
-                        if (choixGrille == 2)
+                        if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 2)
                         {
-
-                            Label label3 = new Label();
-                            label3.Text = IndiceColonne.ToString();
-                            if (Partie.grille2[IndiceLigne, IndiceColonne] == 1)
-                            {
-                                tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
-                            }
-                            else
-                            {
-                                if (Partie.grille2[IndiceLigne, IndiceColonne] == 2)
-                                {
-                                    tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
-                                }
-                                else
-                                {
-                                    tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
-                                }
-                            }
-
+                            tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
+                        }
+                        else
+                        {
+                            tableLayoutPanel1.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
                         }
                     }
 

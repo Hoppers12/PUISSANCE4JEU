@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
@@ -39,12 +40,12 @@ namespace Puissance_4
         {
             Button BoutonClique = (Button)sender;
             //Si le bouton cliqué est celui de JVJ alors on ouvre pageParamJvj sinon pageParamJvia
-            
+
             if (BoutonClique.Name == "boutonJvj")
             {
                 page_param_JVJ page2 = new page_param_JVJ();
                 page2.Show(this);
-                this.Hide();            
+                this.Hide();
             }
             else
             {
@@ -128,6 +129,29 @@ namespace Puissance_4
             }
         }
 
+        /// <summary>
+        /// Méthode qui change la couleur du bouton à l'entrée de la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bouton_Enter(object sender, EventArgs e)
+        {
+            Button boutonSurvole = (Button)sender;
+
+            boutonSurvole.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        /// Méthode qui change la couleur du bouton à la sortie de la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bouton_Leave(object sender, EventArgs e)
+        {
+            Button boutonSurvole = (Button)sender;
+
+            boutonSurvole.ForeColor = Color.Yellow;
+        }
 
     }
 }
