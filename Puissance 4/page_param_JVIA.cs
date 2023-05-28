@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
@@ -123,7 +124,6 @@ namespace Puissance_4
                 boutonJouer.Enabled = true;
             }
         }
-
 
     }
 

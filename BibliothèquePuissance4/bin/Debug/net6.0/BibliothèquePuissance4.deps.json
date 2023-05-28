@@ -6,14 +6,6 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "Puissance 4/1.0.0": {
-        "dependencies": {
-          "BibliothèquePuissance4": "1.0.0"
-        },
-        "runtime": {
-          "Puissance 4.dll": {}
-        }
-      },
       "BibliothèquePuissance4/1.0.0": {
         "runtime": {
           "BibliothèquePuissance4.dll": {}
@@ -22,11 +14,6 @@
     }
   },
   "libraries": {
-    "Puissance 4/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "BibliothèquePuissance4/1.0.0": {
       "type": "project",
       "serviceable": false,

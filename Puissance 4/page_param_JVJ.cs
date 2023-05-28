@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using BibliothèquePuissance4;
+
 
 namespace Puissance_4
 {
@@ -39,6 +41,7 @@ namespace Puissance_4
         public page_param_JVJ()
         {
             InitializeComponent();
+
             pseudoJ1 = textBoxPseudoJ1.Text;
             pseudoJ2 = textBoxPseudoJ2.Text;
             this.Size = new Size(1000, 800);
@@ -46,7 +49,6 @@ namespace Puissance_4
 
 
         }
-
 
 
         /// <summary>

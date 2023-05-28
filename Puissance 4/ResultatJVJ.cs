@@ -8,8 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Puissance_4;
-
-using static Program;
+using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
@@ -21,7 +20,7 @@ namespace Puissance_4
 
         public ResultatJVJ(Joueur Vainqueur)
         {
-            pseudoGagnant = Vainqueur.pseudo;
+            pseudoGagnant = Vainqueur.Pseudo;
             InitializeComponent();
             this.Controls.Add(labelAffichageVainqueur);
             labelAffichageVainqueur.Size = new Size(500, 500);

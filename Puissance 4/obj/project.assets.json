@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "BibliothèquePuissance4/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BibliothèquePuissance4.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BibliothèquePuissance4.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "BibliothèquePuissance4/1.0.0": {
+      "type": "project",
+      "path": "../BibliothèquePuissance4/BibliothèquePuissance4.csproj",
+      "msbuildProject": "../BibliothèquePuissance4/BibliothèquePuissance4.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "BibliothèquePuissance4 >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\robin\\.nuget\\packages\\": {},
@@ -39,7 +58,11 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Bureau\\COURS\\SAE2.01(puissance4)\\Puissance4\\GroupeC2_SAE_PUISSANCE4\\BibliothèquePuissance4\\BibliothèquePuissance4.csproj": {
+              "projectPath": "C:\\Bureau\\COURS\\SAE2.01(puissance4)\\Puissance4\\GroupeC2_SAE_PUISSANCE4\\BibliothèquePuissance4\\BibliothèquePuissance4.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -73,5 +96,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problème de lecture du fichier cache C:\\Bureau\\COURS\\SAE2.01(puissance4)\\Puissance4\\GroupeC2_SAE_PUISSANCE4\\Puissance 4\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
