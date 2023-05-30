@@ -83,7 +83,7 @@ namespace Puissance_4
             }
             pseudoJ1 = textBoxPseudoJ1.Text;
             pseudoJ2 = textBoxPseudoJ2.Text;
-            Partie_JVJ page_partie_JVJ = new Partie_JVJ(this); // On passe this en paramétre pour que la partie puisse connaitre ce qui a été coché ici
+            PagePartie page_partie_JVJ = new PagePartie(this,true); // On passe this en paramétre pour que la partie puisse connaitre ce qui a été coché ici
             page_partie_JVJ.Show();
 
         }

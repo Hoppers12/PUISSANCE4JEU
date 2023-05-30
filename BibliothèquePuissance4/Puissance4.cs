@@ -74,6 +74,7 @@
         public int Gagnant { get => gagnant; set => gagnant = value; }
         public Joueur J1G { get => J1;}
         public Joueur J2G { get => J2;}
+        public bool ChoixMode { get => choixMode; }
 
 
         /// <summary>

@@ -3,7 +3,7 @@ using System;
 namespace Puissance_4
 {
 
-    partial class Partie_JVJ
+    partial class PagePartie
     {
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Puissance_4
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Partie_JVJ));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagePartie));
             label1 = new Label();
             LabelTailleGrille = new Label();
             groupBox1 = new GroupBox();

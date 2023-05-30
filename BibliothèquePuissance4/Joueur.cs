@@ -244,14 +244,13 @@ namespace BibliothèquePuissance4
         /// Méthode qui détermine le coup que l'IA va faire
         /// </summary>
         /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        /// <returns>La colonne dans laquelle l'IA va jouer</returns>
-        public int CoupIA(Puissance4 jeu)
+        public void CoupIA(Puissance4 jeu)
         {
             int i;
             int j;
             int colonneJoueeIA = 1;
             int maxPoints = 0;
-            int alignementIA = 0;
+            int alignementIA = -200;
             for (i = 0; i < nbreColonnes; i++)
             {
                 for (j = jeu.LimiteLigne - 1; j >= 0 && jeu.GrilleJeu[j, i] != 0; j--) ;
@@ -300,7 +299,7 @@ namespace BibliothèquePuissance4
                     }
                 }
             }
-            return colonneJoueeIA;
+            jeu.Jeu(colonneJoueeIA);
         }
  
     }

@@ -70,7 +70,7 @@ namespace Puissance_4
 
             }
             pseudoJ = pseudoJ1.Text;
-            Partie_JVIA page_partieJVIA = new Partie_JVIA(this);
+            PagePartie page_partieJVIA = new PagePartie(this , false); 
             page_partieJVIA.Show();
             this.Hide();
         }

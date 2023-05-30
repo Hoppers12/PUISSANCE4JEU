@@ -16,7 +16,7 @@ using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
-    public partial class Partie_JVJ : Form
+    public partial class PagePartie : Form
     {
         /// <summary>
         /// Attribut qui stocke le numéro de la grille choisie dans le radioBouton de la page param
@@ -45,12 +45,29 @@ namespace Puissance_4
         /// Constructeur de la page de jeu. Il initialise les composants et crée la grille de Jeu
         /// </summary>
         /// <param name="param">Il s'agit des informations de la pages paramétres utiles à la partie (taille grille + pseudo)</param>
-        public Partie_JVJ(page_param_JVJ param)
+        public PagePartie(object param, bool typeJeu)
         {
             InitializeComponent();
             //Nomenclature des joueurs pour facilité la compréhension
-            string PremierJoueur = param.PseudoJ1;
-            string SecondJoueur = param.PseudoJ2;
+
+            string PremierJoueur;
+            string SecondJoueur;
+            if (typeJeu)
+            {
+                page_param_JVJ paramJeu = (page_param_JVJ)param;
+                PremierJoueur = paramJeu.PseudoJ1;
+                SecondJoueur = paramJeu.PseudoJ2;
+                choixGrille = paramJeu.ChoixGrilleRadioButton;
+            }
+            else
+            {
+                page_param_JVIA paramJeu = (page_param_JVIA)param;
+                PremierJoueur = paramJeu.PseudoJ;
+                SecondJoueur="IA";
+                choixGrille = paramJeu.ChoixGrilleRadioButton;
+            }
+
+            
 
             //On initialise le label du joueur qui commencera lors du 1er tour (J1)
             JActif.Text = PremierJoueur;
@@ -61,11 +78,10 @@ namespace Puissance_4
             JActif.BackColor = Color.Red;
 
             // On va chercher la propriété qui correspond au radiobutton coché dans la page parametrage
-            choixGrille = param.ChoixGrilleRadioButton;
             grilleDeJeu = new TableLayoutPanel();
 
             // Création de la partie de Puissance 4
-            Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, true);
+            Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, typeJeu);
 
             // On attribue la valeur entrée dans les input de la page param aux labels d'ici
             J1.Text = PremierJoueur;
@@ -81,49 +97,22 @@ namespace Puissance_4
         private void creationGrille()
         {
 
-            switch (choixGrille)
+            switch (Partie.ChoixGrille)
             {
-                //Cas ou la grille 1 a été choisie
+                //Cas ou la grille 1 a été choisie ou si celle ci a été choisi aléatoirement
                 case 1:
                     LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
                     nbColonne = 7;
                     nbLigne = 6;
                     initGrille();
                     break;
-                //Cas ou la grille 2 a été choisie
-                case 2:
+                //Cas ou la grille 2 a été choisie ou si celle ci a été choisi aléatoirement
+                default:
                     LabelTailleGrille.Text = " Taille de la Grille : 5 x 6 ";
                     nbColonne = 6;
                     nbLigne = 5;
                     initGrille();
                     break;
-
-                // Cas ou le joueur a choisie la grille aléatoire
-                default:
-                    choixGrille = Partie.ChoixGrille;
-
-
-
-                    if (choixGrille == 1)
-                    {
-                        LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
-                        nbColonne = 7;
-                        nbLigne = 6;
-                        initGrille();
-                        break;
-
-                    }
-                    else
-                    {
-                        LabelTailleGrille.Text = " Taille de la Grille : 5 x 6 ";
-                        nbColonne = 6;
-                        nbLigne = 5;
-                        initGrille();
-                        break;
-
-                    }
-
-
             }
 
 
@@ -279,7 +268,17 @@ namespace Puissance_4
             affichageGagnant();
             changerPseudoJActif();
             if (Partie.GrilleJeu[0, colonneJouee - 1] != 0)
+            {
                 flecheClique.Enabled = false;
+            }
+            if (Partie.ChoixMode == false)
+            {
+                Partie.J2G.CoupIA(Partie);
+                MajGrille();
+                affichageGagnant();
+                changerPseudoJActif();
+            }
+
         }
 
         /// <summary>
