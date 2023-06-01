@@ -105,6 +105,14 @@ namespace Puissance_4
 
         }
 
+        private void Partie_JVJ_Load(object sender, EventArgs e)
+        {
+            if (Partie.ChoixGrille == 2)
+            {
+                flecheColonne7.Visible = false;
+            }
+        }
+
         /// <summary>
         /// Méthode qui s'occupe d'initialiser la grille dans l'interface 
         /// en fonction du choix de grille réalisé
@@ -155,7 +163,37 @@ namespace Puissance_4
                     // Epaissir les bordures des cellules
                     casePion.Margin = new Padding(casePion.Margin.Left + 1, casePion.Margin.Top, casePion.Margin.Right, casePion.Margin.Bottom);
                     casePion.BackColor = Color.White;
+
                     grilleDeJeu.Controls.Add(casePion, IndiceColonne, IndiceLigne);
+
+                    //Aligne les boutons par rapport aux colonnes
+                    if (IndiceLigne == 0)
+                    {
+                        switch (IndiceColonne)
+                        {
+                            case 0:
+                                flecheColonne1.Left = casePion.Left;
+                                break;
+                            case 1:
+                                flecheColonne2.Left = casePion.Left;
+                                break;
+                            case 2:
+                                flecheColonne3.Left = casePion.Left;
+                                break;
+                            case 3:
+                                flecheColonne4.Left = casePion.Left;
+                                break;
+                            case 4:
+                                flecheColonne5.Left = casePion.Left;
+                                break;
+                            case 5:
+                                flecheColonne6.Left = casePion.Left;
+                                break;
+                            default:
+                                flecheColonne7.Left = casePion.Left;
+                                break;
+                        }
+                    }
                 }
             }
             this.Controls.Add(grilleDeJeu);
@@ -253,6 +291,7 @@ namespace Puissance_4
             int colonneJouee;
             PictureBox flecheClique = (PictureBox)sender;
 
+            //en fonction du bouton cliqué, met la bonne colonne
             switch (flecheClique.Name)
             {
                 case "flecheColonne1":
@@ -278,25 +317,33 @@ namespace Puissance_4
                     break;
             }
 
-            //joue le pion du joueur
+            //joue le pion du joueur dans la colonne et vérification si le coup est gagnant
             Partie.Jeu(colonneJouee);
             MajGrille();
             AffichageGagnant();
             ChangerPseudoJActif();
 
+            //si la colonne jouée par le joueur est pleine après le coup, le bouton est désactivé 
             if (Partie.GrilleJeu[0, colonneJouee - 1] != 0)
             {
                 flecheClique.Enabled = false;
             }
 
+            //L'IA joue son coup
             if (Partie.ChoixMode == false && Partie.Gagnant != 1)
             {
-                Partie.J2G.CoupIA(Partie);
+                colonneJouee = Partie.J2G.CoupIA(Partie);
+                Partie.Jeu(colonneJouee);
                 MajGrille();
                 AffichageGagnant();
                 ChangerPseudoJActif();
-            }
 
+                //si la colonne jouée par l'IA est pleine après le coup, le bouton est désactivé 
+                if (Partie.GrilleJeu[0, colonneJouee - 1] != 0)
+                {
+                    flecheClique.Enabled = false;
+                }
+            }
         }
 
         /// <summary>
@@ -364,12 +411,5 @@ namespace Puissance_4
             }
         }
 
-        private void Partie_JVJ_Load(object sender, EventArgs e)
-        {
-            if (Partie.ChoixGrille == 2)
-            {
-                flecheColonne7.Visible = false;
-            }
-        }
     }
 }

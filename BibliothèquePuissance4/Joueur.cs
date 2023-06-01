@@ -244,7 +244,8 @@ namespace BibliothèquePuissance4
         /// Méthode qui détermine le coup que l'IA va faire
         /// </summary>
         /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        public void CoupIA(Puissance4 jeu)
+        /// <returns>La colonne dans laquelle l'IA va jouer</returns>
+        public int CoupIA(Puissance4 jeu)
         {
             int i;
             int j;
@@ -299,7 +300,7 @@ namespace BibliothèquePuissance4
                     }
                 }
             }
-            jeu.Jeu(colonneJoueeIA);
+            return colonneJoueeIA;
         }
  
     }
