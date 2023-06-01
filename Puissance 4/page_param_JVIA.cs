@@ -34,8 +34,14 @@ namespace Puissance_4
         public page_param_JVIA()
         {
             InitializeComponent();
-            pseudoJ = pseudoJ1.Text;
-            this.Size = new Size(1000, 800);
+            pseudoJ = pseudoJ1.Text; 
+            int hauteurForm;
+            int largeurForm;
+
+            //définit la taille de l'interface par rapport à la place que ses composants vont prendre 
+            hauteurForm = this.ClientSize.Height + 20;
+            largeurForm = this.ClientSize.Width + 20;
+            this.Size = new Size(largeurForm, hauteurForm);
         }
 
         /// <summary>

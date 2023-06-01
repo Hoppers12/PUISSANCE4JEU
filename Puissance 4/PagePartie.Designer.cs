@@ -33,7 +33,7 @@ namespace Puissance_4
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagePartie));
-            label1 = new Label();
+            lblTypePartie = new Label();
             LabelTailleGrille = new Label();
             groupBox1 = new GroupBox();
             richTextBox1 = new RichTextBox();
@@ -66,15 +66,15 @@ namespace Puissance_4
             ((System.ComponentModel.ISupportInitialize)flecheColonne7).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lblTypePartie
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(10, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(266, 32);
-            label1.TabIndex = 0;
-            label1.Text = "Partie Joueur VS Joueur";
+            lblTypePartie.AutoSize = true;
+            lblTypePartie.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTypePartie.Location = new Point(10, 15);
+            lblTypePartie.Name = "lblTypePartie";
+            lblTypePartie.Size = new Size(87, 32);
+            lblTypePartie.TabIndex = 0;
+            lblTypePartie.Text = "(Partie)";
             // 
             // LabelTailleGrille
             // 
@@ -285,7 +285,7 @@ namespace Puissance_4
             flecheColonne7.TabStop = false;
             flecheColonne7.Click += Colonne_Click;
             // 
-            // Partie_JVJ
+            // PagePartie
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -301,13 +301,13 @@ namespace Puissance_4
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(LabelTailleGrille);
-            Controls.Add(label1);
+            Controls.Add(lblTypePartie);
             Controls.Add(groupBoxJoueurActif);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
-            Name = "Partie_JVJ";
-            Text = "Form1";
+            Name = "PagePartie";
+            Text = "Partie";
             Load += Partie_JVJ_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -330,7 +330,7 @@ namespace Puissance_4
 
         #endregion
 
-        private Label label1;
+        private Label lblTypePartie;
         private Label LabelTailleGrille;
         private GroupBox groupBox1;
         private Label label2;

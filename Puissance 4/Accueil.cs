@@ -22,11 +22,19 @@ namespace Puissance_4
         /// </summary>
         public Accueil()
         {
+            int hauteurForm;
+            int largeurForm;
+
+            InitializeComponent();
+
             // Style des labels des aperçus (point d'interrogation)
             lblInfoJvIA.BackColor = Color.FromArgb(205, 206, 204);
             lblInfoJvJ.BackColor = Color.FromArgb(205, 206, 204);
-            InitializeComponent();
-            this.Size = new Size(1000, 800);
+            
+            //définit la taille de l'interface par rapport à la place que ses composants vont prendre ainsi que le style de bordure
+            hauteurForm = this.ClientSize.Height + 20;
+            largeurForm = this.ClientSize.Width + 20;
+            this.Size = new Size(largeurForm, hauteurForm);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 

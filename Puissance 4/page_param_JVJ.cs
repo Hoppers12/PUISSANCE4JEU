@@ -40,13 +40,18 @@ namespace Puissance_4
         /// </summary>
         public page_param_JVJ()
         {
+            int hauteurForm;
+            int largeurForm;
+
             InitializeComponent();
 
             pseudoJ1 = textBoxPseudoJ1.Text;
             pseudoJ2 = textBoxPseudoJ2.Text;
-            this.Size = new Size(1000, 800);
 
-
+            //définit la taille de l'interface par rapport à la place que ses composants vont prendre 
+            hauteurForm = this.ClientSize.Height + 20;
+            largeurForm = this.ClientSize.Width + 20;
+            this.Size = new Size(largeurForm, hauteurForm);
 
         }
 

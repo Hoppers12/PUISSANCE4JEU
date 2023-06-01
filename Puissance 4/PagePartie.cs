@@ -48,30 +48,37 @@ namespace Puissance_4
         public PagePartie(object param, bool typeJeu)
         {
             InitializeComponent();
-            //Nomenclature des joueurs pour facilité la compréhension
 
+            int hauteurForm;
+            int largeurForm;
+            
+
+            //Nomenclature des joueurs pour facilité la compréhension
             string PremierJoueur;
             string SecondJoueur;
+            //prend les pseudos des joueurs si c'est une partie JVJ
             if (typeJeu)
             {
                 page_param_JVJ paramJeu = (page_param_JVJ)param;
                 PremierJoueur = paramJeu.PseudoJ1;
                 SecondJoueur = paramJeu.PseudoJ2;
                 choixGrille = paramJeu.ChoixGrilleRadioButton;
+                lblTypePartie.Text = "Partie Joueur vs Joueur";
             }
+            //prend le pseudo du joueur et définit le deuxième pseudo comme "IA" si c'est une partie JVIA
             else
             {
                 page_param_JVIA paramJeu = (page_param_JVIA)param;
                 PremierJoueur = paramJeu.PseudoJ;
-                SecondJoueur="IA";
+                SecondJoueur = "IA";
                 choixGrille = paramJeu.ChoixGrilleRadioButton;
+                lblTypePartie.Text = "Partie Joueur vs IA";
             }
 
-            
+
 
             //On initialise le label du joueur qui commencera lors du 1er tour (J1)
             JActif.Text = PremierJoueur;
-
 
             // Indique la couleur du joueur actif
 
@@ -88,6 +95,14 @@ namespace Puissance_4
             J2.Text = SecondJoueur;
             creationGrille();
 
+            //positionne bien le groupbox du joueur actif par rapport à la taille de la grille (de façons à ne pas la survoler)
+            groupBoxJoueurActif.Left = grilleDeJeu.Location.X + grilleDeJeu.Size.Width + 20;
+
+            //définit la taille de l'interface par rapport à la place que ses composants vont prendre et on prend en compte la taille de la grille aussi
+            hauteurForm = grilleDeJeu.Top + grilleDeJeu.Bottom;
+            largeurForm = groupBoxJoueurActif.Right + groupBoxJoueurActif.Width/2;
+            this.Size = new Size(largeurForm, hauteurForm);
+
         }
 
         /// <summary>
@@ -99,14 +114,14 @@ namespace Puissance_4
 
             switch (Partie.ChoixGrille)
             {
-                //Cas ou la grille 1 a été choisie ou si celle ci a été choisi aléatoirement
+                //Cas ou la grille 1 a été choisie par le joueur ou si elle a été choisi aléatoirement
                 case 1:
                     LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
                     nbColonne = 7;
                     nbLigne = 6;
                     initGrille();
                     break;
-                //Cas ou la grille 2 a été choisie ou si celle ci a été choisi aléatoirement
+                //Cas ou la grille 2 a été choisie par le joueur ou si celle ci a été choisi aléatoirement
                 default:
                     LabelTailleGrille.Text = " Taille de la Grille : 5 x 6 ";
                     nbColonne = 6;
@@ -181,7 +196,7 @@ namespace Puissance_4
         /// Méthode qui modifie le nom et la couleur du label indiquant le joueur
         /// actif (joueur a qui c'est au tour de jouer)
         /// </summary>        
-        private void changerPseudoJActif()
+        private void ChangerPseudoJActif()
         {
             if (JActif.Text == J2.Text)
             {
@@ -199,7 +214,7 @@ namespace Puissance_4
         /// <summary>
         /// Méthode qui enregistre le gagnant et ouvre une nouvelle page de victoire
         /// </summary>
-        private void affichageGagnant()
+        private void AffichageGagnant()
         {
             if (Partie.Gagnant == 1)
             {
@@ -263,20 +278,23 @@ namespace Puissance_4
                     break;
             }
 
+            //joue le pion du joueur
             Partie.Jeu(colonneJouee);
             MajGrille();
-            affichageGagnant();
-            changerPseudoJActif();
+            AffichageGagnant();
+            ChangerPseudoJActif();
+
             if (Partie.GrilleJeu[0, colonneJouee - 1] != 0)
             {
                 flecheClique.Enabled = false;
             }
-            if (Partie.ChoixMode == false)
+
+            if (Partie.ChoixMode == false && Partie.Gagnant != 1)
             {
                 Partie.J2G.CoupIA(Partie);
                 MajGrille();
-                affichageGagnant();
-                changerPseudoJActif();
+                AffichageGagnant();
+                ChangerPseudoJActif();
             }
 
         }
@@ -348,7 +366,7 @@ namespace Puissance_4
 
         private void Partie_JVJ_Load(object sender, EventArgs e)
         {
-            if (Partie.ChoixGrille==2)
+            if (Partie.ChoixGrille == 2)
             {
                 flecheColonne7.Visible = false;
             }
