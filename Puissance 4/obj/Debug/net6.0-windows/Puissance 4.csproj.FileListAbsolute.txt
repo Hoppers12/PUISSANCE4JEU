@@ -48,8 +48,6 @@ C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\n
 C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Accueil.resources
 C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.page_param_JVIA.resources
 C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.page_param_JVJ.resources
-C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Partie_JVIA.resources
-C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Partie_JVJ.resources
 C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Properties.Resources.resources
 C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.ResultatJVJ.resources
 C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.GenerateResource.cache
@@ -99,3 +97,4 @@ C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.genruntimeconfig.cache
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\ref\Puissance 4.dll
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.PagePartie.resources
+C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.PagePartie.resources

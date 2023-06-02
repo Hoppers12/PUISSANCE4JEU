@@ -268,8 +268,8 @@ namespace BibliothèquePuissance4
                             break;
                         case -1:
                             Random aleatoire = new Random();
-                            int contrer = aleatoire.Next(1, 3);
-                            if (contrer == 1)
+                            int contrer = aleatoire.Next(1, 5);
+                            if (contrer != 1)
                                 tabPointsCoupIA[i] = 150;
                             else
                                 tabPointsCoupIA[i] = 0;

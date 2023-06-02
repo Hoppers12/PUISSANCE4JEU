@@ -51,7 +51,7 @@ namespace Puissance_4
 
             int hauteurForm;
             int largeurForm;
-            
+
 
             //Nomenclature des joueurs pour facilité la compréhension
             string PremierJoueur;
@@ -81,7 +81,6 @@ namespace Puissance_4
             JActif.Text = PremierJoueur;
 
             // Indique la couleur du joueur actif
-
             JActif.BackColor = Color.Red;
 
             // On va chercher la propriété qui correspond au radiobutton coché dans la page parametrage
@@ -99,8 +98,15 @@ namespace Puissance_4
             groupBoxJoueurActif.Left = grilleDeJeu.Location.X + grilleDeJeu.Size.Width + 20;
 
             //définit la taille de l'interface par rapport à la place que ses composants vont prendre et on prend en compte la taille de la grille aussi
-            hauteurForm = grilleDeJeu.Top + grilleDeJeu.Bottom;
-            largeurForm = groupBoxJoueurActif.Right + groupBoxJoueurActif.Width/2;
+            if (this.ClientSize.Height + 20 > grilleDeJeu.Top + grilleDeJeu.Bottom)
+            {
+                hauteurForm = this.ClientSize.Height + 20;
+            }
+            else
+            {
+                hauteurForm = grilleDeJeu.Top + grilleDeJeu.Bottom;
+            }
+            largeurForm = groupBoxJoueurActif.Right + groupBoxJoueurActif.Width / 2;
             this.Size = new Size(largeurForm, hauteurForm);
 
         }
@@ -172,25 +178,25 @@ namespace Puissance_4
                         switch (IndiceColonne)
                         {
                             case 0:
-                                flecheColonne1.Left = casePion.Left;
+                                flecheColonne1.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
                                 break;
                             case 1:
-                                flecheColonne2.Left = casePion.Left;
+                                flecheColonne2.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
                                 break;
                             case 2:
-                                flecheColonne3.Left = casePion.Left;
+                                flecheColonne3.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
                                 break;
                             case 3:
-                                flecheColonne4.Left = casePion.Left;
+                                flecheColonne4.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
                                 break;
-                            case 4:
-                                flecheColonne5.Left = casePion.Left;
+                            case 4: 
+                                flecheColonne5.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
                                 break;
                             case 5:
-                                flecheColonne6.Left = casePion.Left;
+                                flecheColonne6.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
                                 break;
                             default:
-                                flecheColonne7.Left = casePion.Left;
+                                flecheColonne7.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
                                 break;
                         }
                     }
@@ -204,11 +210,17 @@ namespace Puissance_4
         /// </summary>
         private void initGrille()
         {
+            int xGrille;
+            int yGrille;
             grilleDeJeu.Size = new Size(1000, 500); // Définition la taille du TableLayoutPanel
             grilleDeJeu.BackColor = Color.DarkBlue;
             grilleDeJeu.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;        // Initialisation du style de la grille 
             grilleDeJeu.AutoSizeMode = AutoSizeMode.GrowOnly;
-            grilleDeJeu.Location = new Point(400, 150);
+
+            xGrille = grpRegles.Left + grpRegles.Width + 20;
+            yGrille = flecheColonne1.Top + flecheColonne1.Height + 20;
+            grilleDeJeu.Location = new Point(xGrille, yGrille);
+
             grilleDeJeu.BorderStyle = BorderStyle.FixedSingle;
 
 
