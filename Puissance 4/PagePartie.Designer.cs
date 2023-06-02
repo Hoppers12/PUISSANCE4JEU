@@ -161,7 +161,7 @@ namespace Puissance_4
             groupBox2.Size = new Size(313, 157);
             groupBox2.TabIndex = 14;
             groupBox2.TabStop = false;
-            groupBox2.Text = "groupBox2";
+            groupBox2.Text = "Joueurs";
             // 
             // pictureBox2
             // 

@@ -252,6 +252,7 @@ namespace BibliothèquePuissance4
             int colonneJoueeIA = 1;
             int maxPoints = 0;
             int alignementIA = -200;
+
             for (i = 0; i < nbreColonnes; i++)
             {
                 for (j = jeu.LimiteLigne - 1; j >= 0 && jeu.GrilleJeu[j, i] != 0; j--) ;

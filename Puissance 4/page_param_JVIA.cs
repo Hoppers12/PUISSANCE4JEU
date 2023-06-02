@@ -34,7 +34,7 @@ namespace Puissance_4
         public page_param_JVIA()
         {
             InitializeComponent();
-            pseudoJ = pseudoJ1.Text; 
+            pseudoJ = pseudoJ1.Text;
             int hauteurForm;
             int largeurForm;
 
@@ -76,7 +76,7 @@ namespace Puissance_4
 
             }
             pseudoJ = pseudoJ1.Text;
-            PagePartie page_partieJVIA = new PagePartie(this , false); 
+            PagePartie page_partieJVIA = new PagePartie(this, false);
             page_partieJVIA.Show();
             this.Hide();
         }
