@@ -93,6 +93,8 @@ namespace Puissance_4
             // On attribue la valeur entrée dans les input de la page param aux labels d'ici
             J1.Text = PremierJoueur;
             J2.Text = SecondJoueur;
+
+            //La grille est crée
             creationGrille();
 
             //positionne bien le groupbox du joueur actif par rapport à la taille de la grille (de façons à ne pas la survoler)
@@ -107,7 +109,7 @@ namespace Puissance_4
             {
                 hauteurForm = grilleDeJeu.Top + grilleDeJeu.Bottom;
             }
-            largeurForm = groupBoxJoueurActif.Right + groupBoxJoueurActif.Width / 2;
+            largeurForm = groupBoxJoueurActif.Left + groupBoxJoueurActif.Width + 20;
             this.Size = new Size(largeurForm, hauteurForm);
 
         }
@@ -180,24 +182,31 @@ namespace Puissance_4
                         {
                             case 0:
                                 flecheColonne1.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
+                                flecheColonne1.Left += (grilleDeJeu.Width / nbColonne - flecheColonne1.Width) / 2;
                                 break;
                             case 1:
                                 flecheColonne2.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
+                                flecheColonne2.Left += (grilleDeJeu.Width / nbColonne - flecheColonne2.Width) / 2;
                                 break;
                             case 2:
                                 flecheColonne3.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
+                                flecheColonne3.Left += (grilleDeJeu.Width / nbColonne - flecheColonne3.Width) / 2;
                                 break;
                             case 3:
                                 flecheColonne4.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
+                                flecheColonne4.Left += (grilleDeJeu.Width / nbColonne - flecheColonne4.Width) / 2;
                                 break;
                             case 4:
                                 flecheColonne5.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
+                                flecheColonne5.Left += (grilleDeJeu.Width / nbColonne - flecheColonne5.Width) / 2;
                                 break;
                             case 5:
                                 flecheColonne6.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
+                                flecheColonne6.Left += (grilleDeJeu.Width / nbColonne - flecheColonne6.Width) / 2;
                                 break;
                             default:
                                 flecheColonne7.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
+                                flecheColonne7.Left += (grilleDeJeu.Width / nbColonne - flecheColonne7.Width) / 2;
                                 break;
                         }
                     }
