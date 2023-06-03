@@ -7,7 +7,7 @@
     <Compile Update="page_param_JVJ.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ResultatJVJ.cs">
+    <Compile Update="Resultat.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="page_param_JVIA.cs">

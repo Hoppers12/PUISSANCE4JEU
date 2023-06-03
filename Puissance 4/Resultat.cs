@@ -12,13 +12,13 @@ using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
-    public partial class ResultatJVJ : Form
+    public partial class Resultat : Form
     {
 
         string pseudoGagnant;
         Label labelAffichageVainqueur = new Label();
 
-        public ResultatJVJ(Joueur Vainqueur)
+        public Resultat(Joueur Vainqueur)
         {
             if (Vainqueur != null)
             {
@@ -38,7 +38,7 @@ namespace Puissance_4
             }
         }
 
-        private void ResultatJVJ_Load(object sender, EventArgs e)
+        private void Resultat_Load(object sender, EventArgs e)
         {
 
         }
