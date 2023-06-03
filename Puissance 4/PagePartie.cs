@@ -115,6 +115,9 @@ namespace Puissance_4
             //La grille du puissance 4 est créée
             creationGrille();
 
+            //place le label indiquant la grille au centre de la grille
+            LabelTailleGrille.Left = GrilleDeJeu.Left + GrilleDeJeu.Width / 2 - LabelTailleGrille.Width / 2;
+
             //Créée des boutons pour placer les pions dans les colonnes et alignes par rapport à ceux-ci
             for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
             {
@@ -126,7 +129,7 @@ namespace Puissance_4
                 picBoxJouerColonne.SizeMode = PictureBoxSizeMode.Zoom;
                 picBoxJouerColonne.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
                 picBoxJouerColonne.Left += (grilleDeJeu.Width / nbColonne - picBoxJouerColonne.Width) / 2;
-                picBoxJouerColonne.Top = LabelTailleGrille.Top + LabelTailleGrille.Height + 20;
+                picBoxJouerColonne.Top = GrilleDeJeu.Top - picBoxJouerColonne.Height - 20;
                 picBoxJouerColonne.Click += Colonne_Click;
                 this.Controls.Add(picBoxJouerColonne);
             }
@@ -198,7 +201,6 @@ namespace Puissance_4
                     casePion.SizeMode = PictureBoxSizeMode.Zoom;
                     casePion.Margin = new Padding(10, 10, 10, 10);
                     casePion.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
-
                     grilleDeJeu.Controls.Add(casePion, IndiceColonne, IndiceLigne);
                 }
             }
@@ -215,7 +217,7 @@ namespace Puissance_4
             int xGrille;
             int yGrille;
             grilleDeJeu.Size = new Size(1000, 500); // Définition la taille du TableLayoutPanel
-            grilleDeJeu.Margin = new (100, 100, 100, 100);
+            grilleDeJeu.Margin = new(100, 100, 100, 100);
             grilleDeJeu.BackColor = Color.DarkBlue;
             grilleDeJeu.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;        // Initialisation du style de la grille 
             grilleDeJeu.AutoSizeMode = AutoSizeMode.GrowOnly;
@@ -356,7 +358,7 @@ namespace Puissance_4
                 for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
                 {
                     PictureBox caseTraitee = (PictureBox)grilleDeJeu.GetControlFromPosition(IndiceColonne, IndiceLigne);
-                    // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
+                    // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie (1 -> Rouge (J1) ; 2 -> Jaune (J2))
                     if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 1)
                     {
                         caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-rouge.png");

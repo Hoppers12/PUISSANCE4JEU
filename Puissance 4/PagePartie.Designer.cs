@@ -56,7 +56,7 @@ namespace Puissance_4
             // 
             lblTypePartie.AutoSize = true;
             lblTypePartie.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTypePartie.Location = new Point(10, 15);
+            lblTypePartie.Location = new Point(35, 30);
             lblTypePartie.Name = "lblTypePartie";
             lblTypePartie.Size = new Size(87, 32);
             lblTypePartie.TabIndex = 0;
