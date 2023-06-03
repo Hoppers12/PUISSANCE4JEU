@@ -272,78 +272,32 @@ namespace Puissance_4
                 vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
                 vainqueur.Location = new Point(0, 700);
                 vainqueur.BackColor = Color.Red;
-                Task.Run(async delegate
-                {
-                    await Task.Delay(TimeSpan.FromSeconds(3));
-                    ResultatJVJ pageResultat = new ResultatJVJ(Partie.J1G); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
-                    pageResultat.Show();
-                    this.Hide();// On ferme la page du Partie
-                });
+                ResultatJVJ pageResultat = new ResultatJVJ(Partie.J1G); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                pageResultat.Show();
+                this.Hide();// On ferme la page de la partie
             }
-            else
+            else if (Partie.Gagnant == 2)
             {
-                if (Partie.Gagnant == 2)
-                {
-                    vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
-                    vainqueur.Location = new Point(0, 700);
-                    vainqueur.BackColor = Color.Yellow;
-                    Task.Run(async delegate
-                    {
-                        await Task.Delay(TimeSpan.FromSeconds(3));
-                        ResultatJVJ pageResultat = new ResultatJVJ(Partie.J2G); //On ouvre une nouvelle page et on lui donne le joueur gagnant
-                        pageResultat.Show();
-                        this.Hide();  // On ferme la page du jeu
-                    });
-                }
+                vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
+                vainqueur.Location = new Point(0, 700);
+                vainqueur.BackColor = Color.Yellow;
+                ResultatJVJ pageResultat = new ResultatJVJ(Partie.J2G); //On ouvre une nouvelle page et on lui donne le joueur gagnant
+                pageResultat.Show();
+                this.Hide();  // On ferme la page du jeu
             }
-        }
 
-        private void DesactiverCoups()
-        {
-            flecheColonne1.Enabled = false;
-            flecheColonne2.Enabled = false;
-            flecheColonne3.Enabled = false;
-            flecheColonne4.Enabled = false;
-            flecheColonne5.Enabled = false;
-            flecheColonne6.Enabled = false;
-            flecheColonne7.Enabled = false;
-        }
-
-        private void ReactiverCoups()
-        {
-            for (int i = 0; i < nbColonne; i++)
+            else if (Partie.Gagnant == 0)
             {
-                if (Partie.GrilleJeu[0, i] == 0)
-                {
-                    switch (i)
-                    {
-                        case 0:
-                            flecheColonne1.Enabled = true;
-                            break;
-                        case 1:
-                            flecheColonne2.Enabled = true;
-                            break;
-                        case 2:
-                            flecheColonne3.Enabled = true;
-                            break;
-                        case 3:
-                            flecheColonne4.Enabled = true;
-                            break;
-                        case 4:
-                            flecheColonne5.Enabled = true;
-                            break;
-                        case 5:
-                            flecheColonne6.Enabled = true;
-                            break;
-                        default:
-                            flecheColonne7.Enabled = true;
-                            break;
-                    }
-                }
-
+                vainqueur.Text = "Match nul !";
+                vainqueur.Location = new Point(0, 700);
+                vainqueur.BackColor = Color.Blue;
+                ResultatJVJ pageResultat = new ResultatJVJ(null); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                pageResultat.Show();
+                this.Hide();// On ferme la page de la partie
             }
 
         }
+
 
         /// <summary>
         /// Fonction qui joue le pion dans la colonne demandée au click sur la flèche
@@ -355,9 +309,6 @@ namespace Puissance_4
             int colonneJoueeJoueur;
             int colonneJoueeIA;
             PictureBox flecheClique = (PictureBox)sender;
-
-
-            DesactiverCoups();
 
             //en fonction du bouton cliqué, met la bonne colonne
             switch (flecheClique.Name)
@@ -391,27 +342,23 @@ namespace Puissance_4
             AffichageGagnant();
             ChangerPseudoJActif();
 
-            //L'IA joue son coup
-            if (Partie.ChoixMode == false && Partie.Gagnant != 1)
-            {
-                colonneJoueeIA = Partie.J2G.CoupIA(Partie);
-                Task.Run(async delegate
-                {
-                    await Task.Delay(TimeSpan.FromSeconds(1.5));
-                    Partie.Jeu(colonneJoueeIA);
-                    MajGrille();
-                    AffichageGagnant();
-                    ChangerPseudoJActif();
-                });
 
-            }
             //si la colonne jouée par le joueur est pleine après le coup, le bouton est désactivé 
             if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] != 0)
             {
                 flecheClique.Enabled = false;
             }
 
-            ReactiverCoups();
+            //L'IA joue son coup 
+            if (Partie.ChoixMode == false && Partie.Gagnant == -1)
+            {
+                colonneJoueeIA = Partie.J2G.CoupIA(Partie);
+                Partie.Jeu(colonneJoueeIA);
+                MajGrille();
+                AffichageGagnant();
+                ChangerPseudoJActif();
+
+            }
         }
 
         /// <summary>

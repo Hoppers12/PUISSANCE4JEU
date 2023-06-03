@@ -20,16 +20,22 @@ namespace Puissance_4
 
         public ResultatJVJ(Joueur Vainqueur)
         {
-            pseudoGagnant = Vainqueur.Pseudo;
-            InitializeComponent();
-            this.Controls.Add(labelAffichageVainqueur);
-            labelAffichageVainqueur.Size = new Size(500, 500);
-            labelAffichageVainqueur.Text = pseudoGagnant + " a remporté la partie";
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            if (Vainqueur != null)
+            {
+                pseudoGagnant = Vainqueur.Pseudo;
+                InitializeComponent();
+                this.Controls.Add(labelAffichageVainqueur);
+                labelAffichageVainqueur.Size = new Size(500, 500);
+                labelAffichageVainqueur.Text = pseudoGagnant + " a remporté la partie";
+            }
+            else
+            {
+                pseudoGagnant = null;
+                InitializeComponent();
+                this.Controls.Add(labelAffichageVainqueur);
+                labelAffichageVainqueur.Size = new Size(500, 500);
+                labelAffichageVainqueur.Text = "Match nul !";
+            }
         }
 
         private void ResultatJVJ_Load(object sender, EventArgs e)
