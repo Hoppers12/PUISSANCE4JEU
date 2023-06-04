@@ -45,35 +45,20 @@ namespace Puissance_4
             pictureBox1 = new PictureBox();
             J2 = new Label();
             J1 = new Label();
-            flecheColonne1 = new PictureBox();
-            flecheColonne2 = new PictureBox();
-            flecheColonne3 = new PictureBox();
-            flecheColonne4 = new PictureBox();
-            flecheColonne5 = new PictureBox();
-            flecheColonne6 = new PictureBox();
-            flecheColonne7 = new PictureBox();
             grpRegles.SuspendLayout();
             groupBoxJoueurActif.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne7).BeginInit();
             SuspendLayout();
             // 
             // lblTypePartie
             // 
             lblTypePartie.AutoSize = true;
             lblTypePartie.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTypePartie.Location = new Point(14, 25);
-            lblTypePartie.Margin = new Padding(4, 0, 4, 0);
+            lblTypePartie.Location = new Point(35, 30);
             lblTypePartie.Name = "lblTypePartie";
-            lblTypePartie.Size = new Size(132, 48);
+            lblTypePartie.Size = new Size(87, 32);
             lblTypePartie.TabIndex = 0;
             lblTypePartie.Text = "(Partie)";
             // 
@@ -81,10 +66,9 @@ namespace Puissance_4
             // 
             LabelTailleGrille.AutoSize = true;
             LabelTailleGrille.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            LabelTailleGrille.Location = new Point(1036, 50);
-            LabelTailleGrille.Margin = new Padding(4, 0, 4, 0);
+            LabelTailleGrille.Location = new Point(725, 30);
             LabelTailleGrille.Name = "LabelTailleGrille";
-            LabelTailleGrille.Size = new Size(101, 41);
+            LabelTailleGrille.Size = new Size(66, 28);
             LabelTailleGrille.TabIndex = 9;
             LabelTailleGrille.Text = "label2";
             // 
@@ -94,11 +78,11 @@ namespace Puissance_4
             grpRegles.Controls.Add(richTextBox1);
             grpRegles.Controls.Add(label2);
             grpRegles.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            grpRegles.Location = new Point(50, 177);
-            grpRegles.Margin = new Padding(4, 3, 4, 3);
+            grpRegles.Location = new Point(35, 106);
+            grpRegles.Margin = new Padding(3, 2, 3, 2);
             grpRegles.Name = "grpRegles";
-            grpRegles.Padding = new Padding(4, 3, 4, 3);
-            grpRegles.Size = new Size(351, 403);
+            grpRegles.Padding = new Padding(3, 2, 3, 2);
+            grpRegles.Size = new Size(246, 242);
             grpRegles.TabIndex = 10;
             grpRegles.TabStop = false;
             grpRegles.Text = "Règles du jeu";
@@ -108,42 +92,40 @@ namespace Puissance_4
             richTextBox1.BackColor = Color.Gold;
             richTextBox1.BorderStyle = BorderStyle.None;
             richTextBox1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBox1.Location = new Point(44, 67);
-            richTextBox1.Margin = new Padding(4, 3, 4, 3);
+            richTextBox1.Location = new Point(31, 40);
+            richTextBox1.Margin = new Padding(3, 2, 3, 2);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(267, 368);
+            richTextBox1.Size = new Size(187, 221);
             richTextBox1.TabIndex = 1;
             richTextBox1.Text = "Placez un pion lorsque votre pseudo est colorée. Le premier joueur a aligner 4 pions de sa couleur gagne la partie !";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(26, 47);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(18, 28);
             label2.Name = "label2";
-            label2.Size = new Size(0, 41);
+            label2.Size = new Size(0, 28);
             label2.TabIndex = 0;
             // 
             // JActif
             // 
             JActif.AutoSize = true;
             JActif.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            JActif.Location = new Point(47, 58);
-            JActif.Margin = new Padding(4, 0, 4, 0);
+            JActif.Location = new Point(33, 35);
             JActif.Name = "JActif";
-            JActif.Size = new Size(78, 32);
+            JActif.Size = new Size(52, 21);
             JActif.TabIndex = 11;
             JActif.Text = "label3";
             // 
             // groupBoxJoueurActif
             // 
             groupBoxJoueurActif.Controls.Add(JActif);
-            groupBoxJoueurActif.Location = new Point(1774, 638);
-            groupBoxJoueurActif.Margin = new Padding(4, 3, 4, 3);
+            groupBoxJoueurActif.Location = new Point(1242, 383);
+            groupBoxJoueurActif.Margin = new Padding(3, 2, 3, 2);
             groupBoxJoueurActif.Name = "groupBoxJoueurActif";
-            groupBoxJoueurActif.Padding = new Padding(4, 3, 4, 3);
-            groupBoxJoueurActif.Size = new Size(187, 137);
+            groupBoxJoueurActif.Padding = new Padding(3, 2, 3, 2);
+            groupBoxJoueurActif.Size = new Size(131, 82);
             groupBoxJoueurActif.TabIndex = 13;
             groupBoxJoueurActif.TabStop = false;
             groupBoxJoueurActif.Text = "Au tour de :";
@@ -154,11 +136,11 @@ namespace Puissance_4
             groupBox2.Controls.Add(pictureBox1);
             groupBox2.Controls.Add(J2);
             groupBox2.Controls.Add(J1);
-            groupBox2.Location = new Point(74, 620);
-            groupBox2.Margin = new Padding(4, 3, 4, 3);
+            groupBox2.Location = new Point(52, 372);
+            groupBox2.Margin = new Padding(3, 2, 3, 2);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(4, 3, 4, 3);
-            groupBox2.Size = new Size(313, 157);
+            groupBox2.Padding = new Padding(3, 2, 3, 2);
+            groupBox2.Size = new Size(219, 94);
             groupBox2.TabIndex = 14;
             groupBox2.TabStop = false;
             groupBox2.Text = "Joueurs";
@@ -166,10 +148,10 @@ namespace Puissance_4
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(70, 93);
-            pictureBox2.Margin = new Padding(4, 3, 4, 3);
+            pictureBox2.Location = new Point(49, 56);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(50, 50);
+            pictureBox2.Size = new Size(35, 30);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
@@ -177,10 +159,10 @@ namespace Puissance_4
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(70, 28);
-            pictureBox1.Margin = new Padding(4, 3, 4, 3);
+            pictureBox1.Location = new Point(49, 17);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(50, 50);
+            pictureBox1.Size = new Size(35, 30);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -189,10 +171,9 @@ namespace Puissance_4
             // 
             J2.AutoSize = true;
             J2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            J2.Location = new Point(166, 90);
-            J2.Margin = new Padding(4, 0, 4, 0);
+            J2.Location = new Point(116, 54);
             J2.Name = "J2";
-            J2.Size = new Size(97, 41);
+            J2.Size = new Size(65, 28);
             J2.TabIndex = 1;
             J2.Text = "label4";
             // 
@@ -200,117 +181,25 @@ namespace Puissance_4
             // 
             J1.AutoSize = true;
             J1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            J1.Location = new Point(166, 33);
-            J1.Margin = new Padding(4, 0, 4, 0);
+            J1.Location = new Point(116, 20);
             J1.Name = "J1";
-            J1.Size = new Size(97, 41);
+            J1.Size = new Size(65, 28);
             J1.TabIndex = 0;
             J1.Text = "label3";
             // 
-            // flecheColonne1
-            // 
-            flecheColonne1.Image = (Image)resources.GetObject("flecheColonne1.Image");
-            flecheColonne1.Location = new Point(566, 100);
-            flecheColonne1.Margin = new Padding(4, 3, 4, 3);
-            flecheColonne1.Name = "flecheColonne1";
-            flecheColonne1.Size = new Size(94, 60);
-            flecheColonne1.SizeMode = PictureBoxSizeMode.Zoom;
-            flecheColonne1.TabIndex = 16;
-            flecheColonne1.TabStop = false;
-            flecheColonne1.Click += Colonne_Click;
-            // 
-            // flecheColonne2
-            // 
-            flecheColonne2.Image = (Image)resources.GetObject("flecheColonne2.Image");
-            flecheColonne2.Location = new Point(721, 100);
-            flecheColonne2.Margin = new Padding(4, 3, 4, 3);
-            flecheColonne2.Name = "flecheColonne2";
-            flecheColonne2.Size = new Size(94, 60);
-            flecheColonne2.SizeMode = PictureBoxSizeMode.Zoom;
-            flecheColonne2.TabIndex = 17;
-            flecheColonne2.TabStop = false;
-            flecheColonne2.Click += Colonne_Click;
-            // 
-            // flecheColonne3
-            // 
-            flecheColonne3.Image = (Image)resources.GetObject("flecheColonne3.Image");
-            flecheColonne3.Location = new Point(889, 100);
-            flecheColonne3.Margin = new Padding(4, 3, 4, 3);
-            flecheColonne3.Name = "flecheColonne3";
-            flecheColonne3.Size = new Size(94, 60);
-            flecheColonne3.SizeMode = PictureBoxSizeMode.Zoom;
-            flecheColonne3.TabIndex = 18;
-            flecheColonne3.TabStop = false;
-            flecheColonne3.Click += Colonne_Click;
-            // 
-            // flecheColonne4
-            // 
-            flecheColonne4.Image = (Image)resources.GetObject("flecheColonne4.Image");
-            flecheColonne4.Location = new Point(1066, 100);
-            flecheColonne4.Margin = new Padding(4, 3, 4, 3);
-            flecheColonne4.Name = "flecheColonne4";
-            flecheColonne4.Size = new Size(94, 60);
-            flecheColonne4.SizeMode = PictureBoxSizeMode.Zoom;
-            flecheColonne4.TabIndex = 19;
-            flecheColonne4.TabStop = false;
-            flecheColonne4.Click += Colonne_Click;
-            // 
-            // flecheColonne5
-            // 
-            flecheColonne5.Image = (Image)resources.GetObject("flecheColonne5.Image");
-            flecheColonne5.Location = new Point(1247, 100);
-            flecheColonne5.Margin = new Padding(4, 3, 4, 3);
-            flecheColonne5.Name = "flecheColonne5";
-            flecheColonne5.Size = new Size(94, 60);
-            flecheColonne5.SizeMode = PictureBoxSizeMode.Zoom;
-            flecheColonne5.TabIndex = 20;
-            flecheColonne5.TabStop = false;
-            flecheColonne5.Click += Colonne_Click;
-            // 
-            // flecheColonne6
-            // 
-            flecheColonne6.Image = (Image)resources.GetObject("flecheColonne6.Image");
-            flecheColonne6.Location = new Point(1426, 100);
-            flecheColonne6.Margin = new Padding(4, 3, 4, 3);
-            flecheColonne6.Name = "flecheColonne6";
-            flecheColonne6.Size = new Size(94, 60);
-            flecheColonne6.SizeMode = PictureBoxSizeMode.Zoom;
-            flecheColonne6.TabIndex = 21;
-            flecheColonne6.TabStop = false;
-            flecheColonne6.Click += Colonne_Click;
-            // 
-            // flecheColonne7
-            // 
-            flecheColonne7.Image = (Image)resources.GetObject("flecheColonne7.Image");
-            flecheColonne7.Location = new Point(1613, 100);
-            flecheColonne7.Margin = new Padding(4, 3, 4, 3);
-            flecheColonne7.Name = "flecheColonne7";
-            flecheColonne7.Size = new Size(94, 60);
-            flecheColonne7.SizeMode = PictureBoxSizeMode.Zoom;
-            flecheColonne7.TabIndex = 22;
-            flecheColonne7.TabStop = false;
-            flecheColonne7.Click += Colonne_Click;
-            // 
             // PagePartie
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
-            ClientSize = new Size(1977, 942);
-            Controls.Add(flecheColonne7);
-            Controls.Add(flecheColonne6);
-            Controls.Add(flecheColonne5);
-            Controls.Add(flecheColonne4);
-            Controls.Add(flecheColonne3);
-            Controls.Add(flecheColonne2);
-            Controls.Add(flecheColonne1);
+            ClientSize = new Size(1347, 565);
             Controls.Add(groupBox2);
             Controls.Add(grpRegles);
             Controls.Add(LabelTailleGrille);
             Controls.Add(lblTypePartie);
             Controls.Add(groupBoxJoueurActif);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(4, 3, 4, 3);
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "PagePartie";
             Text = "Partie";
@@ -323,13 +212,6 @@ namespace Puissance_4
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)flecheColonne7).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -348,13 +230,6 @@ namespace Puissance_4
         private Label J2;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
-        private PictureBox flecheColonne1;
-        private PictureBox flecheColonne2;
-        private PictureBox flecheColonne3;
-        private PictureBox flecheColonne4;
-        private PictureBox flecheColonne5;
-        private PictureBox flecheColonne6;
-        private PictureBox flecheColonne7;
     }
 
 }

@@ -365,7 +365,7 @@
         public void JouerPionDansGrille(int indColonneJoue)
         {
             int ligne = 0;
-
+            Console.WriteLine(indColonneJoue);
             while ((ligne + 1) < limiteLigne && grilleJeu[ligne + 1, indColonneJoue] == 0)
             {
                 ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée

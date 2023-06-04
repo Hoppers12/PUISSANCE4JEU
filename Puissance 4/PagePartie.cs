@@ -14,6 +14,9 @@ using System.Windows.Forms;
 using System.Threading;
 using Puissance_4;
 using BibliothèquePuissance4;
+using System.Configuration;
+using Microsoft.VisualBasic.Devices;
+using System.Windows.Forms.VisualStyles;
 
 namespace Puissance_4
 {
@@ -21,13 +24,17 @@ namespace Puissance_4
     {
         /// <summary>
         /// Attribut qui stocke le numéro de la grille choisie dans le radioBouton de la page param
-        /// (1 / 2 ou 3)
         /// </summary>
+        /// <example>
+        /// 1 (grille 1), 2 (grille 2) ou 3 (grille aléatoire)
+        /// </example>
         private int choixGrille;
+
         /// <summary>
         /// Attribut correspondant à la partie elle même
         /// </summary>
         private Puissance4 partie;
+
         /// <summary>
         /// Attribut correspondant à la grille de puissance 4
         /// </summary>
@@ -42,6 +49,7 @@ namespace Puissance_4
         public TableLayoutPanel GrilleDeJeu { get => grilleDeJeu; set => grilleDeJeu = value; }
 
 
+
         /// <summary>
         /// Constructeur de la page de jeu. Il initialise les composants et crée la grille de Jeu
         /// </summary>
@@ -49,11 +57,6 @@ namespace Puissance_4
         public PagePartie(object param, bool typeJeu)
         {
             InitializeComponent();
-
-            int hauteurForm;
-            int largeurForm;
-
-
             //Nomenclature des joueurs pour faciliter la compréhension
             string PremierJoueur;
             string SecondJoueur;
@@ -77,7 +80,6 @@ namespace Puissance_4
             }
 
 
-
             //On initialise le label du joueur qui commencera lors du 1er tour (J1)
             JActif.Text = PremierJoueur;
 
@@ -93,10 +95,46 @@ namespace Puissance_4
             // On attribue la valeur entrée dans les input de la page param aux labels d'ici
             J1.Text = PremierJoueur;
             J2.Text = SecondJoueur;
+        }
+
+
+
+        /// <summary>
+        /// Méthode qui va initialiser et positionner des éléments sur la page au chargement de celle-ci et en fonction des éléments placés, la taille de la page va changer et s'adapter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Partie_JVJ_Load(object sender, EventArgs e)
+        {
+            PictureBox picBoxJouerColonne;
+
+            int hauteurForm;
+            int largeurForm;
+
+            //La grille du puissance 4 est créée
             creationGrille();
 
+            //place le label indiquant la grille au centre de la grille
+            LabelTailleGrille.Left = GrilleDeJeu.Left + GrilleDeJeu.Width / 2 - LabelTailleGrille.Width / 2;
+
+            //Créée des boutons pour placer les pions dans les colonnes et alignes par rapport à ceux-ci
+            for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
+            {
+                picBoxJouerColonne = new PictureBox();
+                picBoxJouerColonne.Size = new Size(66, 36);
+                picBoxJouerColonne.Name = $"picFlecheColonne{IndiceColonne + 1}";
+                picBoxJouerColonne.BackColor = Color.RoyalBlue;
+                picBoxJouerColonne.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/fleche.png");
+                picBoxJouerColonne.SizeMode = PictureBoxSizeMode.Zoom;
+                picBoxJouerColonne.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
+                picBoxJouerColonne.Left += (grilleDeJeu.Width / nbColonne - picBoxJouerColonne.Width) / 2;
+                picBoxJouerColonne.Top = GrilleDeJeu.Top - picBoxJouerColonne.Height - 20;
+                picBoxJouerColonne.Click += Colonne_Click;
+                this.Controls.Add(picBoxJouerColonne);
+            }
+
             //positionne bien le groupbox du joueur actif par rapport à la taille de la grille (de façons à ne pas la survoler)
-            groupBoxJoueurActif.Left = grilleDeJeu.Location.X + grilleDeJeu.Size.Width + 20;
+            groupBoxJoueurActif.Left = grilleDeJeu.Left + grilleDeJeu.Size.Width + 20;
 
             //définit la taille de l'interface par rapport à la place que ses composants vont prendre et on prend en compte la taille de la grille aussi
             if (this.ClientSize.Height + 20 > grilleDeJeu.Top + grilleDeJeu.Bottom)
@@ -107,18 +145,12 @@ namespace Puissance_4
             {
                 hauteurForm = grilleDeJeu.Top + grilleDeJeu.Bottom;
             }
-            largeurForm = groupBoxJoueurActif.Right + groupBoxJoueurActif.Width / 2;
+
+            largeurForm = groupBoxJoueurActif.Left + groupBoxJoueurActif.Width + 20;
             this.Size = new Size(largeurForm, hauteurForm);
-
         }
 
-        private void Partie_JVJ_Load(object sender, EventArgs e)
-        {
-            if (Partie.ChoixGrille == 2)
-            {
-                flecheColonne7.Visible = false;
-            }
-        }
+
 
         /// <summary>
         /// Méthode qui s'occupe d'initialiser la grille dans l'interface 
@@ -145,12 +177,13 @@ namespace Puissance_4
                     break;
             }
 
-
             grilleDeJeu.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
 
             // Initialisation de la grille (tout vide) on met des labels dans chaque case
             initLabelDansGrille();
         }
+
+
 
         /// <summary>
         /// Méthode qui est en charge de créer des labels dans chaque case de la grille
@@ -162,49 +195,18 @@ namespace Puissance_4
             {
                 for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
                 {
-                    Label casePion = new Label();
+                    PictureBox casePion = new PictureBox();
                     casePion.Dock = DockStyle.Fill;
-                    casePion.TextAlign = ContentAlignment.MiddleCenter;
-                    casePion.BorderStyle = BorderStyle.FixedSingle;
-                    casePion.Margin = new Padding(5, 5, 5, 5);
-                    // Epaissir les bordures des cellules
-                    casePion.Margin = new Padding(casePion.Margin.Left + 1, casePion.Margin.Top, casePion.Margin.Right, casePion.Margin.Bottom);
-                    casePion.BackColor = Color.White;
-
+                    casePion.SizeMode = PictureBoxSizeMode.Zoom;
+                    casePion.Margin = new Padding(10, 10, 10, 10);
+                    casePion.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
                     grilleDeJeu.Controls.Add(casePion, IndiceColonne, IndiceLigne);
-
-                    //Aligne les boutons par rapport aux colonnes
-                    if (IndiceLigne == 0)
-                    {
-                        switch (IndiceColonne)
-                        {
-                            case 0:
-                                flecheColonne1.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
-                                break;
-                            case 1:
-                                flecheColonne2.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
-                                break;
-                            case 2:
-                                flecheColonne3.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
-                                break;
-                            case 3:
-                                flecheColonne4.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
-                                break;
-                            case 4:
-                                flecheColonne5.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
-                                break;
-                            case 5:
-                                flecheColonne6.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
-                                break;
-                            default:
-                                flecheColonne7.Left = grilleDeJeu.Left + IndiceColonne * (grilleDeJeu.Size.Width / nbColonne);
-                                break;
-                        }
-                    }
                 }
             }
             this.Controls.Add(grilleDeJeu);
         }
+
+
 
         /// <summary>
         /// Méthode qui créee le tableLayoutPanel qui fera office de grille
@@ -214,14 +216,14 @@ namespace Puissance_4
             int xGrille;
             int yGrille;
             grilleDeJeu.Size = new Size(1000, 500); // Définition la taille du TableLayoutPanel
+            grilleDeJeu.Margin = new(100, 100, 100, 100);
             grilleDeJeu.BackColor = Color.DarkBlue;
             grilleDeJeu.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;        // Initialisation du style de la grille 
             grilleDeJeu.AutoSizeMode = AutoSizeMode.GrowOnly;
 
             xGrille = grpRegles.Left + grpRegles.Width + 20;
-            yGrille = flecheColonne1.Top + flecheColonne1.Height + 20;
+            yGrille = grpRegles.Location.Y + grpRegles.Height / 4;
             grilleDeJeu.Location = new Point(xGrille, yGrille);
-
             grilleDeJeu.BorderStyle = BorderStyle.FixedSingle;
 
 
@@ -229,7 +231,6 @@ namespace Puissance_4
             for (int i = 0; i < nbColonne; i++)
             {
                 grilleDeJeu.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / nbColonne));
-
             }
 
             // Définir la taille des lignes
@@ -239,7 +240,6 @@ namespace Puissance_4
             }
 
         }
-
 
 
 
@@ -262,6 +262,8 @@ namespace Puissance_4
 
         }
 
+
+
         /// <summary>
         /// Méthode qui enregistre le gagnant et ouvre une nouvelle page de victoire
         /// </summary>
@@ -272,70 +274,34 @@ namespace Puissance_4
                 vainqueur.Text = Partie.J1G.Pseudo + " a remporté la partie";
                 vainqueur.Location = new Point(0, 700);
                 vainqueur.BackColor = Color.Red;
-                    ResultatJVJ pageResultat = new ResultatJVJ(Partie.J1G); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                    Resultat pageResultat = new Resultat(Partie.J1G); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                     pageResultat.Show();
                     this.Hide();// On ferme la page du Partie
+
             }
-            else
+            else if (Partie.Gagnant == 2)
             {
-                if (Partie.Gagnant == 2)
-                {
-                    vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
-                    vainqueur.Location = new Point(0, 700);
-                    vainqueur.BackColor = Color.Yellow;
-                        ResultatJVJ pageResultat = new ResultatJVJ(Partie.J2G); //On ouvre une nouvelle page et on lui donne le joueur gagnant
-                        pageResultat.Show();
-                        this.Hide();  // On ferme la page du jeu
-                }
+                vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
+                vainqueur.Location = new Point(0, 700);
+                vainqueur.BackColor = Color.Yellow;
+                Resultat pageResultat = new Resultat(Partie.J2G); //On ouvre une nouvelle page et on lui donne le joueur gagnant
+                pageResultat.Show();
+                this.Hide();  // On ferme la page du jeu
             }
-        }
 
-        private void DesactiverCoups()
-        {
-            flecheColonne1.Enabled = false;
-            flecheColonne2.Enabled = false;
-            flecheColonne3.Enabled = false;
-            flecheColonne4.Enabled = false;
-            flecheColonne5.Enabled = false;
-            flecheColonne6.Enabled = false;
-            flecheColonne7.Enabled = false;
-        }
-
-        private void ReactiverCoups()
-        {
-            for (int i = 0; i < nbColonne; i++)
+            else if (Partie.Gagnant == 0)
             {
-                if (Partie.GrilleJeu[0, i] == 0)
-                {
-                    switch (i)
-                    {
-                        case 0:
-                            flecheColonne1.Enabled = true;
-                            break;
-                        case 1:
-                            flecheColonne2.Enabled = true;
-                            break;
-                        case 2:
-                            flecheColonne3.Enabled = true;
-                            break;
-                        case 3:
-                            flecheColonne4.Enabled = true;
-                            break;
-                        case 4:
-                            flecheColonne5.Enabled = true;
-                            break;
-                        case 5:
-                            flecheColonne6.Enabled = true;
-                            break;
-                        default:
-                            flecheColonne7.Enabled = true;
-                            break;
-                    }
-                }
-
+                vainqueur.Text = "Match nul !";
+                vainqueur.Location = new Point(0, 700);
+                vainqueur.BackColor = Color.Blue;
+                Resultat pageResultat = new Resultat(null); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                pageResultat.Show();
+                this.Hide();// On ferme la page de la partie
             }
 
         }
+
+
 
         /// <summary>
         /// Fonction qui joue le pion dans la colonne demandée au click sur la flèche
@@ -348,34 +314,9 @@ namespace Puissance_4
             int colonneJoueeIA;
             PictureBox flecheClique = (PictureBox)sender;
 
-
-            DesactiverCoups();
-
             //en fonction du bouton cliqué, met la bonne colonne
-            switch (flecheClique.Name)
-            {
-                case "flecheColonne1":
-                    colonneJoueeJoueur = 1;
-                    break;
-                case "flecheColonne2":
-                    colonneJoueeJoueur = 2;
-                    break;
-                case "flecheColonne3":
-                    colonneJoueeJoueur = 3;
-                    break;
-                case "flecheColonne4":
-                    colonneJoueeJoueur = 4;
-                    break;
-                case "flecheColonne5":
-                    colonneJoueeJoueur = 5;
-                    break;
-                case "flecheColonne6":
-                    colonneJoueeJoueur = 6;
-                    break;
-                default:
-                    colonneJoueeJoueur = 7;
-                    break;
-            }
+            colonneJoueeJoueur = Convert.ToInt32(flecheClique.Name.Last() - 48);
+
 
             //joue le pion du joueur dans la colonne et vérification si le coup est gagnant
             Partie.Jeu(colonneJoueeJoueur);
@@ -388,19 +329,30 @@ namespace Puissance_4
             {
                 colonneJoueeIA = Partie.J2G.CoupIA(Partie);
 
+                Partie.Jeu(colonneJoueeIA);
+                MajGrille();
+                AffichageGagnant();
+                ChangerPseudoJActif();
+
+
+                //si la colonne jouée par le joueur est pleine après le coup, le bouton est désactivé 
+                if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] != 0)
+                {
+                    flecheClique.Enabled = false;
+                }
+
+                //L'IA joue son coup 
+                if (Partie.ChoixMode == false && Partie.Gagnant == -1)
+                {
+                    colonneJoueeIA = Partie.J2G.CoupIA(Partie);
                     Partie.Jeu(colonneJoueeIA);
                     MajGrille();
                     AffichageGagnant();
                     ChangerPseudoJActif();
 
-            }
-            //si la colonne jouée par le joueur est pleine après le coup, le bouton est désactivé 
-            if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] != 0)
-            {
-                flecheClique.Enabled = false;
+                }
             }
 
-            ReactiverCoups();
         }
 
         /// <summary>
@@ -415,58 +367,21 @@ namespace Puissance_4
             {
                 for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
                 {
-                    // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
+                    PictureBox caseTraitee = (PictureBox)grilleDeJeu.GetControlFromPosition(IndiceColonne, IndiceLigne);
+                    // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie (1 -> Rouge (J1) ; 2 -> Jaune (J2))
                     if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 1)
                     {
-
-                        // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie ( 0 -> blanc(vide) ; 1 -> Rouge (J1) ; 2 -> Jaune (J2)
-                        if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 1)
-                        {
-                            grilleDeJeu.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
-                        }
-                        else
-                        {
-                            if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 2)
-                            {
-                                grilleDeJeu.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
-                            }
-                            else
-                            {
-                                grilleDeJeu.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
-                            }
-                        }
-
+                        caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-rouge.png");
+                    
                     }
-                    else
+                    else if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 2)
                     {
-                        if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 2)
-                        {
-
-                            Label label3 = new Label();
-                            label3.Text = IndiceColonne.ToString();
-                            if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 1)
-                            {
-                                grilleDeJeu.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Red;
-                            }
-                            else
-                            {
-                                if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 2)
-                                {
-                                    grilleDeJeu.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.Yellow;
-                                }
-                                else
-                                {
-                                    grilleDeJeu.GetControlFromPosition(IndiceColonne, IndiceLigne).BackColor = Color.White;
-                                }
-                            }
-
-
-                        }
+                        caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-jaune.png");
+                   
                     }
 
                 }
             }
         }
-
     }
 }
