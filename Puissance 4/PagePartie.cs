@@ -166,17 +166,15 @@ namespace Puissance_4
                     LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
                     nbColonne = 7;
                     nbLigne = 6;
-                    initGrille();
                     break;
                 //Cas ou la grille 2 a été choisie par le joueur ou si celle ci a été choisi aléatoirement
                 default:
                     LabelTailleGrille.Text = " Taille de la Grille : 5 x 6 ";
                     nbColonne = 6;
                     nbLigne = 5;
-                    initGrille();
                     break;
             }
-
+            initGrille();
             grilleDeJeu.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
 
             // Initialisation de la grille (tout vide) on met des labels dans chaque case
@@ -198,7 +196,6 @@ namespace Puissance_4
                     PictureBox casePion = new PictureBox();
                     casePion.Dock = DockStyle.Fill;
                     casePion.SizeMode = PictureBoxSizeMode.Zoom;
-                    casePion.Margin = new Padding(10, 10, 10, 10);
                     casePion.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
                     grilleDeJeu.Controls.Add(casePion, IndiceColonne, IndiceLigne);
                 }
@@ -216,7 +213,7 @@ namespace Puissance_4
             int xGrille;
             int yGrille;
             grilleDeJeu.Size = new Size(1000, 500); // Définition la taille du TableLayoutPanel
-            grilleDeJeu.Margin = new(100, 100, 100, 100);
+            grilleDeJeu.Padding = new Padding(10, 20, 10, 20);
             grilleDeJeu.BackColor = Color.DarkBlue;
             grilleDeJeu.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;        // Initialisation du style de la grille 
             grilleDeJeu.AutoSizeMode = AutoSizeMode.GrowOnly;
@@ -313,6 +310,7 @@ namespace Puissance_4
             int colonneJoueeJoueur;
             int colonneJoueeIA;
             PictureBox flecheClique = (PictureBox)sender;
+            PictureBox flecheCoupIA;
 
             //en fonction du bouton cliqué, met la bonne colonne
             colonneJoueeJoueur = Convert.ToInt32(flecheClique.Name.Last() - 48);
@@ -324,6 +322,12 @@ namespace Puissance_4
             AffichageGagnant();
             ChangerPseudoJActif();
 
+            //si la colonne jouée par le joueur est pleine après le coup, le bouton est désactivé 
+            if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] != 0)
+            {
+                flecheClique.Enabled = false;
+            }
+
             //L'IA joue son coup
             if (Partie.ChoixMode == false && Partie.Gagnant != 1)
             {
@@ -333,23 +337,11 @@ namespace Puissance_4
                 MajGrille();
                 AffichageGagnant();
                 ChangerPseudoJActif();
+                flecheCoupIA = (PictureBox)this.Controls[$"picFlecheColonne{colonneJoueeIA}"];
 
-
-                //si la colonne jouée par le joueur est pleine après le coup, le bouton est désactivé 
-                if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] != 0)
+                if (Partie.GrilleJeu[0, colonneJoueeIA - 1] != 0)
                 {
-                    flecheClique.Enabled = false;
-                }
-
-                //L'IA joue son coup 
-                if (Partie.ChoixMode == false && Partie.Gagnant == -1)
-                {
-                    colonneJoueeIA = Partie.J2G.CoupIA(Partie);
-                    Partie.Jeu(colonneJoueeIA);
-                    MajGrille();
-                    AffichageGagnant();
-                    ChangerPseudoJActif();
-
+                    flecheCoupIA.Enabled = false;
                 }
             }
 
@@ -378,7 +370,8 @@ namespace Puissance_4
                     {
                         caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-jaune.png");
 
-                    }else if(Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 0)
+                    }
+                    else if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 0 && caseTraitee.Image != Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png"))
                     {
                         caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
                     }

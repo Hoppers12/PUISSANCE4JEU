@@ -28,6 +28,7 @@ namespace Puissance_4
         public Resultat(Joueur vainqueur, PagePartie partieFinie)
         {
             partie = partieFinie;
+            this.MaximizeBox = false;
 
             if (vainqueur != null)
             {
