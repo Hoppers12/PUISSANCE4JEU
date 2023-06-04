@@ -274,9 +274,9 @@ namespace Puissance_4
                 vainqueur.Text = Partie.J1G.Pseudo + " a remporté la partie";
                 vainqueur.Location = new Point(0, 700);
                 vainqueur.BackColor = Color.Red;
-                    Resultat pageResultat = new Resultat(Partie.J1G); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
-                    pageResultat.Show();
-                    this.Hide();// On ferme la page du Partie
+                Resultat pageResultat = new Resultat(Partie.J1G, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                pageResultat.Show(this);
+                this.Enabled = false; //Freeze le jeu
 
             }
             else if (Partie.Gagnant == 2)
@@ -284,9 +284,9 @@ namespace Puissance_4
                 vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
                 vainqueur.Location = new Point(0, 700);
                 vainqueur.BackColor = Color.Yellow;
-                Resultat pageResultat = new Resultat(Partie.J2G); //On ouvre une nouvelle page et on lui donne le joueur gagnant
+                Resultat pageResultat = new Resultat(Partie.J2G, this); //On ouvre une nouvelle page et on lui donne le joueur gagnant
                 pageResultat.Show();
-                this.Hide();  // On ferme la page du jeu
+                this.Enabled = false;
             }
 
             else if (Partie.Gagnant == 0)
@@ -294,9 +294,9 @@ namespace Puissance_4
                 vainqueur.Text = "Match nul !";
                 vainqueur.Location = new Point(0, 700);
                 vainqueur.BackColor = Color.Blue;
-                Resultat pageResultat = new Resultat(null); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                Resultat pageResultat = new Resultat(null, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                 pageResultat.Show();
-                this.Hide();// On ferme la page de la partie
+                this.Enabled = false; //Freeze le jeu
             }
 
         }
@@ -360,7 +360,7 @@ namespace Puissance_4
         ///  qui se trouvent dans chaque case de la matrice qui fait office de grille
         ///  dans le moteur du jeu
         /// </summary>
-        private void MajGrille()
+        public void MajGrille()
 
         {
             for (int IndiceLigne = 0; IndiceLigne < nbLigne; IndiceLigne++)
@@ -372,12 +372,15 @@ namespace Puissance_4
                     if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 1)
                     {
                         caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-rouge.png");
-                    
+
                     }
                     else if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 2)
                     {
                         caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-jaune.png");
-                   
+
+                    }else if(Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 0)
+                    {
+                        caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
                     }
 
                 }

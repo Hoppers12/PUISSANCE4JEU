@@ -16,31 +16,75 @@ namespace Puissance_4
     {
 
         string pseudoGagnant;
-        Label labelAffichageVainqueur = new Label();
+        PagePartie partie;
 
-        public Resultat(Joueur Vainqueur)
+        /// <summary>
+        /// Constructeur de la page de resultat
+        /// il permet d'initialiser les composants et d'afficher le pseudo des gagnants
+        /// si il y en a
+        /// </summary>
+        /// <param name="vainqueur">joueur vainqueur ou null si égalité/param>
+        /// <param name="partieFinie">partie qui vient de se terminer</param>
+        public Resultat(Joueur vainqueur, PagePartie partieFinie)
         {
-            if (Vainqueur != null)
+            partie = partieFinie;
+
+            if (vainqueur != null)
             {
-                pseudoGagnant = Vainqueur.Pseudo;
+                pseudoGagnant = vainqueur.Pseudo;
                 InitializeComponent();
-                this.Controls.Add(labelAffichageVainqueur);
-                labelAffichageVainqueur.Size = new Size(500, 500);
-                labelAffichageVainqueur.Text = pseudoGagnant + " a remporté la partie";
+                labelPseudoVainqueur.Text = pseudoGagnant + " a remporté la partie";
             }
             else
             {
                 pseudoGagnant = null;
                 InitializeComponent();
-                this.Controls.Add(labelAffichageVainqueur);
-                labelAffichageVainqueur.Size = new Size(500, 500);
-                labelAffichageVainqueur.Text = "Match nul !";
+                labelPseudoVainqueur.Text = "Match nul !";
             }
         }
 
-        private void Resultat_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Methode d'événement clique sur le bouton retour accueil
+        /// il ferme la page résultat et partie et retourne à l'accueil
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void boutonRetourAccueil_Click(object sender, EventArgs e)
         {
+            Accueil pageAccueil = new Accueil();
+            pageAccueil.Show();
+            partie.Close();
+            this.Close();
+        }
 
+
+        /// <summary>
+        /// methode evenementielle appelé au click sur le bouton rejouer
+        /// elle permet de réinitialiser la grille tout en permettant
+        /// de rejouer une partie avec les meme paramétres
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void boutonRejouer_Click(object sender, EventArgs e)
+        {
+            partie.Partie.InitGrille();
+            partie.MajGrille();
+            partie.Partie.Gagnant = -1;
+            partie.Enabled = true;
+            this.Close();
+
+        }
+
+        /// <summary>
+        /// Methode evenementielle appelé au click sur le bouton quitter. 
+        /// toutes les pages de jeux ouvertes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void boutonQuitterJeu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            partie.Close();
         }
     }
 }
