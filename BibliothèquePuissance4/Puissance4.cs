@@ -156,7 +156,7 @@
             // Determine la valeur a chercher
             valeur = grilleJeu[ligne, colonneJoue];
 
-            // Comptage du nombre de pion du même jouer alignés vers la gauche
+            // Comptage du nombre de pion du même jouer alignés à gauche
             if (colonneJoue != 0)
             {
                 for (colonne = colonneJoue - 1; colonne >= 0 && grilleJeu[ligne, colonne] == valeur; colonne--)
@@ -165,7 +165,7 @@
                 }
             }
 
-            // Comptage du nombre de pion du même joueur alignés vers la droite
+            // Comptage du nombre de pion du même joueur alignés à droite
             if (colonneJoue != limiteColonne - 1)
             {
                 for (colonne = colonneJoue + 1; colonne < limiteColonne && grilleJeu[ligne, colonne] == valeur; colonne++)
@@ -319,25 +319,21 @@
         /// <summary>
         /// Méthode qui vérifie si la grille est totalement remplie
         /// </summary>
-        /// <returns>Le booléen qui décrit si la grille est complète</returns>
-        public bool GrilleComplete()
+        public void GrilleComplete()
         {
-            bool complet = false;
-            int case_ligne1_occupe = 0;
+            int nbColonnesComplete = 0;
 
             for (int j = 0; j < limiteColonne; j++)
             {  // On vérifie si toutes les cases de la ligne la + haute son comblées
                 if (grilleJeu[0, j] != 0)
                 {
-                    case_ligne1_occupe++;
+                    nbColonnesComplete++;
                 }
             }
-            if (case_ligne1_occupe == limiteColonne)
-            { // Si oui alors la grille est complète
-                complet = true;
+            if (nbColonnesComplete == limiteColonne && gagnant == -1)
+            { // Si oui alors la grille est complète et s'il n'y a pas encore de gagnant, définit un match nul
                 gagnant = 0;
             }
-            return complet;
         }
 
 
@@ -347,14 +343,11 @@
         /// <param name="colonneJoue">Colonne où le dernier pion a été posé</param>
         public void Victoire(int colonneJoue)
         {
-            if (GrilleComplete() == false)
-            {
-                AlignementHorizontal(colonneJoue);
-                AlignementVertical(colonneJoue);
-                AlignementDiagonalCroissant(colonneJoue);
-                AlignementDiagonalDecroissant(colonneJoue);
-            }          
-            
+             AlignementHorizontal(colonneJoue);
+             AlignementVertical(colonneJoue);
+             AlignementDiagonalCroissant(colonneJoue);
+             AlignementDiagonalDecroissant(colonneJoue);
+             GrilleComplete();
         }
 
 

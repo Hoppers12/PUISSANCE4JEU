@@ -315,7 +315,6 @@ namespace Puissance_4
             //en fonction du bouton cliqué, met la bonne colonne
             colonneJoueeJoueur = Convert.ToInt32(flecheClique.Name.Last() - 48);
 
-
             //joue le pion du joueur dans la colonne et vérification si le coup est gagnant
             Partie.Jeu(colonneJoueeJoueur);
             MajGrille();
@@ -344,7 +343,6 @@ namespace Puissance_4
                     flecheCoupIA.Enabled = false;
                 }
             }
-
         }
 
         /// <summary>
@@ -376,6 +374,21 @@ namespace Puissance_4
                         caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
                     }
 
+                }
+            }
+        }
+
+        private void PagePartie_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Affichez une boîte de dialogue de confirmation
+                DialogResult fermeture = MessageBox.Show("Êtes-vous sûr de vouloir fermer la fenêtre ? \nLa partie sera totalement arrêté.", "Confirmation de fermeture", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Si l'utilisateur clique sur Non, annulez la fermeture
+                if (fermeture == DialogResult.No)
+                {
+                    e.Cancel = true;
                 }
             }
         }

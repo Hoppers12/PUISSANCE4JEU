@@ -214,7 +214,10 @@ namespace BibliothèquePuissance4
         {
             int valeur = 0;
 
-            int maxAlignementIA = Math.Max(alignementsIAHorizontal(jeu, colonne, ligne), Math.Max(alignementsIAVertical(jeu, colonne, ligne), Math.Max(alignementsIADiagonalCroissant(jeu, colonne, ligne), alignementsIADiagonalDecroissant(jeu, colonne, ligne))));
+            int maxAlignementIA = Math.Max(alignementsIAHorizontal(jeu, colonne, ligne), 
+                Math.Max(alignementsIAVertical(jeu, colonne, ligne), 
+                Math.Max(alignementsIADiagonalCroissant(jeu, colonne, ligne), 
+                alignementsIADiagonalDecroissant(jeu, colonne, ligne))));
 
             if (maxAlignementIA >= 4)
                 valeur = 4;
@@ -247,13 +250,12 @@ namespace BibliothèquePuissance4
         /// <returns>La colonne dans laquelle l'IA va jouer</returns>
         public int CoupIA(Puissance4 jeu)
         {
-            int i;
             int j;
             int colonneJoueeIA = 1;
             int maxPoints = 0;
             int alignementIA = -200;
 
-            for (i = 0; i < nbreColonnes; i++)
+            for (int i = 0; i < nbreColonnes; i++)
             {
                 for (j = jeu.LimiteLigne - 1; j >= 0 && jeu.GrilleJeu[j, i] != 0; j--) ;
 
