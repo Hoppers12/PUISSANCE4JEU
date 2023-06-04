@@ -114,20 +114,28 @@
                 }
             }
             grilleJeu = new int[limiteLigne, limiteColonne];
-            for (int i = 0; i < limiteLigne; i++)
-            {
-                for (int j = 0; j < limiteColonne; j++)
-                {
-                    grilleJeu[i, j] = 0;           //On initalise chaque case à 0 (= case vide)
-                }
-            }
+            // Initialisation de chaque case à 0
+            InitGrille(); 
+
             J1 = new Joueur(prenom1, true, true, limiteColonne);
             J2 = new Joueur(prenom2, false, choixMode, limiteColonne);
             gagnant = -1;
             joueurSuivant = true;
         }
 
-
+        /// <summary>
+        /// Méthode qui met toutes les cases de la grille à 0 (donc vide)
+        /// </summary>
+        public void InitGrille()
+        {
+            for (int i = 0; i < limiteLigne; i++)
+            {
+                for (int j = 0; j < limiteColonne; j++)
+                {
+                    grilleJeu[i, j] = 0;           
+                }
+            }
+        }
         /// <summary>
         /// Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même ligne
         /// </summary>

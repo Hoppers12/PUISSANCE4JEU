@@ -54,7 +54,7 @@ namespace Puissance_4
             int largeurForm;
 
 
-            //Nomenclature des joueurs pour facilité la compréhension
+            //Nomenclature des joueurs pour faciliter la compréhension
             string PremierJoueur;
             string SecondJoueur;
             //prend les pseudos des joueurs si c'est une partie JVJ
@@ -269,16 +269,12 @@ namespace Puissance_4
         {
             if (Partie.Gagnant == 1)
             {
-                vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
+                vainqueur.Text = Partie.J1G.Pseudo + " a remporté la partie";
                 vainqueur.Location = new Point(0, 700);
                 vainqueur.BackColor = Color.Red;
-                Task.Run(async delegate
-                {
-                    await Task.Delay(TimeSpan.FromSeconds(3));
                     ResultatJVJ pageResultat = new ResultatJVJ(Partie.J1G); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                     pageResultat.Show();
                     this.Hide();// On ferme la page du Partie
-                });
             }
             else
             {
@@ -287,13 +283,9 @@ namespace Puissance_4
                     vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
                     vainqueur.Location = new Point(0, 700);
                     vainqueur.BackColor = Color.Yellow;
-                    Task.Run(async delegate
-                    {
-                        await Task.Delay(TimeSpan.FromSeconds(3));
                         ResultatJVJ pageResultat = new ResultatJVJ(Partie.J2G); //On ouvre une nouvelle page et on lui donne le joueur gagnant
                         pageResultat.Show();
                         this.Hide();  // On ferme la page du jeu
-                    });
                 }
             }
         }
@@ -395,14 +387,11 @@ namespace Puissance_4
             if (Partie.ChoixMode == false && Partie.Gagnant != 1)
             {
                 colonneJoueeIA = Partie.J2G.CoupIA(Partie);
-                Task.Run(async delegate
-                {
-                    await Task.Delay(TimeSpan.FromSeconds(1.5));
+
                     Partie.Jeu(colonneJoueeIA);
                     MajGrille();
                     AffichageGagnant();
                     ChangerPseudoJActif();
-                });
 
             }
             //si la colonne jouée par le joueur est pleine après le coup, le bouton est désactivé 

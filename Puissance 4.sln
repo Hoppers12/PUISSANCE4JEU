@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puissance 4", "Puissance 4\Puissance 4.csproj", "{10ABE8B1-B5B7-4637-985D-EFFD968E690D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliothèquePuissance4", "BibliothèquePuissance4\BibliothèquePuissance4.csproj", "{91C3E4A0-848F-437E-8771-7D664467626D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliothèquePuissance4", "BibliothèquePuissance4\BibliothèquePuissance4.csproj", "{91C3E4A0-848F-437E-8771-7D664467626D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPuissance4", "TestPuissance4\TestPuissance4.csproj", "{9D89B786-851E-4D38-92C5-9F59A4697631}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{91C3E4A0-848F-437E-8771-7D664467626D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91C3E4A0-848F-437E-8771-7D664467626D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91C3E4A0-848F-437E-8771-7D664467626D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D89B786-851E-4D38-92C5-9F59A4697631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D89B786-851E-4D38-92C5-9F59A4697631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D89B786-851E-4D38-92C5-9F59A4697631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D89B786-851E-4D38-92C5-9F59A4697631}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
