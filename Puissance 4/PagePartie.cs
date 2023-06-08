@@ -197,11 +197,14 @@ namespace Puissance_4
                     casePion.Dock = DockStyle.Fill;
                     casePion.SizeMode = PictureBoxSizeMode.Zoom;
                     casePion.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
+                    casePion.Name = $"CaseL{IndiceLigne + 1}C{IndiceColonne + 1}";
+                    casePion.Click += Colonne_Click;
                     grilleDeJeu.Controls.Add(casePion, IndiceColonne, IndiceLigne);
                 }
             }
             this.Controls.Add(grilleDeJeu);
         }
+
 
 
 
