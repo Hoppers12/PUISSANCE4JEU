@@ -275,7 +275,7 @@ namespace Puissance_4
                 vainqueur.Location = new Point(0, 700);
                 vainqueur.BackColor = Color.Red;
                 Resultat pageResultat = new Resultat(Partie.J1G, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
-                pageResultat.Show(this);
+                pageResultat.Show();
                 this.Enabled = false; //Freeze le jeu
 
             }
@@ -383,7 +383,7 @@ namespace Puissance_4
 
         private void PagePartie_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (e.CloseReason == CloseReason.UserClosing && sender.GetType().Name == "PagePartie")
             {
                 // Affichez une boîte de dialogue de confirmation
                 DialogResult fermeture = MessageBox.Show("Êtes-vous sûr de vouloir fermer la fenêtre ? \nLa partie sera totalement arrêté.", "Confirmation de fermeture", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

@@ -78,20 +78,22 @@ namespace Puissance_4
             if (imageSurvole.Name == "infoJVJ")
             {
                 this.Controls.Add(lblInfoJvJ);
-                lblInfoJvJ.Size = new Size(280, 50);
+
                 //Ajustement de l'emplacement du label
                 lblInfoJvJ.TextAlign = ContentAlignment.MiddleCenter;
-                lblInfoJvJ.Location = new Point(infoJVJ.Location.X + 27, infoJVJ.Location.Y);
+                lblInfoJvJ.Location = new Point(infoJVJ.Location.X, infoJVJ.Location.Y + infoJVJ.Height);
+                lblInfoJvJ.Size = new Size(Width - lblInfoJvJ.Location.X - 30, 50);
                 lblInfoJvJ.Text = "Partie contre une personne en local";
             }
             else
             {
                 this.Controls.Add(lblInfoJvIA);
-                lblInfoJvIA.Size = new Size(280, 50);
+
                 //Ajustement de l'emplacement du label
                 lblInfoJvIA.TextAlign = ContentAlignment.MiddleCenter;
-                lblInfoJvIA.Location = new Point(infoJVIA.Location.X + 27, infoJVIA.Location.Y);
-                lblInfoJvIA.Text = "Partie contre une intellligence artificielle";
+                lblInfoJvIA.Location = new Point(infoJVIA.Location.X, infoJVIA.Location.Y + infoJVIA.Height);
+                lblInfoJvIA.Size = new Size(Width - infoJVIA.Location.X - 30, 50);
+                lblInfoJvIA.Text = "Partie contre une intelligence artificielle";
             }
 
         }

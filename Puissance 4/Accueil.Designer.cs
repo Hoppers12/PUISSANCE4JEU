@@ -179,7 +179,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Accueil";
-            Text = "Form1";
+            Text = "Accueil";
             FormClosing += Accueil_FormClosing;
             ((System.ComponentModel.ISupportInitialize)infoJVJ).EndInit();
             ((System.ComponentModel.ISupportInitialize)infoJVIA).EndInit();

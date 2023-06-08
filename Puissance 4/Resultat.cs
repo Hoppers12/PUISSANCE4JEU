@@ -54,7 +54,7 @@ namespace Puissance_4
         {
             Accueil pageAccueil = new Accueil();
             pageAccueil.Show();
-            partie.Close();
+            partie.Dispose();
             this.Close();
         }
 
@@ -85,7 +85,7 @@ namespace Puissance_4
         private void boutonQuitterJeu_Click(object sender, EventArgs e)
         {
             this.Close();
-            partie.Close();
+            partie.Dispose();
         }
     }
 }

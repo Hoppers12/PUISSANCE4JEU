@@ -177,7 +177,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "page_param_JVIA";
-            Text = "Form1";
+            Text = "Paramétrage J vs IA";
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
