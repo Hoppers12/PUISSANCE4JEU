@@ -271,9 +271,6 @@ namespace Puissance_4
         {
             if (Partie.Gagnant == 1)
             {
-                vainqueur.Text = Partie.J1G.Pseudo + " a remporté la partie";
-                vainqueur.Location = new Point(0, 700);
-                vainqueur.BackColor = Color.Red;
                 Resultat pageResultat = new Resultat(Partie.J1G, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                 pageResultat.Show();
                 this.Enabled = false; //Freeze le jeu
@@ -281,9 +278,6 @@ namespace Puissance_4
             }
             else if (Partie.Gagnant == 2)
             {
-                vainqueur.Text = Partie.J2G.Pseudo + " a remporté la partie";
-                vainqueur.Location = new Point(0, 700);
-                vainqueur.BackColor = Color.Yellow;
                 Resultat pageResultat = new Resultat(Partie.J2G, this); //On ouvre une nouvelle page et on lui donne le joueur gagnant
                 pageResultat.Show();
                 this.Enabled = false;
@@ -291,9 +285,6 @@ namespace Puissance_4
 
             else if (Partie.Gagnant == 0)
             {
-                vainqueur.Text = "Match nul !";
-                vainqueur.Location = new Point(0, 700);
-                vainqueur.BackColor = Color.Blue;
                 Resultat pageResultat = new Resultat(null, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                 pageResultat.Show();
                 this.Enabled = false; //Freeze le jeu
@@ -312,38 +303,27 @@ namespace Puissance_4
         {
             int colonneJoueeJoueur;
             int colonneJoueeIA;
-            PictureBox flecheClique = (PictureBox)sender;
-            PictureBox flecheCoupIA;
+            PictureBox colonneClick = (PictureBox)sender;
 
             //en fonction du bouton cliqué, met la bonne colonne
-            colonneJoueeJoueur = Convert.ToInt32(flecheClique.Name.Last() - 48);
+            colonneJoueeJoueur = Convert.ToInt32(colonneClick.Name.Last() - 48);
 
-            //joue le pion du joueur dans la colonne et vérification si le coup est gagnant
-            Partie.Jeu(colonneJoueeJoueur);
-            MajGrille();
-            AffichageGagnant();
-            ChangerPseudoJActif();
-
-            //si la colonne jouée par le joueur est pleine après le coup, le bouton est désactivé 
-            if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] != 0)
+            //si la colonne n'est pas pleine, il joue le coup sinon il fait rien
+            if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] == 0)
             {
-                flecheClique.Enabled = false;
-            }
-
-            //L'IA joue son coup
-            if (Partie.ChoixMode == false && Partie.Gagnant != 1)
-            {
-                colonneJoueeIA = Partie.J2G.CoupIA(Partie);
-
-                Partie.Jeu(colonneJoueeIA);
+                //joue le pion du joueur dans la colonne et vérification si le coup est gagnant
+                Partie.Jeu(colonneJoueeJoueur);
                 MajGrille();
                 AffichageGagnant();
                 ChangerPseudoJActif();
-                flecheCoupIA = (PictureBox)this.Controls[$"picFlecheColonne{colonneJoueeIA}"];
-
-                if (Partie.GrilleJeu[0, colonneJoueeIA - 1] != 0)
+                //L'IA joue son coup
+                if (Partie.ChoixMode == false && Partie.Gagnant != 1)
                 {
-                    flecheCoupIA.Enabled = false;
+                    colonneJoueeIA = Partie.J2G.CoupIA(Partie);
+                    Partie.Jeu(colonneJoueeIA);
+                    MajGrille();
+                    AffichageGagnant();
+                    ChangerPseudoJActif();
                 }
             }
         }
@@ -383,7 +363,7 @@ namespace Puissance_4
 
         private void PagePartie_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing && sender.GetType().Name == "PagePartie")
+            if (e.CloseReason == CloseReason.UserClosing)
             {
                 // Affichez une boîte de dialogue de confirmation
                 DialogResult fermeture = MessageBox.Show("Êtes-vous sûr de vouloir fermer la fenêtre ? \nLa partie sera totalement arrêté.", "Confirmation de fermeture", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
