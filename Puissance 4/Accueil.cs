@@ -30,7 +30,7 @@ namespace Puissance_4
             // Style des labels des aperçus (point d'interrogation)
             lblInfoJvIA.BackColor = Color.FromArgb(205, 206, 204);
             lblInfoJvJ.BackColor = Color.FromArgb(205, 206, 204);
-            
+
             //définit la taille de l'interface par rapport à la place que ses composants vont prendre ainsi que le style de bordure
             hauteurForm = this.ClientSize.Height + 20;
             largeurForm = this.ClientSize.Width + 20;
