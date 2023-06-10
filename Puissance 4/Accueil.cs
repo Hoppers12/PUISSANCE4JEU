@@ -49,7 +49,7 @@ namespace Puissance_4
             Button BoutonClique = (Button)sender;
             //Si le bouton cliqué est celui de JVJ alors on ouvre pageParamJvj sinon pageParamJvia
 
-            if (BoutonClique.Name == "boutonJvj")
+            if (BoutonClique.Name == "btnJvj")
             {
                 frmParamJVJ page2 = new frmParamJVJ();
                 page2.Show(this);
@@ -73,7 +73,7 @@ namespace Puissance_4
             PictureBox imageSurvole = (PictureBox)sender;
 
             //Si il la pictureBox survolé est celle du JVJ ALORS ... SINON ...
-            if (imageSurvole.Name == "infoJVJ")
+            if (imageSurvole.Name == "picInfoJVJ")
             {
                 this.Controls.Add(lblInfoJvJ);
 
@@ -106,7 +106,7 @@ namespace Puissance_4
             PictureBox imageSurvole = (PictureBox)sender;
 
             // Si il s'agit de la pictureBox de JVJ ... Sinon ...
-            if (imageSurvole.Name == "infoJVJ")
+            if (imageSurvole.Name == "picInfoJVJ")
             {
                 this.Controls.Remove(lblInfoJvJ);
             }

@@ -271,21 +271,21 @@ namespace Puissance_4
         {
             if (Partie.Gagnant == 1)
             {
-                Resultat pageResultat = new Resultat(Partie.J1, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                frmResultat pageResultat = new frmResultat(Partie.J1, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                 pageResultat.Show();
                 this.Enabled = false; //Freeze le jeu
 
             }
             else if (Partie.Gagnant == 2)
             {
-                Resultat pageResultat = new Resultat(Partie.J2, this); //On ouvre une nouvelle page et on lui donne le joueur gagnant
+                frmResultat pageResultat = new frmResultat(Partie.J2, this); //On ouvre une nouvelle page et on lui donne le joueur gagnant
                 pageResultat.Show();
                 this.Enabled = false;
             }
 
             else if (Partie.Gagnant == 0)
             {
-                Resultat pageResultat = new Resultat(null, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                frmResultat pageResultat = new frmResultat(null, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                 pageResultat.Show();
                 this.Enabled = false; //Freeze le jeu
             }
