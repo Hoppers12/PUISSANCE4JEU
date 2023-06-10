@@ -8,12 +8,12 @@
         /// <summary>
         /// Joueur 1 de type Joueur
         /// </summary>
-        Joueur J1;
+        Joueur j1;
 
         /// <summary>
         /// Joueur 2 de type Joueur
         /// </summary>
-        Joueur J2;
+        Joueur j2;
 
         /// <summary>
         /// Grille du jeu (tableau bidimentionnel d'entiers)
@@ -72,8 +72,8 @@
         public int LimiteLigne { get => limiteLigne; }
         public int ChoixGrille { get => choixGrille;}
         public int Gagnant { get => gagnant; set => gagnant = value; }
-        public Joueur J1G { get => J1;}
-        public Joueur J2G { get => J2;}
+        public Joueur J1 { get => j1; }
+        public Joueur J2 { get => j2;}
         public bool ChoixMode { get => choixMode; }
 
 
@@ -88,6 +88,7 @@
         {
             choixGrille = choixG;
             choixMode = mode;
+
             if (choixGrille == 1)
             {
                 limiteLigne = 6;
@@ -113,15 +114,17 @@
                     limiteColonne = 6;
                 }
             }
+
             grilleJeu = new int[limiteLigne, limiteColonne];
-            // Initialisation de chaque case à 0
+            // Initialisation de la grille
             InitGrille(); 
 
-            J1 = new Joueur(prenom1, true, true, limiteColonne);
-            J2 = new Joueur(prenom2, false, choixMode, limiteColonne);
+            j1 = new Joueur(prenom1, true, true, limiteColonne);
+            j2 = new Joueur(prenom2, false, choixMode, limiteColonne);
             gagnant = -1;
             joueurSuivant = true;
         }
+
 
         /// <summary>
         /// Méthode qui met toutes les cases de la grille à 0 (donc vide)
@@ -136,46 +139,49 @@
                 }
             }
         }
+
+
         /// <summary>
         /// Méthode qui vérifie si 4 jetons d'un même joueur sont alignés dans une même ligne
         /// </summary>
         /// <param name="colonneJoue">Colonne où le dernier pion a été posé</param>
         public void AlignementHorizontal(int colonneJoue)
         {
-            int cptr_pion_aligne = 1;
-            int ligne = 0;
-            int colonne;
+            int cptrPionJoueurAligne = 1;
+            int ligneJouee;
+            int colonneRecherche;
             int valeur;
 
             // Recherche d'un pion dans la colonne 
-            while (grilleJeu[ligne, colonneJoue] == 0)
-            {
-                ligne++;
-            }
+            for (ligneJouee = 0; grilleJeu[ligneJouee, colonneJoue] == 0; ligneJouee++) ;
 
             // Determine la valeur a chercher
-            valeur = grilleJeu[ligne, colonneJoue];
+            valeur = grilleJeu[ligneJouee, colonneJoue];
 
-            // Comptage du nombre de pion du même jouer alignés à gauche
+            // Comptage du nombre de pions du même jouer alignés à gauche
             if (colonneJoue != 0)
             {
-                for (colonne = colonneJoue - 1; colonne >= 0 && grilleJeu[ligne, colonne] == valeur; colonne--)
+                for (colonneRecherche = colonneJoue - 1; 
+                    colonneRecherche >= 0 && grilleJeu[ligneJouee, colonneRecherche] == valeur;
+                    colonneRecherche--)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionJoueurAligne++;
                 }
             }
 
-            // Comptage du nombre de pion du même joueur alignés à droite
+            // Comptage du nombre de pions du même joueur alignés à droite
             if (colonneJoue != limiteColonne - 1)
             {
-                for (colonne = colonneJoue + 1; colonne < limiteColonne && grilleJeu[ligne, colonne] == valeur; colonne++)
+                for (colonneRecherche = colonneJoue + 1;
+                    colonneRecherche < limiteColonne && grilleJeu[ligneJouee, colonneRecherche] == valeur;
+                    colonneRecherche++)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionJoueurAligne++;
                 }
             }
 
             // Enregistrement du numéro du gagnant
-            if (cptr_pion_aligne >= 4)
+            if (cptrPionJoueurAligne >= 4)
             {
                 gagnant = valeur;
             }
@@ -188,30 +194,30 @@
         /// <param name="colonneJoue">Colonne où le dernier pion a été posé</param>
         public void AlignementVertical(int colonneJoue)
         {
-            int cptr_pion_aligne = 1;
-            int ligne = 0;
+            int cptrPionJoueurAligne = 1;
+            int ligneJouee;
+            int ligneRecherche;
             int valeur;
 
             // Recherche d'un pion dans la colonne 
-            while (grilleJeu[ligne, colonneJoue] == 0)
-            {
-                ligne++;
-            }
+            for (ligneJouee = 0; grilleJeu[ligneJouee, colonneJoue] == 0; ligneJouee++) ;
 
             // Determine la valeur a chercher
-            valeur = grilleJeu[ligne, colonneJoue];
+            valeur = grilleJeu[ligneJouee, colonneJoue];
 
             // Comptage du nombre de pion du même jouer alignés
-            if (ligne < limiteLigne - 3)
+            if (ligneJouee < limiteLigne - 3)
             {
-                for (ligne = ligne + 1; ligne < limiteLigne && grilleJeu[ligne, colonneJoue] == valeur; ligne++)
+                for (ligneRecherche = ligneJouee + 1;
+                    ligneRecherche < limiteLigne && grilleJeu[ligneRecherche, colonneJoue] == valeur;
+                    ligneRecherche++)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionJoueurAligne++;
                 }
             }
 
             // Enregistrement du numéro du gagnant 
-            if (cptr_pion_aligne >= 4)
+            if (cptrPionJoueurAligne >= 4)
             {
                 gagnant = valeur;
             }
@@ -224,43 +230,45 @@
         /// <param name="colonneJoue">Colonne où le dernier pion a été posé</param>
         public void AlignementDiagonalCroissant(int colonneJoue)
         {
-            int cptr_pion_aligne = 1;
-            int stockLigne;
-            int ligne = 0;
-            int colonne;
+            int cptrPionJoueurAligne = 1;
+            int ligneJouee;
+            int ligneRecherche;
+            int colonneRecherche;
             int valeur;
 
             // Recherche d'un pion dans la colonne 
-            while (grilleJeu[ligne, colonneJoue] == 0)
-            {
-                ligne++;
-            }
+            for(ligneJouee = 0; grilleJeu[ligneJouee, colonneJoue] == 0; ligneJouee++) ;
 
             // Determine la valeur a chercher
-            valeur = grilleJeu[ligne, colonneJoue];
-            stockLigne = ligne;
+            valeur = grilleJeu[ligneJouee, colonneJoue];
 
 
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
-            if (colonneJoue != 0 && ligne != limiteLigne - 1)
+            if (colonneJoue != 0 && ligneJouee != limiteLigne - 1)
             {
-                for (ligne = ligne + 1, colonne = colonneJoue - 1; colonne >= 0 && ligne < limiteLigne && grilleJeu[ligne, colonne] == valeur; ligne++, colonne--)
+                for (ligneRecherche = ligneJouee + 1, colonneRecherche = colonneJoue - 1;
+                    colonneRecherche >= 0 && ligneRecherche < limiteLigne 
+                    && grilleJeu[ligneRecherche, colonneRecherche] == valeur;
+                    ligneRecherche++, colonneRecherche--)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionJoueurAligne++;
                 }
             }
 
             // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
-            if (colonneJoue != limiteColonne - 1 && stockLigne != 0)
+            if (colonneJoue != limiteColonne - 1 && ligneJouee != 0)
             {
-                for (ligne = stockLigne - 1, colonne = colonneJoue + 1; colonne < limiteColonne && ligne >= 0 && grilleJeu[ligne, colonne] == valeur; ligne--, colonne++)
+                for (ligneRecherche = ligneJouee - 1, colonneRecherche = colonneJoue + 1;
+                    colonneRecherche < limiteColonne && ligneRecherche >= 0 
+                    && grilleJeu[ligneRecherche, colonneRecherche] == valeur;
+                    ligneRecherche--, colonneRecherche++)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionJoueurAligne++;
                 }
             }
 
             // Enregistrement du numéro du gagnant 
-            if (cptr_pion_aligne >= 4)
+            if (cptrPionJoueurAligne >= 4)
             {
                 gagnant = valeur;
             }
@@ -273,46 +281,49 @@
         /// <param name="colonneJoue">Colonne où le dernier pion a été posé</param>
         public void AlignementDiagonalDecroissant(int colonneJoue)
         {
-            int cptr_pion_aligne = 1;
-            int stockLigne;
-            int ligne = 0;
-            int colonne = colonneJoue;
+            int cptrPionJoueurAligne = 1;
+            int ligneJouee;
+            int ligneRecherche;
+            int colonneRecherche;
             int valeur;
 
             // Recherche d'un pion dans la colonne 
-            while (grilleJeu[ligne, colonneJoue] == 0)
-            {
-                ligne++;
-            }
+            for (ligneJouee = 0; grilleJeu[ligneJouee, colonneJoue] == 0; ligneJouee++) ;
 
             // Determine la valeur a chercher
-            valeur = grilleJeu[ligne, colonneJoue];
-            stockLigne = ligne;
+            valeur = grilleJeu[ligneJouee, colonneJoue];
 
 
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
-            if (colonneJoue != 0 && ligne != 0)
+            if (colonneJoue != 0 && ligneJouee != 0)
             {
-                for (ligne = ligne - 1, colonne = colonneJoue - 1; colonne >= 0 && ligne >= 0 && grilleJeu[ligne, colonne] == valeur; ligne--, colonne--)
+                for (ligneRecherche = ligneJouee - 1, colonneRecherche = colonneJoue - 1;
+                    colonneRecherche >= 0 && ligneRecherche >= 0 
+                    && grilleJeu[ligneRecherche, colonneRecherche] == valeur;
+                    ligneRecherche--, colonneRecherche--)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionJoueurAligne++;
                 }
             }
 
             // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
-            if (colonneJoue != limiteColonne - 1 && stockLigne != limiteLigne - 1)
+            if (colonneJoue != limiteColonne - 1 && ligneJouee != limiteLigne - 1)
             {
-                for (ligne = stockLigne + 1, colonne = colonneJoue + 1; colonne < limiteColonne && ligne < limiteLigne && grilleJeu[ligne, colonne] == valeur; ligne++, colonne++)
+                for (ligneRecherche = ligneJouee + 1, colonneRecherche = colonneJoue + 1;
+                    colonneRecherche < limiteColonne && ligneRecherche < limiteLigne 
+                    && grilleJeu[ligneRecherche, colonneRecherche] == valeur;
+                    ligneRecherche++, colonneRecherche++)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionJoueurAligne++;
                 }
             }
 
             // Enregistrement du numéro du gagnant 
-            if (cptr_pion_aligne >= 4)
+            if (cptrPionJoueurAligne >= 4)
             {
                 gagnant = valeur;
             }
+
         }
 
 
@@ -331,7 +342,7 @@
                 }
             }
             if (nbColonnesComplete == limiteColonne && gagnant == -1)
-            { // Si oui alors la grille est complète et s'il n'y a pas encore de gagnant, définit un match nul
+            { // Si c'est le cas et qu'il n'y a pas encore de gagnant, définit un match nul
                 gagnant = 0;
             }
         }
@@ -343,10 +354,12 @@
         /// <param name="colonneJoue">Colonne où le dernier pion a été posé</param>
         public void Victoire(int colonneJoue)
         {
+            //détermine sur tous les axes s'il y a une victoire
              AlignementHorizontal(colonneJoue);
              AlignementVertical(colonneJoue);
              AlignementDiagonalCroissant(colonneJoue);
              AlignementDiagonalDecroissant(colonneJoue);
+            //détermine si la grille est complete
              GrilleComplete();
         }
 

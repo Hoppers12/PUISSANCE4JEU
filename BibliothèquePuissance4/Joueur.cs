@@ -76,32 +76,36 @@ namespace BibliothèquePuissance4
         /// Méthode qui détermine combien de pions de l'IA seraient alignés horizontalement s'il posait son pion aux coordonnées rentrées en paramètre 
         /// </summary>
         /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        /// <param name="colonne">Colonne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
-        /// <param name="ligne">Ligne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
+        /// <param name="indColonne">Indice de la colonne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
+        /// <param name="indLigne">Indice de la ligne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
         /// <returns>Le nombre de pions alignés horizontalement</returns>
-        public int alignementsIAHorizontal(Puissance4 jeu, int colonne, int ligne)
+        public int alignementsIAHorizontal(Puissance4 jeu, int indColonne, int indLigne)
         {
-            int cptr_pion_aligne = 1;
-            int i;
+            int indColonneVisitee;
+            int valeurPionIA = 2;
+            int cptrPionsIaAlignes = 1;
 
             // Comptage du nombre de pion de l'IA alignés vers la gauche
-            if (colonne != 0)
+            if (indColonne != 0)
             {
-                for (i = colonne - 1; i >= 0 && jeu.GrilleJeu[ligne, i] == 2; i--)
+                for (indColonneVisitee = indColonne - 1; indColonneVisitee >= 0 
+                    && jeu.GrilleJeu[indLigne, indColonneVisitee] == valeurPionIA; indColonneVisitee--)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionsIaAlignes++;
                 }
             }
 
             // Comptage du nombre de pion de l'IA alignés vers la droite
-            if (colonne != nbreColonnes - 1)
+            if (indColonne != nbreColonnes - 1)
             {
-                for (i = colonne + 1; i < nbreColonnes && jeu.GrilleJeu[ligne, i] == 2; i++)
+                for (indColonneVisitee = indColonne + 1; indColonneVisitee < nbreColonnes 
+                    && jeu.GrilleJeu[indLigne, indColonneVisitee] == valeurPionIA; indColonneVisitee++)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionsIaAlignes++;
                 }
             }
-            return cptr_pion_aligne;
+
+            return cptrPionsIaAlignes;
         }
 
 
@@ -113,19 +117,23 @@ namespace BibliothèquePuissance4
         /// <param name="colonne">Colonne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
         /// <param name="ligne">Ligne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
         /// <returns>Le nombre de pions alignés verticalement</returns>
-        public int alignementsIAVertical(Puissance4 jeu, int colonne, int ligne)
+        public int alignementsIAVertical(Puissance4 jeu, int indColonne, int indLigne)
         {
-            int cptr_pion_aligne = 1;
+            int indLigneVisitee;
+            int valeurPionIA = 2;
+            int cptrPionsIaAlignes = 1;
 
-            // Comptage du nombre de pion du même jouer alignés
-            if (ligne < jeu.LimiteLigne - 3)
+            // Comptage du nombre de pion alignés verticalement que l'IA pourrait faire
+            if (indLigne < jeu.LimiteLigne - 3)
             {
-                for (ligne = ligne + 1; ligne < jeu.LimiteLigne && jeu.GrilleJeu[ligne, colonne] == 2; ligne++)
+                for (indLigneVisitee = indLigne + 1; indLigneVisitee < jeu.LimiteLigne 
+                    && jeu.GrilleJeu[indLigneVisitee, indColonne] == valeurPionIA; indLigneVisitee++)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionsIaAlignes++;
                 }
             }
-            return cptr_pion_aligne;
+
+            return cptrPionsIaAlignes;
         }
 
 
@@ -134,35 +142,41 @@ namespace BibliothèquePuissance4
         /// Méthode qui détermine combien de pions de l'IA seraient alignés sur la diagonale croissante s'il posait son pion aux coordonnées rentrées en paramètre 
         /// </summary>
         /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        /// <param name="colonne">Colonne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
-        /// <param name="ligne">Ligne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
+        /// <param name="indColonne">Colonne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
+        /// <param name="indLigne">Ligne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
         /// <returns>Le nombre de pions alignés sur la diagonale croissante</returns>
-        public int alignementsIADiagonalCroissant(Puissance4 jeu, int colonne, int ligne)
+        public int alignementsIADiagonalCroissant(Puissance4 jeu, int indColonne, int indLigne)
         {
-            int cptr_pion_aligne = 1;
-            int stockLigne = ligne;
-            int stockColonne;
-
-
+            int indLigneVisitee;
+            int indColonneVisitee;
+            int cptrPionsIaAlignes = 1;
+            int valeurPionIA = 2;
 
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
-            if (colonne != 0 && ligne != jeu.LimiteLigne - 1)
+            if (indColonne != 0 && indLigne != jeu.LimiteLigne - 1)
             {
-                for (ligne = ligne + 1, stockColonne = colonne - 1; stockColonne >= 0 && ligne < jeu.LimiteLigne && jeu.GrilleJeu[ligne, stockColonne] == 2; ligne++, stockColonne--)
+                for (indLigneVisitee = indLigne + 1, indColonneVisitee = indColonne - 1;
+                    indColonneVisitee >= 0 && indLigneVisitee < jeu.LimiteLigne 
+                    && jeu.GrilleJeu[indLigneVisitee, indColonneVisitee] == valeurPionIA;
+                    indLigneVisitee++, indColonneVisitee--)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionsIaAlignes++;
                 }
             }
 
             // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
-            if (colonne != nbreColonnes - 1 && stockLigne != 0)
+            if (indColonne != nbreColonnes - 1 && indLigne != 0)
             {
-                for (ligne = stockLigne - 1, stockColonne = colonne + 1; stockColonne < nbreColonnes && ligne >= 0 && jeu.GrilleJeu[ligne, stockColonne] == 2; ligne--, stockColonne++)
+                for (indLigneVisitee = indLigne - 1, indColonneVisitee = indColonne + 1;
+                    indColonneVisitee < nbreColonnes && indLigneVisitee >= 0
+                    && jeu.GrilleJeu[indLigneVisitee, indColonneVisitee] == valeurPionIA;
+                    indLigneVisitee--, indColonneVisitee++)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionsIaAlignes++;
                 }
             }
-            return cptr_pion_aligne;
+
+            return cptrPionsIaAlignes;
         }
 
 
@@ -172,72 +186,87 @@ namespace BibliothèquePuissance4
         /// Méthode qui détermine combien de pions de l'IA seraient alignés sur la diagonale décroissante s'il le posait aux coordonnées rentrées en paramètre 
         /// </summary>
         /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        /// <param name="colonne">Colonne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
-        /// <param name="ligne">Ligne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
+        /// <param name="indColonne">Colonne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
+        /// <param name="indLigne">Ligne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
         /// <returns>Le nombre de pions alignés sur la diagonale décroissante</returns>
-        public int alignementsIADiagonalDecroissant(Puissance4 jeu, int colonne, int ligne)
+        public int alignementsIADiagonalDecroissant(Puissance4 jeu, int indColonne, int indLigne)
         {
-            int cptr_pion_aligne = 1;
-            int stockLigne = ligne;
-            int stockColonne = colonne;
-
+            int indLigneVisitee;
+            int indColonneVisitee;
+            int cptrPionsIaAlignes = 1;
+            int valeurPionIA = 2;
 
             // Comptage du nombre de pion du même jouer alignés diagonalement en bas a gauche
-            if (colonne != 0 && ligne != 0)
+            if (indColonne != 0 && indLigne != 0)
             {
-                for (ligne = ligne - 1, stockColonne = colonne - 1; stockColonne >= 0 && ligne >= 0 && jeu.GrilleJeu[ligne, stockColonne] == 2; ligne--, stockColonne--)
+                for (indLigneVisitee = indLigne - 1, indColonneVisitee = indColonne - 1;
+                    indColonneVisitee >= 0 && indLigneVisitee >= 0 
+                    && jeu.GrilleJeu[indLigneVisitee, indColonneVisitee] == valeurPionIA;
+                    indLigneVisitee--, indColonneVisitee--)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionsIaAlignes++;
                 }
             }
 
             // Comptage du nombre de pion du même joueur alignés diagonalement en haut a droite
-            if (colonne != nbreColonnes - 1 && stockLigne != jeu.LimiteLigne - 1)
+            if (indColonne != nbreColonnes - 1 && indLigne != jeu.LimiteLigne - 1)
             {
-                for (ligne = stockLigne + 1, stockColonne = colonne + 1; stockColonne < nbreColonnes && ligne < jeu.LimiteLigne && jeu.GrilleJeu[ligne, stockColonne] == 2; ligne++, stockColonne++)
+                for (indLigneVisitee = indLigne + 1, indColonneVisitee = indColonne + 1;
+                    indColonneVisitee < nbreColonnes && indLigneVisitee < jeu.LimiteLigne 
+                    && jeu.GrilleJeu[indLigneVisitee, indColonneVisitee] == valeurPionIA;
+                    indLigneVisitee++, indColonneVisitee++)
                 {
-                    cptr_pion_aligne++;
+                    cptrPionsIaAlignes++;
                 }
             }
-            return cptr_pion_aligne;
+
+            return cptrPionsIaAlignes;
         }
 
 
         /// <summary>
-        /// Détermine et retourne le nombre de pions maximum alignés si l’IA choisit de poser le pion aux coordonnées entrées en paramètre
+        /// Détermine et retourne le type de coup que l'IA va faire 
         /// </summary>
         /// <param name="jeu">Puissance 4 dans lequel on joue</param>
-        /// <param name="colonne">Colonne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
-        /// <param name="ligne">Ligne pour laquelle l'IA cherche à determiner le nombre de pions alignés</param>
-        /// <returns>Le nombre de pions alignés de l’IA dans la colonne dans laquelle l’IA va potentiellement jouer ou si le coup permettrait d'empêcher le joueur de gagner</returns>
-        public int determineAlignementsIA(Puissance4 jeu, int colonne, int ligne)
+        /// <param name="indColonne">Indice de la colonne pour laquelle l'IA cherche à determiner le type de coup</param>
+        /// <param name="indLigne">Indice de la ligne pour laquelle l'IA cherche à determiner le type de coup</param>
+        /// <returns>LA valeur significative pour identifier le type de coup</returns>
+        public int determineAlignementsIA(Puissance4 jeu, int indColonne, int indLigne)
         {
             int valeur = 0;
 
-            int maxAlignementIA = Math.Max(alignementsIAHorizontal(jeu, colonne, ligne), 
-                Math.Max(alignementsIAVertical(jeu, colonne, ligne), 
-                Math.Max(alignementsIADiagonalCroissant(jeu, colonne, ligne), 
-                alignementsIADiagonalDecroissant(jeu, colonne, ligne))));
+            //calcule l'alignement maximal que l'IA peut faire
+            int maxAlignementIA = Math.Max(alignementsIAHorizontal(jeu, indColonne, indLigne), 
+                Math.Max(alignementsIAVertical(jeu, indColonne, indLigne), 
+                Math.Max(alignementsIADiagonalCroissant(jeu, indColonne, indLigne), 
+                alignementsIADiagonalDecroissant(jeu, indColonne, indLigne))));
 
+            //si l'IA peut gagner avec ce coup, on affecte à "valeur" 4
             if (maxAlignementIA >= 4)
                 valeur = 4;
+            //sinon
             else
             {
-                jeu.GrilleJeu[ligne, colonne] = 1;
-                jeu.AlignementHorizontal(colonne);
-                jeu.AlignementVertical(colonne);
-                jeu.AlignementDiagonalCroissant(colonne);
-                jeu.AlignementDiagonalDecroissant(colonne);
+                //simule le joueur qui pose son pion ici et si c'est un coup gagnant, on affecte à "valeur" -1
+                //sinon on le met à la valeur de l'alignement maximal
+                jeu.GrilleJeu[indLigne, indColonne] = 1;
+                jeu.AlignementHorizontal(indColonne);
+                jeu.AlignementVertical(indColonne);
+                jeu.AlignementDiagonalCroissant(indColonne);
+                jeu.AlignementDiagonalDecroissant(indColonne);
+                jeu.GrilleJeu[indLigne, indColonne] = 0;
+
                 if (jeu.Gagnant == 1)
                 {
                     valeur = -1;
                     jeu.Gagnant = -1;
-                }             
+                }
                 else
+                {
                     valeur = maxAlignementIA;
-                jeu.GrilleJeu[ligne, colonne] = 0;
-
+                }
             }
+
             return valeur;
         }
 
@@ -250,59 +279,85 @@ namespace BibliothèquePuissance4
         /// <returns>La colonne dans laquelle l'IA va jouer</returns>
         public int CoupIA(Puissance4 jeu)
         {
-            int j;
+            Random aleatoire = new Random();
+            int indLigneCoupPossible;
             int colonneJoueeIA = 1;
-            int maxPoints = 0;
-            int alignementIA = -200;
+            int maxPoints = -200;
+            int alignementIA;
+            int contrerVictoireJoueur;
+            int choixCoupMemeScore;
 
-            for (int i = 0; i < nbreColonnes; i++)
+            for (int indColonneScore = 0; indColonneScore < nbreColonnes; indColonneScore++)
             {
-                for (j = jeu.LimiteLigne - 1; j >= 0 && jeu.GrilleJeu[j, i] != 0; j--) ;
-
-                if (jeu.GrilleJeu[0, i] != 0)
-                    tabPointsCoupIA[i] = -200;
+                //vérifie que la colonne n'est pas pleine mais si c'est le cas, met le score le plus bas
+                if (jeu.GrilleJeu[0, indColonneScore] != 0)
+                {
+                    tabPointsCoupIA[indColonneScore] = -200;
+                }
+                //sinon il regarde quel type de coup c'est
                 else
                 {
-                    alignementIA = determineAlignementsIA(jeu, i, j);
+                    //détermine la première ligne de la colonne de libre pour poser son pion 
+                    for (indLigneCoupPossible = jeu.LimiteLigne - 1;
+                    indLigneCoupPossible >= 0 && jeu.GrilleJeu[indLigneCoupPossible, indColonneScore] != 0;
+                    indLigneCoupPossible--) ;
+
+                    alignementIA = determineAlignementsIA(jeu, indColonneScore, indLigneCoupPossible);
+
+                    //en fonction de la valeur retournée par la fonction "determineAlignementsIA",
+                    //on définit le score
                     switch (alignementIA)
                     {
                         case 4:
-                            tabPointsCoupIA[i] = 200;
+                            tabPointsCoupIA[indColonneScore] = 200;
                             break;
+
                         case -1:
-                            Random aleatoire = new Random();
-                            int contrer = aleatoire.Next(1, 6);
-                            if (contrer != 1)
-                                tabPointsCoupIA[i] = 150;
+                            //L'IA va laisser le joueur jouer le coup gagnant 1 fois sur 5
+                            contrerVictoireJoueur = aleatoire.Next(1, 6);
+
+                            if (contrerVictoireJoueur != 1)
+                                tabPointsCoupIA[indColonneScore] = 150;
                             else
-                                tabPointsCoupIA[i] = 0;
+                                tabPointsCoupIA[indColonneScore] = 0;
+
                             break;
+
                         case 3:
-                            tabPointsCoupIA[i] = 100;
+                            tabPointsCoupIA[indColonneScore] = 100;
                             break;
+
                         case 2:
-                            tabPointsCoupIA[i] = 50;
+                            tabPointsCoupIA[indColonneScore] = 50;
                             break;
+
                         default:
-                            tabPointsCoupIA[i] = 0;
-                            break;
+                            tabPointsCoupIA[indColonneScore] = 0;
+                            break;  
                     }
                 }
-                if (maxPoints < tabPointsCoupIA[i])
+
+                //Va prendre le score le plus élevé qu'il rencontre et changer l'indice
+                //de la colonne dans laquelle l'IA va jouer en accord
+                if (maxPoints < tabPointsCoupIA[indColonneScore])
                 {
-                    maxPoints = tabPointsCoupIA[i];
-                    colonneJoueeIA = i + 1;
+                    maxPoints = tabPointsCoupIA[indColonneScore];
+                    colonneJoueeIA = indColonneScore + 1;
                 }
-                else if (maxPoints == tabPointsCoupIA[i])
+                //Mais si le score retenu et celui affecté pour cette case sont égales,
+                //il tire au sort pour savoir laquelle des deux jouer
+                else if (maxPoints == tabPointsCoupIA[indColonneScore])
                 {
-                    Random aleatoire = new Random();
-                    int coup = aleatoire.Next(1, 3);
-                    if (coup == 2)
+                    choixCoupMemeScore = aleatoire.Next(1, 3);
+
+                    if (choixCoupMemeScore == 2)
                     {
-                        colonneJoueeIA = i + 1;
+                        colonneJoueeIA = indColonneScore + 1;
                     }
                 }
+
             }
+
             return colonneJoueeIA;
         }
  

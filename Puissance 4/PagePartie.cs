@@ -271,14 +271,14 @@ namespace Puissance_4
         {
             if (Partie.Gagnant == 1)
             {
-                Resultat pageResultat = new Resultat(Partie.J1G, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                Resultat pageResultat = new Resultat(Partie.J1, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
                 pageResultat.Show();
                 this.Enabled = false; //Freeze le jeu
 
             }
             else if (Partie.Gagnant == 2)
             {
-                Resultat pageResultat = new Resultat(Partie.J2G, this); //On ouvre une nouvelle page et on lui donne le joueur gagnant
+                Resultat pageResultat = new Resultat(Partie.J2, this); //On ouvre une nouvelle page et on lui donne le joueur gagnant
                 pageResultat.Show();
                 this.Enabled = false;
             }
@@ -319,7 +319,7 @@ namespace Puissance_4
                 //L'IA joue son coup
                 if (Partie.ChoixMode == false && Partie.Gagnant != 1)
                 {
-                    colonneJoueeIA = Partie.J2G.CoupIA(Partie);
+                    colonneJoueeIA = Partie.J2.CoupIA(Partie);
                     Partie.Jeu(colonneJoueeIA);
                     MajGrille();
                     AffichageGagnant();
