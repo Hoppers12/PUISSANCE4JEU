@@ -4,7 +4,7 @@ using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
-    public partial class Accueil : Form
+    public partial class frmAccueil : Form
     {
         /// <summary>
         /// Label aperçu au survol du "?" à côté de JVJ
@@ -20,7 +20,7 @@ namespace Puissance_4
         /// Constructeur de la page d'accueil appellé lors de l'ouverture de la page
         /// Il initialise les composants
         /// </summary>
-        public Accueil()
+        public frmAccueil()
         {
             int hauteurForm;
             int largeurForm;
@@ -44,25 +44,23 @@ namespace Puissance_4
         /// </summary>
         /// <param name="sender">L'élement avec lequel il y a l'intéraction</param>
         /// <param name="e">L'évenement click en tant que tel</param>
-        private void boutonJvjClick(object sender, EventArgs e)
+        private void btnModeJeu_Click(object sender, EventArgs e)
         {
             Button BoutonClique = (Button)sender;
             //Si le bouton cliqué est celui de JVJ alors on ouvre pageParamJvj sinon pageParamJvia
 
             if (BoutonClique.Name == "boutonJvj")
             {
-                page_param_JVJ page2 = new page_param_JVJ();
+                frmParamJVJ page2 = new frmParamJVJ();
                 page2.Show(this);
                 this.Hide();
             }
             else
             {
-                page_param_JVIA page3 = new page_param_JVIA();
+                frmParamJVIA page3 = new frmParamJVIA();
                 page3.Show();
                 this.Hide();
             }
-
-
         }
 
         /// <summary>
@@ -81,7 +79,7 @@ namespace Puissance_4
 
                 //Ajustement de l'emplacement du label
                 lblInfoJvJ.TextAlign = ContentAlignment.MiddleCenter;
-                lblInfoJvJ.Location = new Point(infoJVJ.Location.X, infoJVJ.Location.Y + infoJVJ.Height);
+                lblInfoJvJ.Location = new Point(picInfoJVJ.Location.X, picInfoJVJ.Location.Y + picInfoJVJ.Height);
                 lblInfoJvJ.Size = new Size(Width - lblInfoJvJ.Location.X - 30, 50);
                 lblInfoJvJ.Text = "Partie contre une personne en local";
             }
@@ -91,8 +89,8 @@ namespace Puissance_4
 
                 //Ajustement de l'emplacement du label
                 lblInfoJvIA.TextAlign = ContentAlignment.MiddleCenter;
-                lblInfoJvIA.Location = new Point(infoJVIA.Location.X, infoJVIA.Location.Y + infoJVIA.Height);
-                lblInfoJvIA.Size = new Size(Width - infoJVIA.Location.X - 30, 50);
+                lblInfoJvIA.Location = new Point(picInfoJVIA.Location.X, picInfoJVIA.Location.Y + picInfoJVIA.Height);
+                lblInfoJvIA.Size = new Size(Width - picInfoJVIA.Location.X - 30, 50);
                 lblInfoJvIA.Text = "Partie contre une intelligence artificielle";
             }
 

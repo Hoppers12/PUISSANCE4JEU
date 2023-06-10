@@ -341,6 +341,7 @@
                     nbColonnesComplete++;
                 }
             }
+
             if (nbColonnesComplete == limiteColonne && gagnant == -1)
             { // Si c'est le cas et qu'il n'y a pas encore de gagnant, définit un match nul
                 gagnant = 0;
@@ -376,6 +377,7 @@
             {
                 ligne++;  // On remplie une case si l'une d'elle est disponible ET si celle d'aprés est déjà comblée
             }
+
             if (joueurSuivant == true)
             {
                 grilleJeu[ligne, indColonneJoue] = 1; //Remplissage de la case pour joueur 1 

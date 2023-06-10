@@ -3,7 +3,7 @@ using System;
 namespace Puissance_4
 {
 
-    partial class PagePartie
+    partial class frmPagePartie
     {
 
         /// <summary>
@@ -32,22 +32,22 @@ namespace Puissance_4
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagePartie));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPagePartie));
             lblTypePartie = new Label();
-            LabelTailleGrille = new Label();
+            lblTailleGrille = new Label();
             grpRegles = new GroupBox();
-            richTextBox1 = new RichTextBox();
+            rtxReglesJeu = new RichTextBox();
             label2 = new Label();
-            JActif = new Label();
-            groupBoxJoueurActif = new GroupBox();
-            groupBox2 = new GroupBox();
+            lblJActif = new Label();
+            grpJoueurActif = new GroupBox();
+            grpJoueurs = new GroupBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            J2 = new Label();
-            J1 = new Label();
+            lblPseudoJ2 = new Label();
+            lblPseudoJ1 = new Label();
             grpRegles.SuspendLayout();
-            groupBoxJoueurActif.SuspendLayout();
-            groupBox2.SuspendLayout();
+            grpJoueurActif.SuspendLayout();
+            grpJoueurs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -62,20 +62,20 @@ namespace Puissance_4
             lblTypePartie.TabIndex = 0;
             lblTypePartie.Text = "(Partie)";
             // 
-            // LabelTailleGrille
+            // lblTailleGrille
             // 
-            LabelTailleGrille.AutoSize = true;
-            LabelTailleGrille.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            LabelTailleGrille.Location = new Point(725, 30);
-            LabelTailleGrille.Name = "LabelTailleGrille";
-            LabelTailleGrille.Size = new Size(66, 28);
-            LabelTailleGrille.TabIndex = 9;
-            LabelTailleGrille.Text = "label2";
+            lblTailleGrille.AutoSize = true;
+            lblTailleGrille.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTailleGrille.Location = new Point(725, 30);
+            lblTailleGrille.Name = "lblTailleGrille";
+            lblTailleGrille.Size = new Size(170, 28);
+            lblTailleGrille.TabIndex = 9;
+            lblTailleGrille.Text = "(taille de la grille)";
             // 
             // grpRegles
             // 
             grpRegles.BackColor = Color.Gold;
-            grpRegles.Controls.Add(richTextBox1);
+            grpRegles.Controls.Add(rtxReglesJeu);
             grpRegles.Controls.Add(label2);
             grpRegles.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
             grpRegles.Location = new Point(35, 106);
@@ -87,18 +87,18 @@ namespace Puissance_4
             grpRegles.TabStop = false;
             grpRegles.Text = "Règles du jeu";
             // 
-            // richTextBox1
+            // rtxReglesJeu
             // 
-            richTextBox1.BackColor = Color.Gold;
-            richTextBox1.BorderStyle = BorderStyle.None;
-            richTextBox1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBox1.Location = new Point(31, 40);
-            richTextBox1.Margin = new Padding(3, 2, 3, 2);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(187, 221);
-            richTextBox1.TabIndex = 1;
-            richTextBox1.Text = "Placez un pion lorsque votre pseudo est colorée. Le premier joueur a aligner 4 pions de sa couleur gagne la partie !";
+            rtxReglesJeu.BackColor = Color.Gold;
+            rtxReglesJeu.BorderStyle = BorderStyle.None;
+            rtxReglesJeu.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            rtxReglesJeu.Location = new Point(31, 40);
+            rtxReglesJeu.Margin = new Padding(3, 2, 3, 2);
+            rtxReglesJeu.Name = "rtxReglesJeu";
+            rtxReglesJeu.ReadOnly = true;
+            rtxReglesJeu.Size = new Size(187, 221);
+            rtxReglesJeu.TabIndex = 1;
+            rtxReglesJeu.Text = "Placez un pion lorsque votre pseudo est colorée. Le premier joueur a aligner 4 pions de sa couleur gagne la partie !";
             // 
             // label2
             // 
@@ -108,42 +108,42 @@ namespace Puissance_4
             label2.Size = new Size(0, 28);
             label2.TabIndex = 0;
             // 
-            // JActif
+            // lblJActif
             // 
-            JActif.AutoSize = true;
-            JActif.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            JActif.Location = new Point(33, 35);
-            JActif.Name = "JActif";
-            JActif.Size = new Size(52, 21);
-            JActif.TabIndex = 11;
-            JActif.Text = "label3";
+            lblJActif.AutoSize = true;
+            lblJActif.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblJActif.Location = new Point(33, 35);
+            lblJActif.Name = "lblJActif";
+            lblJActif.Size = new Size(102, 21);
+            lblJActif.TabIndex = 11;
+            lblJActif.Text = "(Joueur Actif)";
             // 
-            // groupBoxJoueurActif
+            // grpJoueurActif
             // 
-            groupBoxJoueurActif.Controls.Add(JActif);
-            groupBoxJoueurActif.Location = new Point(1242, 383);
-            groupBoxJoueurActif.Margin = new Padding(3, 2, 3, 2);
-            groupBoxJoueurActif.Name = "groupBoxJoueurActif";
-            groupBoxJoueurActif.Padding = new Padding(3, 2, 3, 2);
-            groupBoxJoueurActif.Size = new Size(131, 82);
-            groupBoxJoueurActif.TabIndex = 13;
-            groupBoxJoueurActif.TabStop = false;
-            groupBoxJoueurActif.Text = "Au tour de :";
+            grpJoueurActif.Controls.Add(lblJActif);
+            grpJoueurActif.Location = new Point(1242, 383);
+            grpJoueurActif.Margin = new Padding(3, 2, 3, 2);
+            grpJoueurActif.Name = "grpJoueurActif";
+            grpJoueurActif.Padding = new Padding(3, 2, 3, 2);
+            grpJoueurActif.Size = new Size(131, 82);
+            grpJoueurActif.TabIndex = 13;
+            grpJoueurActif.TabStop = false;
+            grpJoueurActif.Text = "Au tour de :";
             // 
-            // groupBox2
+            // grpJoueurs
             // 
-            groupBox2.Controls.Add(pictureBox2);
-            groupBox2.Controls.Add(pictureBox1);
-            groupBox2.Controls.Add(J2);
-            groupBox2.Controls.Add(J1);
-            groupBox2.Location = new Point(52, 372);
-            groupBox2.Margin = new Padding(3, 2, 3, 2);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 2, 3, 2);
-            groupBox2.Size = new Size(219, 94);
-            groupBox2.TabIndex = 14;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Joueurs";
+            grpJoueurs.Controls.Add(pictureBox2);
+            grpJoueurs.Controls.Add(pictureBox1);
+            grpJoueurs.Controls.Add(lblPseudoJ2);
+            grpJoueurs.Controls.Add(lblPseudoJ1);
+            grpJoueurs.Location = new Point(52, 372);
+            grpJoueurs.Margin = new Padding(3, 2, 3, 2);
+            grpJoueurs.Name = "grpJoueurs";
+            grpJoueurs.Padding = new Padding(3, 2, 3, 2);
+            grpJoueurs.Size = new Size(219, 94);
+            grpJoueurs.TabIndex = 14;
+            grpJoueurs.TabStop = false;
+            grpJoueurs.Text = "Joueurs";
             // 
             // pictureBox2
             // 
@@ -167,25 +167,25 @@ namespace Puissance_4
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // J2
+            // lblPseudoJ2
             // 
-            J2.AutoSize = true;
-            J2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            J2.Location = new Point(116, 56);
-            J2.Name = "J2";
-            J2.Size = new Size(59, 25);
-            J2.TabIndex = 1;
-            J2.Text = "label4";
+            lblPseudoJ2.AutoSize = true;
+            lblPseudoJ2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPseudoJ2.Location = new Point(116, 56);
+            lblPseudoJ2.Name = "lblPseudoJ2";
+            lblPseudoJ2.Size = new Size(103, 25);
+            lblPseudoJ2.TabIndex = 1;
+            lblPseudoJ2.Text = "(pseudo J2)";
             // 
-            // J1
+            // lblPseudoJ1
             // 
-            J1.AutoSize = true;
-            J1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            J1.Location = new Point(116, 20);
-            J1.Name = "J1";
-            J1.Size = new Size(59, 25);
-            J1.TabIndex = 0;
-            J1.Text = "label3";
+            lblPseudoJ1.AutoSize = true;
+            lblPseudoJ1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPseudoJ1.Location = new Point(116, 20);
+            lblPseudoJ1.Name = "lblPseudoJ1";
+            lblPseudoJ1.Size = new Size(103, 25);
+            lblPseudoJ1.TabIndex = 0;
+            lblPseudoJ1.Text = "(pseudo J1)";
             // 
             // PagePartie
             // 
@@ -193,11 +193,11 @@ namespace Puissance_4
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(1347, 565);
-            Controls.Add(groupBox2);
+            Controls.Add(grpJoueurs);
             Controls.Add(grpRegles);
-            Controls.Add(LabelTailleGrille);
+            Controls.Add(lblTailleGrille);
             Controls.Add(lblTypePartie);
-            Controls.Add(groupBoxJoueurActif);
+            Controls.Add(grpJoueurActif);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
@@ -207,10 +207,10 @@ namespace Puissance_4
             Load += Partie_JVJ_Load;
             grpRegles.ResumeLayout(false);
             grpRegles.PerformLayout();
-            groupBoxJoueurActif.ResumeLayout(false);
-            groupBoxJoueurActif.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            grpJoueurActif.ResumeLayout(false);
+            grpJoueurActif.PerformLayout();
+            grpJoueurs.ResumeLayout(false);
+            grpJoueurs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -220,15 +220,15 @@ namespace Puissance_4
         #endregion
 
         private Label lblTypePartie;
-        private Label LabelTailleGrille;
+        private Label lblTailleGrille;
         private GroupBox grpRegles;
         private Label label2;
-        private RichTextBox richTextBox1;
-        private Label JActif;
-        private GroupBox groupBoxJoueurActif;
-        private GroupBox groupBox2;
-        private Label J1;
-        private Label J2;
+        private RichTextBox rtxReglesJeu;
+        private Label lblJActif;
+        private GroupBox grpJoueurActif;
+        private GroupBox grpJoueurs;
+        private Label lblPseudoJ1;
+        private Label lblPseudoJ2;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
     }

@@ -12,7 +12,7 @@ using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
-    public partial class page_param_JVIA : Form
+    public partial class frmParamJVIA : Form
     {
 
         /// <summary>
@@ -31,10 +31,10 @@ namespace Puissance_4
         /// <summary>
         /// constructeur de la page, il initialise les éléments
         /// </summary>
-        public page_param_JVIA()
+        public frmParamJVIA()
         {
             InitializeComponent();
-            pseudoJ = pseudoJ1.Text;
+            pseudoJ = lblPseudoJ1.Text;
             int hauteurForm;
             int largeurForm;
 
@@ -50,23 +50,23 @@ namespace Puissance_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void boutonJouer_Click(object sender, EventArgs e)
+        private void btnJouer_Click(object sender, EventArgs e)
         {
             // On enregistre le numero de la grille choisie en fonction du radiobutton qui a été coché
-            if (radioButton1.Checked == true)
+            if (rdoGrilleClassique.Checked == true)
             {
 
                 choixGrilleRadioButton = 1;
             }
             else
             {
-                if (radioButton2.Checked == true)
+                if (rdoGrilleMini.Checked == true)
                 {
                     choixGrilleRadioButton = 2;
                 }
                 else
                 {
-                    if (radioButton3.Checked == true)
+                    if (rdoGrilleAleatoire.Checked == true)
                     {
                         choixGrilleRadioButton = 0;
                     }
@@ -75,8 +75,8 @@ namespace Puissance_4
 
 
             }
-            pseudoJ = pseudoJ1.Text;
-            PagePartie page_partieJVIA = new PagePartie(this, false);
+            pseudoJ = lblPseudoJ1.Text;
+            frmPagePartie page_partieJVIA = new frmPagePartie(this, false);
             page_partieJVIA.Show();
             this.Close();
         }
@@ -88,9 +88,9 @@ namespace Puissance_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_accueil_Click(object sender, EventArgs e)
+        private void btnAccueil_Click(object sender, EventArgs e)
         {
-            Accueil retour_accueil = new Accueil();
+            frmAccueil retour_accueil = new frmAccueil();
             retour_accueil.Show();
             this.Hide();
         }
@@ -121,13 +121,13 @@ namespace Puissance_4
         private void textBoxPseudo_TextChanged(object sender, EventArgs e)
         {
             // Si la zone de texte est vide alors on désactive les boutons
-            if (pseudoJ1.Text == "")
+            if (lblPseudoJ1.Text == "")
             {
-                boutonJouer.Enabled = false;
+                btnJouer.Enabled = false;
             }
             else
             {
-                boutonJouer.Enabled = true;
+                btnJouer.Enabled = true;
             }
         }
 

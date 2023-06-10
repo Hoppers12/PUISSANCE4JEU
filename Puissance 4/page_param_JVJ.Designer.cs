@@ -1,6 +1,6 @@
 ﻿namespace Puissance_4
 {
-    partial class page_param_JVJ
+    partial class frmParamJVJ
     {
         /// <summary>
         /// Required designer variable.
@@ -28,223 +28,223 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            groupBox1 = new GroupBox();
-            textBoxPseudoJ2 = new TextBox();
-            textBoxPseudoJ1 = new TextBox();
-            label3 = new Label();
-            label2 = new Label();
-            groupBox2 = new GroupBox();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
-            boutonJouer = new Button();
-            button_accueil = new Button();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
+            lblTitre = new Label();
+            grpChoixPseudo = new GroupBox();
+            txtPseudoJ2 = new TextBox();
+            txtPseudoJ1 = new TextBox();
+            lblJ2 = new Label();
+            lblJ1 = new Label();
+            grpChoixGrille = new GroupBox();
+            rdoGrilleAleatoire = new RadioButton();
+            rdoGrilleMini = new RadioButton();
+            rdoGrilleClassique = new RadioButton();
+            btnJouer = new Button();
+            btnAccueil = new Button();
+            grpChoixPseudo.SuspendLayout();
+            grpChoixGrille.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // lblTitre
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 49.8000031F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(49, 64);
-            label1.Name = "label1";
-            label1.Size = new Size(724, 76);
-            label1.TabIndex = 0;
-            label1.Text = "JOUEUR VS JOUEUR";
+            lblTitre.AutoSize = true;
+            lblTitre.Font = new Font("Microsoft Sans Serif", 49.8000031F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitre.ForeColor = Color.MidnightBlue;
+            lblTitre.Location = new Point(49, 64);
+            lblTitre.Name = "lblTitre";
+            lblTitre.Size = new Size(724, 76);
+            lblTitre.TabIndex = 0;
+            lblTitre.Text = "JOUEUR VS JOUEUR";
             // 
-            // groupBox1
+            // grpChoixPseudo
             // 
-            groupBox1.Controls.Add(textBoxPseudoJ2);
-            groupBox1.Controls.Add(textBoxPseudoJ1);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.ForeColor = Color.Red;
-            groupBox1.Location = new Point(28, 193);
-            groupBox1.Margin = new Padding(3, 2, 3, 2);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 2, 3, 2);
-            groupBox1.Size = new Size(372, 191);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Choix Pseudos";
+            grpChoixPseudo.Controls.Add(txtPseudoJ2);
+            grpChoixPseudo.Controls.Add(txtPseudoJ1);
+            grpChoixPseudo.Controls.Add(lblJ2);
+            grpChoixPseudo.Controls.Add(lblJ1);
+            grpChoixPseudo.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            grpChoixPseudo.ForeColor = Color.Red;
+            grpChoixPseudo.Location = new Point(28, 193);
+            grpChoixPseudo.Margin = new Padding(3, 2, 3, 2);
+            grpChoixPseudo.Name = "grpChoixPseudo";
+            grpChoixPseudo.Padding = new Padding(3, 2, 3, 2);
+            grpChoixPseudo.Size = new Size(372, 191);
+            grpChoixPseudo.TabIndex = 1;
+            grpChoixPseudo.TabStop = false;
+            grpChoixPseudo.Text = "Choix Pseudos";
             // 
-            // textBoxPseudoJ2
+            // txtPseudoJ2
             // 
-            textBoxPseudoJ2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxPseudoJ2.Location = new Point(164, 118);
-            textBoxPseudoJ2.Margin = new Padding(3, 2, 3, 2);
-            textBoxPseudoJ2.MaxLength = 10;
-            textBoxPseudoJ2.Name = "textBoxPseudoJ2";
-            textBoxPseudoJ2.Size = new Size(110, 23);
-            textBoxPseudoJ2.TabIndex = 3;
-            textBoxPseudoJ2.Text = "Luffy";
-            textBoxPseudoJ2.TextAlign = HorizontalAlignment.Center;
-            textBoxPseudoJ2.TextChanged += textBoxPseudo_TextChanged;
-            textBoxPseudoJ2.KeyPress += textBoxPseudo_KeyPress;
+            txtPseudoJ2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            txtPseudoJ2.Location = new Point(164, 118);
+            txtPseudoJ2.Margin = new Padding(3, 2, 3, 2);
+            txtPseudoJ2.MaxLength = 10;
+            txtPseudoJ2.Name = "txtPseudoJ2";
+            txtPseudoJ2.Size = new Size(110, 23);
+            txtPseudoJ2.TabIndex = 3;
+            txtPseudoJ2.Text = "Luffy";
+            txtPseudoJ2.TextAlign = HorizontalAlignment.Center;
+            txtPseudoJ2.TextChanged += textBoxPseudo_TextChanged;
+            txtPseudoJ2.KeyPress += textBoxPseudo_KeyPress;
             // 
-            // textBoxPseudoJ1
+            // txtPseudoJ1
             // 
-            textBoxPseudoJ1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxPseudoJ1.Location = new Point(164, 51);
-            textBoxPseudoJ1.Margin = new Padding(3, 2, 3, 2);
-            textBoxPseudoJ1.MaxLength = 10;
-            textBoxPseudoJ1.Name = "textBoxPseudoJ1";
-            textBoxPseudoJ1.Size = new Size(110, 23);
-            textBoxPseudoJ1.TabIndex = 2;
-            textBoxPseudoJ1.Text = "Naruto";
-            textBoxPseudoJ1.TextAlign = HorizontalAlignment.Center;
-            textBoxPseudoJ1.TextChanged += textBoxPseudo_TextChanged;
-            textBoxPseudoJ1.KeyPress += textBoxPseudo_KeyPress;
+            txtPseudoJ1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            txtPseudoJ1.Location = new Point(164, 51);
+            txtPseudoJ1.Margin = new Padding(3, 2, 3, 2);
+            txtPseudoJ1.MaxLength = 10;
+            txtPseudoJ1.Name = "txtPseudoJ1";
+            txtPseudoJ1.Size = new Size(110, 23);
+            txtPseudoJ1.TabIndex = 2;
+            txtPseudoJ1.Text = "Naruto";
+            txtPseudoJ1.TextAlign = HorizontalAlignment.Center;
+            txtPseudoJ1.TextChanged += textBoxPseudo_TextChanged;
+            txtPseudoJ1.KeyPress += textBoxPseudo_KeyPress;
             // 
-            // label3
+            // lblJ2
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.DarkOrange;
-            label3.Location = new Point(36, 114);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 25);
-            label3.TabIndex = 1;
-            label3.Text = "Joueur 2 :";
+            lblJ2.AutoSize = true;
+            lblJ2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblJ2.ForeColor = Color.DarkOrange;
+            lblJ2.Location = new Point(36, 114);
+            lblJ2.Name = "lblJ2";
+            lblJ2.Size = new Size(100, 25);
+            lblJ2.TabIndex = 1;
+            lblJ2.Text = "Joueur 2 :";
             // 
-            // label2
+            // lblJ1
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.DarkOrange;
-            label2.Location = new Point(36, 48);
-            label2.Name = "label2";
-            label2.Size = new Size(100, 25);
-            label2.TabIndex = 0;
-            label2.Text = "Joueur 1 :";
+            lblJ1.AutoSize = true;
+            lblJ1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblJ1.ForeColor = Color.DarkOrange;
+            lblJ1.Location = new Point(36, 48);
+            lblJ1.Name = "lblJ1";
+            lblJ1.Size = new Size(100, 25);
+            lblJ1.TabIndex = 0;
+            lblJ1.Text = "Joueur 1 :";
             // 
-            // groupBox2
+            // grpChoixGrille
             // 
-            groupBox2.Controls.Add(radioButton3);
-            groupBox2.Controls.Add(radioButton2);
-            groupBox2.Controls.Add(radioButton1);
-            groupBox2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox2.ForeColor = Color.Red;
-            groupBox2.Location = new Point(456, 193);
-            groupBox2.Margin = new Padding(3, 2, 3, 2);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 2, 3, 2);
-            groupBox2.Size = new Size(372, 191);
-            groupBox2.TabIndex = 2;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Choix Grille";
+            grpChoixGrille.Controls.Add(rdoGrilleAleatoire);
+            grpChoixGrille.Controls.Add(rdoGrilleMini);
+            grpChoixGrille.Controls.Add(rdoGrilleClassique);
+            grpChoixGrille.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            grpChoixGrille.ForeColor = Color.Red;
+            grpChoixGrille.Location = new Point(456, 193);
+            grpChoixGrille.Margin = new Padding(3, 2, 3, 2);
+            grpChoixGrille.Name = "grpChoixGrille";
+            grpChoixGrille.Padding = new Padding(3, 2, 3, 2);
+            grpChoixGrille.Size = new Size(372, 191);
+            grpChoixGrille.TabIndex = 2;
+            grpChoixGrille.TabStop = false;
+            grpChoixGrille.Text = "Choix Grille";
             // 
-            // radioButton3
+            // rdoGrilleAleatoire
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton3.ForeColor = Color.DarkOrange;
-            radioButton3.Location = new Point(107, 139);
-            radioButton3.Margin = new Padding(3, 2, 3, 2);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(111, 28);
-            radioButton3.TabIndex = 2;
-            radioButton3.Text = "Aléatoire";
-            radioButton3.UseVisualStyleBackColor = true;
+            rdoGrilleAleatoire.AutoSize = true;
+            rdoGrilleAleatoire.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            rdoGrilleAleatoire.ForeColor = Color.DarkOrange;
+            rdoGrilleAleatoire.Location = new Point(107, 139);
+            rdoGrilleAleatoire.Margin = new Padding(3, 2, 3, 2);
+            rdoGrilleAleatoire.Name = "rdoGrilleAleatoire";
+            rdoGrilleAleatoire.Size = new Size(111, 28);
+            rdoGrilleAleatoire.TabIndex = 2;
+            rdoGrilleAleatoire.Text = "Aléatoire";
+            rdoGrilleAleatoire.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdoGrilleMini
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton2.ForeColor = Color.DarkOrange;
-            radioButton2.Location = new Point(107, 89);
-            radioButton2.Margin = new Padding(3, 2, 3, 2);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(132, 29);
-            radioButton2.TabIndex = 1;
-            radioButton2.Text = "5 x 6 (Mini)";
-            radioButton2.UseVisualStyleBackColor = true;
+            rdoGrilleMini.AutoSize = true;
+            rdoGrilleMini.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            rdoGrilleMini.ForeColor = Color.DarkOrange;
+            rdoGrilleMini.Location = new Point(107, 89);
+            rdoGrilleMini.Margin = new Padding(3, 2, 3, 2);
+            rdoGrilleMini.Name = "rdoGrilleMini";
+            rdoGrilleMini.Size = new Size(132, 29);
+            rdoGrilleMini.TabIndex = 1;
+            rdoGrilleMini.Text = "5 x 6 (Mini)";
+            rdoGrilleMini.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rdoGrilleClassique
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Checked = true;
-            radioButton1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton1.ForeColor = Color.DarkOrange;
-            radioButton1.Location = new Point(107, 41);
-            radioButton1.Margin = new Padding(3, 2, 3, 2);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(174, 29);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "6 x 7 (Classique)";
-            radioButton1.UseVisualStyleBackColor = true;
+            rdoGrilleClassique.AutoSize = true;
+            rdoGrilleClassique.Checked = true;
+            rdoGrilleClassique.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            rdoGrilleClassique.ForeColor = Color.DarkOrange;
+            rdoGrilleClassique.Location = new Point(107, 41);
+            rdoGrilleClassique.Margin = new Padding(3, 2, 3, 2);
+            rdoGrilleClassique.Name = "rdoGrilleClassique";
+            rdoGrilleClassique.Size = new Size(174, 29);
+            rdoGrilleClassique.TabIndex = 0;
+            rdoGrilleClassique.TabStop = true;
+            rdoGrilleClassique.Text = "6 x 7 (Classique)";
+            rdoGrilleClassique.UseVisualStyleBackColor = true;
             // 
-            // boutonJouer
+            // btnJouer
             // 
-            boutonJouer.BackColor = Color.RoyalBlue;
-            boutonJouer.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            boutonJouer.ForeColor = Color.Gold;
-            boutonJouer.Location = new Point(305, 444);
-            boutonJouer.Margin = new Padding(3, 2, 3, 2);
-            boutonJouer.Name = "boutonJouer";
-            boutonJouer.Size = new Size(243, 58);
-            boutonJouer.TabIndex = 10;
-            boutonJouer.Text = "JOUER";
-            boutonJouer.UseVisualStyleBackColor = false;
-            boutonJouer.Click += boutonJouer_Click;
+            btnJouer.BackColor = Color.RoyalBlue;
+            btnJouer.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            btnJouer.ForeColor = Color.Gold;
+            btnJouer.Location = new Point(305, 444);
+            btnJouer.Margin = new Padding(3, 2, 3, 2);
+            btnJouer.Name = "btnJouer";
+            btnJouer.Size = new Size(243, 58);
+            btnJouer.TabIndex = 10;
+            btnJouer.Text = "JOUER";
+            btnJouer.UseVisualStyleBackColor = false;
+            btnJouer.Click += btnJouer_Click;
             // 
-            // button_accueil
+            // btnAccueil
             // 
-            button_accueil.BackColor = Color.RoyalBlue;
-            button_accueil.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button_accueil.ForeColor = Color.Gold;
-            button_accueil.Location = new Point(10, 10);
-            button_accueil.Margin = new Padding(3, 2, 3, 2);
-            button_accueil.Name = "button_accueil";
-            button_accueil.Size = new Size(88, 26);
-            button_accueil.TabIndex = 11;
-            button_accueil.Text = "ACCUEIL";
-            button_accueil.UseVisualStyleBackColor = false;
-            button_accueil.Click += button_retour_accueil;
+            btnAccueil.BackColor = Color.RoyalBlue;
+            btnAccueil.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAccueil.ForeColor = Color.Gold;
+            btnAccueil.Location = new Point(10, 10);
+            btnAccueil.Margin = new Padding(3, 2, 3, 2);
+            btnAccueil.Name = "btnAccueil";
+            btnAccueil.Size = new Size(88, 26);
+            btnAccueil.TabIndex = 11;
+            btnAccueil.Text = "ACCUEIL";
+            btnAccueil.UseVisualStyleBackColor = false;
+            btnAccueil.Click += btnAccueil_Click;
             // 
-            // page_param_JVJ
+            // frmParamJVJ
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(859, 565);
-            Controls.Add(button_accueil);
-            Controls.Add(boutonJouer);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
-            Controls.Add(label1);
+            Controls.Add(btnAccueil);
+            Controls.Add(btnJouer);
+            Controls.Add(grpChoixGrille);
+            Controls.Add(grpChoixPseudo);
+            Controls.Add(lblTitre);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Location = new Point(100, 100);
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
-            Name = "page_param_JVJ";
+            Name = "frmParamJVJ";
             Text = "Paramétrage J vs J";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            grpChoixPseudo.ResumeLayout(false);
+            grpChoixPseudo.PerformLayout();
+            grpChoixGrille.ResumeLayout(false);
+            grpChoixGrille.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private GroupBox groupBox1;
-        private TextBox textBoxPseudoJ2;
-        private TextBox textBoxPseudoJ1;
-        private Label label3;
-        private Label label2;
-        private GroupBox groupBox2;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
-        private Button boutonJouer;
-        private Button button_accueil;
+        private Label lblTitre;
+        private GroupBox grpChoixPseudo;
+        private TextBox txtPseudoJ2;
+        private TextBox txtPseudoJ1;
+        private Label lblJ2;
+        private Label lblJ1;
+        private GroupBox grpChoixGrille;
+        private RadioButton rdoGrilleAleatoire;
+        private RadioButton rdoGrilleMini;
+        private RadioButton rdoGrilleClassique;
+        private Button btnJouer;
+        private Button btnAccueil;
     }
 }

@@ -15,7 +15,7 @@ using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
-    public partial class page_param_JVJ : Form
+    public partial class frmParamJVJ : Form
     {
         /// <summary>
         /// Attribut qui désigne la grille choisie par le joueur en fonction du radioButton coché
@@ -38,15 +38,15 @@ namespace Puissance_4
         /// <summary>
         /// Constructeur de la page paramètre JVJ il initialise les éléments
         /// </summary>
-        public page_param_JVJ()
+        public frmParamJVJ()
         {
             int hauteurForm;
             int largeurForm;
 
             InitializeComponent();
 
-            pseudoJ1 = textBoxPseudoJ1.Text;
-            pseudoJ2 = textBoxPseudoJ2.Text;
+            pseudoJ1 = txtPseudoJ1.Text;
+            pseudoJ2 = txtPseudoJ2.Text;
 
             //définit la taille de l'interface par rapport à la place que ses composants vont prendre 
             hauteurForm = this.ClientSize.Height + 20;
@@ -61,24 +61,24 @@ namespace Puissance_4
         /// les valeurs qui ont été saisies/choisies par le joueur 
         /// et ouvre la page de partie en lui passant l'objet courant
         /// </summary>
-        private void boutonJouer_Click(object sender, EventArgs e)
+        private void btnJouer_Click(object sender, EventArgs e)
         {
             // On enregistre le numero de la grille choisie en fonction du radiobutton qui a été coché
 
-            if (radioButton1.Checked == true)
+            if (rdoGrilleClassique.Checked == true)
             {
 
                 choixGrilleRadioButton = 1; // grille 1
             }
             else
             {
-                if (radioButton2.Checked == true)
+                if (rdoGrilleMini.Checked == true)
                 {
                     choixGrilleRadioButton = 2; // grille 2
                 }
                 else
                 {
-                    if (radioButton3.Checked == true)
+                    if (rdoGrilleAleatoire.Checked == true)
                     {
                         choixGrilleRadioButton = 0; // grille 1 ou 2 (aléatoire)
                     }
@@ -86,12 +86,11 @@ namespace Puissance_4
 
 
             }
-            pseudoJ1 = textBoxPseudoJ1.Text;
-            pseudoJ2 = textBoxPseudoJ2.Text;
-            PagePartie page_partie_JVJ = new PagePartie(this, true); // On passe this en paramétre pour que la partie puisse connaitre ce qui a été coché ici
+            pseudoJ1 = txtPseudoJ1.Text;
+            pseudoJ2 = txtPseudoJ2.Text;
+            frmPagePartie page_partie_JVJ = new frmPagePartie(this, true); // On passe this en paramétre pour que la partie puisse connaitre ce qui a été coché ici
             page_partie_JVJ.Show();
             this.Close();
-
         }
 
 
@@ -101,9 +100,9 @@ namespace Puissance_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_retour_accueil(object sender, EventArgs e)
+        private void btnAccueil_Click(object sender, EventArgs e)
         {
-            Accueil pageAccueil = new Accueil();
+            frmAccueil pageAccueil = new frmAccueil();
             pageAccueil.Show(this);
             this.Hide();
         }
@@ -134,17 +133,17 @@ namespace Puissance_4
         private void textBoxPseudo_TextChanged(object sender, EventArgs e)
         {
             // Si la zone de texte est vide alors on désactive les boutons
-            if (textBoxPseudoJ1.Text == "" || textBoxPseudoJ2.Text == "")
+            if (txtPseudoJ1.Text == "" || txtPseudoJ2.Text == "")
             {
-                boutonJouer.Enabled = false;
+                btnJouer.Enabled = false;
             }
             else
             {
-                boutonJouer.Enabled = true;
+                btnJouer.Enabled = true;
             }
         }
 
-
+        
     }
 
 

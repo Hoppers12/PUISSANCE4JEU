@@ -1,6 +1,6 @@
 ﻿namespace Puissance_4
 {
-    partial class Accueil
+    partial class frmAccueil
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,177 +28,177 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
-            boutonJvj = new Button();
-            boutonJvia = new Button();
-            label2 = new Label();
-            infoJVJ = new PictureBox();
-            infoJVIA = new PictureBox();
-            pictureBox1 = new PictureBox();
-            label1 = new Label();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)infoJVJ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)infoJVIA).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAccueil));
+            btnJvj = new Button();
+            btnJvia = new Button();
+            lblTitre = new Label();
+            picInfoJVJ = new PictureBox();
+            picInfoJVIA = new PictureBox();
+            picGrilleDeco = new PictureBox();
+            lblPuissance4 = new Label();
+            picDeco1 = new PictureBox();
+            picDeco2 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picInfoJVJ).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picInfoJVIA).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picGrilleDeco).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picDeco1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picDeco2).BeginInit();
             SuspendLayout();
             // 
-            // boutonJvj
+            // btnJvj
             // 
-            boutonJvj.AccessibleRole = AccessibleRole.None;
-            boutonJvj.BackColor = Color.RoyalBlue;
-            boutonJvj.Font = new Font("Segoe UI Black", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            boutonJvj.ForeColor = Color.Yellow;
-            boutonJvj.Location = new Point(344, 313);
-            boutonJvj.Margin = new Padding(3, 2, 3, 2);
-            boutonJvj.Name = "boutonJvj";
-            boutonJvj.Size = new Size(243, 58);
-            boutonJvj.TabIndex = 1;
-            boutonJvj.Text = " Joueur VS Joueur ";
-            boutonJvj.UseVisualStyleBackColor = false;
-            boutonJvj.Click += boutonJvjClick;
-            boutonJvj.MouseEnter += bouton_Enter;
-            boutonJvj.MouseLeave += bouton_Leave;
+            btnJvj.AccessibleRole = AccessibleRole.None;
+            btnJvj.BackColor = Color.RoyalBlue;
+            btnJvj.Font = new Font("Segoe UI Black", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            btnJvj.ForeColor = Color.Yellow;
+            btnJvj.Location = new Point(344, 313);
+            btnJvj.Margin = new Padding(3, 2, 3, 2);
+            btnJvj.Name = "btnJvj";
+            btnJvj.Size = new Size(243, 58);
+            btnJvj.TabIndex = 1;
+            btnJvj.Text = " Joueur VS Joueur ";
+            btnJvj.UseVisualStyleBackColor = false;
+            btnJvj.Click += btnModeJeu_Click;
+            btnJvj.MouseEnter += bouton_Enter;
+            btnJvj.MouseLeave += bouton_Leave;
             // 
-            // boutonJvia
+            // btnJvia
             // 
-            boutonJvia.BackColor = Color.RoyalBlue;
-            boutonJvia.Font = new Font("Segoe UI Black", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            boutonJvia.ForeColor = Color.Yellow;
-            boutonJvia.Location = new Point(344, 390);
-            boutonJvia.Margin = new Padding(3, 2, 3, 2);
-            boutonJvia.Name = "boutonJvia";
-            boutonJvia.Size = new Size(243, 58);
-            boutonJvia.TabIndex = 2;
-            boutonJvia.Text = " Joueur VS Ordi";
-            boutonJvia.UseVisualStyleBackColor = false;
-            boutonJvia.Click += boutonJvjClick;
-            boutonJvia.MouseEnter += bouton_Enter;
-            boutonJvia.MouseLeave += bouton_Leave;
+            btnJvia.BackColor = Color.RoyalBlue;
+            btnJvia.Font = new Font("Segoe UI Black", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            btnJvia.ForeColor = Color.Yellow;
+            btnJvia.Location = new Point(344, 390);
+            btnJvia.Margin = new Padding(3, 2, 3, 2);
+            btnJvia.Name = "btnJvia";
+            btnJvia.Size = new Size(243, 58);
+            btnJvia.TabIndex = 2;
+            btnJvia.Text = " Joueur VS Ordi";
+            btnJvia.UseVisualStyleBackColor = false;
+            btnJvia.Click += btnModeJeu_Click;
+            btnJvia.MouseEnter += bouton_Enter;
+            btnJvia.MouseLeave += bouton_Leave;
             // 
-            // label2
+            // lblTitre
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Source Sans Pro Black", 40F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Red;
-            label2.Location = new Point(289, 186);
-            label2.Name = "label2";
-            label2.Size = new Size(340, 68);
-            label2.TabIndex = 3;
-            label2.Text = "Modes de jeu";
+            lblTitre.AutoSize = true;
+            lblTitre.Font = new Font("Source Sans Pro Black", 40F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitre.ForeColor = Color.Red;
+            lblTitre.Location = new Point(289, 186);
+            lblTitre.Name = "lblTitre";
+            lblTitre.Size = new Size(340, 68);
+            lblTitre.TabIndex = 3;
+            lblTitre.Text = "Modes de jeu";
             // 
-            // infoJVJ
+            // picInfoJVJ
             // 
-            infoJVJ.BackColor = Color.RoyalBlue;
-            infoJVJ.Image = (Image)resources.GetObject("infoJVJ.Image");
-            infoJVJ.Location = new Point(591, 305);
-            infoJVJ.Margin = new Padding(3, 2, 3, 2);
-            infoJVJ.Name = "infoJVJ";
-            infoJVJ.Size = new Size(32, 22);
-            infoJVJ.SizeMode = PictureBoxSizeMode.Zoom;
-            infoJVJ.TabIndex = 4;
-            infoJVJ.TabStop = false;
-            infoJVJ.MouseEnter += interrogation_MouseEnter;
-            infoJVJ.MouseLeave += interrogation_MouseLeave;
+            picInfoJVJ.BackColor = Color.RoyalBlue;
+            picInfoJVJ.Image = (Image)resources.GetObject("picInfoJVJ.Image");
+            picInfoJVJ.Location = new Point(591, 305);
+            picInfoJVJ.Margin = new Padding(3, 2, 3, 2);
+            picInfoJVJ.Name = "picInfoJVJ";
+            picInfoJVJ.Size = new Size(32, 22);
+            picInfoJVJ.SizeMode = PictureBoxSizeMode.Zoom;
+            picInfoJVJ.TabIndex = 4;
+            picInfoJVJ.TabStop = false;
+            picInfoJVJ.MouseEnter += interrogation_MouseEnter;
+            picInfoJVJ.MouseLeave += interrogation_MouseLeave;
             // 
-            // infoJVIA
+            // picInfoJVIA
             // 
-            infoJVIA.BackColor = Color.RoyalBlue;
-            infoJVIA.Image = (Image)resources.GetObject("infoJVIA.Image");
-            infoJVIA.Location = new Point(591, 390);
-            infoJVIA.Margin = new Padding(3, 2, 3, 2);
-            infoJVIA.Name = "infoJVIA";
-            infoJVIA.Size = new Size(32, 22);
-            infoJVIA.SizeMode = PictureBoxSizeMode.Zoom;
-            infoJVIA.TabIndex = 6;
-            infoJVIA.TabStop = false;
-            infoJVIA.MouseEnter += interrogation_MouseEnter;
-            infoJVIA.MouseLeave += interrogation_MouseLeave;
+            picInfoJVIA.BackColor = Color.RoyalBlue;
+            picInfoJVIA.Image = (Image)resources.GetObject("picInfoJVIA.Image");
+            picInfoJVIA.Location = new Point(591, 390);
+            picInfoJVIA.Margin = new Padding(3, 2, 3, 2);
+            picInfoJVIA.Name = "picInfoJVIA";
+            picInfoJVIA.Size = new Size(32, 22);
+            picInfoJVIA.SizeMode = PictureBoxSizeMode.Zoom;
+            picInfoJVIA.TabIndex = 6;
+            picInfoJVIA.TabStop = false;
+            picInfoJVIA.MouseEnter += interrogation_MouseEnter;
+            picInfoJVIA.MouseLeave += interrogation_MouseLeave;
             // 
-            // pictureBox1
+            // picGrilleDeco
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(10, 289);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(276, 167);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 7;
-            pictureBox1.TabStop = false;
+            picGrilleDeco.Image = (Image)resources.GetObject("picGrilleDeco.Image");
+            picGrilleDeco.Location = new Point(10, 289);
+            picGrilleDeco.Margin = new Padding(3, 2, 3, 2);
+            picGrilleDeco.Name = "picGrilleDeco";
+            picGrilleDeco.Size = new Size(276, 167);
+            picGrilleDeco.SizeMode = PictureBoxSizeMode.Zoom;
+            picGrilleDeco.TabIndex = 7;
+            picGrilleDeco.TabStop = false;
             // 
-            // label1
+            // lblPuissance4
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft Sans Serif", 60F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(125, 46);
-            label1.Name = "label1";
-            label1.Size = new Size(576, 91);
-            label1.TabIndex = 0;
-            label1.Text = "PUISSANCE 4";
+            lblPuissance4.AutoSize = true;
+            lblPuissance4.BackColor = Color.Transparent;
+            lblPuissance4.Font = new Font("Microsoft Sans Serif", 60F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPuissance4.ForeColor = Color.MidnightBlue;
+            lblPuissance4.Location = new Point(125, 46);
+            lblPuissance4.Name = "lblPuissance4";
+            lblPuissance4.Size = new Size(576, 91);
+            lblPuissance4.TabIndex = 0;
+            lblPuissance4.Text = "PUISSANCE 4";
             // 
-            // pictureBox2
+            // picDeco1
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(56, 9);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(190, 165);
-            pictureBox2.TabIndex = 8;
-            pictureBox2.TabStop = false;
+            picDeco1.Image = (Image)resources.GetObject("picDeco1.Image");
+            picDeco1.Location = new Point(56, 9);
+            picDeco1.Margin = new Padding(3, 2, 3, 2);
+            picDeco1.Name = "picDeco1";
+            picDeco1.Size = new Size(190, 165);
+            picDeco1.TabIndex = 8;
+            picDeco1.TabStop = false;
             // 
-            // pictureBox3
+            // picDeco2
             // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(632, 9);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(193, 175);
-            pictureBox3.TabIndex = 9;
-            pictureBox3.TabStop = false;
+            picDeco2.Image = (Image)resources.GetObject("picDeco2.Image");
+            picDeco2.Location = new Point(632, 9);
+            picDeco2.Margin = new Padding(3, 2, 3, 2);
+            picDeco2.Name = "picDeco2";
+            picDeco2.Size = new Size(193, 175);
+            picDeco2.TabIndex = 9;
+            picDeco2.TabStop = false;
             // 
-            // Accueil
+            // frmAccueil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(859, 565);
-            Controls.Add(label1);
-            Controls.Add(pictureBox1);
-            Controls.Add(infoJVIA);
-            Controls.Add(infoJVJ);
-            Controls.Add(label2);
-            Controls.Add(boutonJvia);
-            Controls.Add(boutonJvj);
-            Controls.Add(pictureBox2);
-            Controls.Add(pictureBox3);
+            Controls.Add(lblPuissance4);
+            Controls.Add(picGrilleDeco);
+            Controls.Add(picInfoJVIA);
+            Controls.Add(picInfoJVJ);
+            Controls.Add(lblTitre);
+            Controls.Add(btnJvia);
+            Controls.Add(btnJvj);
+            Controls.Add(picDeco1);
+            Controls.Add(picDeco2);
             Location = new Point(100, 100);
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
-            Name = "Accueil";
+            Name = "frmAccueil";
             Text = "Accueil";
             FormClosing += Accueil_FormClosing;
-            ((System.ComponentModel.ISupportInitialize)infoJVJ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)infoJVIA).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picInfoJVJ).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picInfoJVIA).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picGrilleDeco).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picDeco1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picDeco2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Button boutonJvj;
-        private Button boutonJvia;
-        private Label label2;
-        private PictureBox infoJVJ;
-        private PictureBox infoJVIA;
-        private PictureBox pictureBox1;
-        private Label label1;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
+        private Button btnJvj;
+        private Button btnJvia;
+        private Label lblTitre;
+        private PictureBox picInfoJVJ;
+        private PictureBox picInfoJVIA;
+        private PictureBox picGrilleDeco;
+        private Label lblPuissance4;
+        private PictureBox picDeco1;
+        private PictureBox picDeco2;
     }
 }

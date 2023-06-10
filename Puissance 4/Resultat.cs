@@ -12,11 +12,11 @@ using BibliothèquePuissance4;
 
 namespace Puissance_4
 {
-    public partial class Resultat : Form
+    public partial class frmResultat : Form
     {
 
         string pseudoGagnant;
-        PagePartie partie;
+        frmPagePartie partie;
 
         /// <summary>
         /// Constructeur de la page de resultat
@@ -25,7 +25,7 @@ namespace Puissance_4
         /// </summary>
         /// <param name="vainqueur">joueur vainqueur ou null si égalité/param>
         /// <param name="partieFinie">partie qui vient de se terminer</param>
-        public Resultat(Joueur vainqueur, PagePartie partieFinie)
+        public frmResultat(Joueur vainqueur, frmPagePartie partieFinie)
         {
             partie = partieFinie;
             this.MaximizeBox = false;
@@ -34,13 +34,13 @@ namespace Puissance_4
             {
                 pseudoGagnant = vainqueur.Pseudo;
                 InitializeComponent();
-                labelPseudoVainqueur.Text = pseudoGagnant + " a remporté la partie";
+                lblPseudoVainqueur.Text = pseudoGagnant + " a remporté la partie";
             }
             else
             {
-                pseudoGagnant = null;
+                pseudoGagnant = "";
                 InitializeComponent();
-                labelPseudoVainqueur.Text = "Match nul !";
+                lblPseudoVainqueur.Text = "Match nul !";
             }
         }
 
@@ -50,9 +50,9 @@ namespace Puissance_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void boutonRetourAccueil_Click(object sender, EventArgs e)
+        private void btnRetourAccueil_Click(object sender, EventArgs e)
         {
-            Accueil pageAccueil = new Accueil();
+            frmAccueil pageAccueil = new frmAccueil();
             pageAccueil.Show();
             partie.Dispose();
             this.Close();
@@ -66,14 +66,13 @@ namespace Puissance_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void boutonRejouer_Click(object sender, EventArgs e)
+        private void btnRejouer_Click(object sender, EventArgs e)
         {
             partie.Partie.InitGrille();
             partie.MajGrille();
             partie.Partie.Gagnant = -1;
             partie.Enabled = true;
             this.Close();
-
         }
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace Puissance_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void boutonQuitterJeu_Click(object sender, EventArgs e)
+        private void btnQuitterJeu_Click(object sender, EventArgs e)
         {
             this.Close();
             partie.Dispose();

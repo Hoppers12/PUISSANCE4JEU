@@ -20,7 +20,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Puissance_4
 {
-    public partial class PagePartie : Form
+    public partial class frmPagePartie : Form
     {
         /// <summary>
         /// Attribut qui stocke le numéro de la grille choisie dans le radioBouton de la page param
@@ -54,7 +54,7 @@ namespace Puissance_4
         /// Constructeur de la page de jeu. Il initialise les composants et crée la grille de Jeu
         /// </summary>
         /// <param name="param">Il s'agit des informations de la pages paramétres utiles à la partie (taille grille + pseudo)</param>
-        public PagePartie(object param, bool typeJeu)
+        public frmPagePartie(object param, bool typeJeu)
         {
             InitializeComponent();
             //Nomenclature des joueurs pour faciliter la compréhension
@@ -63,7 +63,7 @@ namespace Puissance_4
             //prend les pseudos des joueurs si c'est une partie JVJ
             if (typeJeu)
             {
-                page_param_JVJ paramJeu = (page_param_JVJ)param;
+                frmParamJVJ paramJeu = (frmParamJVJ)param;
                 PremierJoueur = paramJeu.PseudoJ1;
                 SecondJoueur = paramJeu.PseudoJ2;
                 choixGrille = paramJeu.ChoixGrilleRadioButton;
@@ -72,7 +72,7 @@ namespace Puissance_4
             //prend le pseudo du joueur et définit le deuxième pseudo comme "IA" si c'est une partie JVIA
             else
             {
-                page_param_JVIA paramJeu = (page_param_JVIA)param;
+                frmParamJVIA paramJeu = (frmParamJVIA)param;
                 PremierJoueur = paramJeu.PseudoJ;
                 SecondJoueur = "IA";
                 choixGrille = paramJeu.ChoixGrilleRadioButton;
@@ -81,20 +81,20 @@ namespace Puissance_4
 
 
             //On initialise le label du joueur qui commencera lors du 1er tour (J1)
-            JActif.Text = PremierJoueur;
+            lblJActif.Text = PremierJoueur;
 
             // Indique la couleur du joueur actif
-            JActif.BackColor = Color.Red;
+            lblJActif.BackColor = Color.Red;
 
             // On va chercher la propriété qui correspond au radiobutton coché dans la page parametrage
             grilleDeJeu = new TableLayoutPanel();
 
             // Création de la partie de Puissance 4
-            Partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, typeJeu);
+            partie = new Puissance4(PremierJoueur, SecondJoueur, choixGrille, typeJeu);
 
             // On attribue la valeur entrée dans les input de la page param aux labels d'ici
-            J1.Text = PremierJoueur;
-            J2.Text = SecondJoueur;
+            lblPseudoJ1.Text = PremierJoueur;
+            lblPseudoJ2.Text = SecondJoueur;
         }
 
 
@@ -115,7 +115,7 @@ namespace Puissance_4
             creationGrille();
 
             //place le label indiquant la grille au centre de la grille
-            LabelTailleGrille.Left = GrilleDeJeu.Left + GrilleDeJeu.Width / 2 - LabelTailleGrille.Width / 2;
+            lblTailleGrille.Left = GrilleDeJeu.Left + GrilleDeJeu.Width / 2 - lblTailleGrille.Width / 2;
 
             //Créée des boutons pour placer les pions dans les colonnes et alignes par rapport à ceux-ci
             for (int IndiceColonne = 0; IndiceColonne < nbColonne; IndiceColonne++)
@@ -134,7 +134,7 @@ namespace Puissance_4
             }
 
             //positionne bien le groupbox du joueur actif par rapport à la taille de la grille (de façons à ne pas la survoler)
-            groupBoxJoueurActif.Left = grilleDeJeu.Left + grilleDeJeu.Size.Width + 20;
+            grpJoueurActif.Left = grilleDeJeu.Left + grilleDeJeu.Size.Width + 20;
 
             //définit la taille de l'interface par rapport à la place que ses composants vont prendre et on prend en compte la taille de la grille aussi
             if (this.ClientSize.Height + 20 > grilleDeJeu.Top + grilleDeJeu.Bottom)
@@ -146,7 +146,7 @@ namespace Puissance_4
                 hauteurForm = grilleDeJeu.Top + grilleDeJeu.Bottom;
             }
 
-            largeurForm = groupBoxJoueurActif.Left + groupBoxJoueurActif.Width + 20;
+            largeurForm = grpJoueurActif.Left + grpJoueurActif.Width + 20;
             this.Size = new Size(largeurForm, hauteurForm);
         }
 
@@ -163,13 +163,13 @@ namespace Puissance_4
             {
                 //Cas ou la grille 1 a été choisie par le joueur ou si elle a été choisi aléatoirement
                 case 1:
-                    LabelTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
+                    lblTailleGrille.Text = " Taille de la Grille : 6 x 7 ";
                     nbColonne = 7;
                     nbLigne = 6;
                     break;
                 //Cas ou la grille 2 a été choisie par le joueur ou si celle ci a été choisi aléatoirement
                 default:
-                    LabelTailleGrille.Text = " Taille de la Grille : 5 x 6 ";
+                    lblTailleGrille.Text = " Taille de la Grille : 5 x 6 ";
                     nbColonne = 6;
                     nbLigne = 5;
                     break;
@@ -249,15 +249,15 @@ namespace Puissance_4
         /// </summary>        
         private void ChangerPseudoJActif()
         {
-            if (JActif.Text == J2.Text)
+            if (lblJActif.Text == lblPseudoJ2.Text)
             {
-                JActif.Text = J1.Text;
-                JActif.BackColor = Color.Red;
+                lblJActif.Text = lblPseudoJ1.Text;
+                lblJActif.BackColor = Color.Red;
             }
             else
             {
-                JActif.Text = J2.Text;
-                JActif.BackColor = Color.Yellow;
+                lblJActif.Text = lblPseudoJ2.Text;
+                lblJActif.BackColor = Color.Yellow;
             }
 
         }
