@@ -269,26 +269,27 @@ namespace Puissance_4
         /// </summary>
         private void AffichageGagnant()
         {
-            if (Partie.Gagnant == 1)
+            frmResultat pageResultat;
+            switch (Partie.Gagnant)
             {
-                frmResultat pageResultat = new frmResultat(Partie.J1, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
-                pageResultat.Show();
-                this.Enabled = false; //Freeze le jeu
+                case 0:
+                    pageResultat = new frmResultat(this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                    pageResultat.Show();
+                    this.Enabled = false; //Freeze le jeu
+                    break;
+                case 1:
+                    pageResultat = new frmResultat(Partie.J1, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
+                    pageResultat.Show();
+                    this.Enabled = false; //Freeze le jeu
+                    break;
+                case 2:
+                    pageResultat = new frmResultat(Partie.J2, this); //On ouvre une nouvelle page et on lui donne le joueur gagnant
+                    pageResultat.Show();
+                    this.Enabled = false;
+                    break;
 
             }
-            else if (Partie.Gagnant == 2)
-            {
-                frmResultat pageResultat = new frmResultat(Partie.J2, this); //On ouvre une nouvelle page et on lui donne le joueur gagnant
-                pageResultat.Show();
-                this.Enabled = false;
-            }
 
-            else if (Partie.Gagnant == 0)
-            {
-                frmResultat pageResultat = new frmResultat(null, this); // On ouvre une nouvelle page et on lui donne le joueur gagnant    
-                pageResultat.Show();
-                this.Enabled = false; //Freeze le jeu
-            }
 
         }
 

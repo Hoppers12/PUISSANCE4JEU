@@ -30,19 +30,19 @@ namespace Puissance_4
             partie = partieFinie;
             this.MaximizeBox = false;
 
-            if (vainqueur != null)
-            {
                 pseudoGagnant = vainqueur.Pseudo;
                 InitializeComponent();
                 lblPseudoVainqueur.Text = pseudoGagnant + " a remporté la partie";
-            }
-            else
-            {
-                pseudoGagnant = "";
-                InitializeComponent();
-                lblPseudoVainqueur.Text = "Match nul !";
-            }
         }
+
+        public frmResultat(frmPagePartie partieFinie)
+    {
+            partie = partieFinie;
+            this.MaximizeBox = false;
+            pseudoGagnant = "";
+            InitializeComponent();
+            lblPseudoVainqueur.Text = "Match nul !";
+    }
 
         /// <summary>
         /// Methode d'événement clique sur le bouton retour accueil
