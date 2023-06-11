@@ -40,8 +40,10 @@ namespace Puissance_4
         /// </summary>
         private TableLayoutPanel grilleDeJeu;
 
+        private Image imgPionRouge;
+        private Image imgPionJaune;
+        private Image imgPionAbs;
 
-        Label vainqueur = new Label();
         private int nbColonne;
         private int nbLigne;
 
@@ -57,9 +59,16 @@ namespace Puissance_4
         public frmPagePartie(object param, bool typeJeu)
         {
             InitializeComponent();
+
             //Nomenclature des joueurs pour faciliter la compréhension
             string PremierJoueur;
             string SecondJoueur;
+
+            imgPionRouge = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-rouge.png");
+            imgPionJaune = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-jaune.png");
+            imgPionAbs = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
+            imgPionAbs.Tag = "pionAbs";
+
             //prend les pseudos des joueurs si c'est une partie JVJ
             if (typeJeu)
             {
@@ -69,6 +78,7 @@ namespace Puissance_4
                 choixGrille = paramJeu.ChoixGrilleRadioButton;
                 lblTypePartie.Text = "Partie Joueur vs Joueur";
             }
+
             //prend le pseudo du joueur et définit le deuxième pseudo comme "IA" si c'est une partie JVIA
             else
             {
@@ -196,8 +206,8 @@ namespace Puissance_4
                     PictureBox casePion = new PictureBox();
                     casePion.Dock = DockStyle.Fill;
                     casePion.SizeMode = PictureBoxSizeMode.Zoom;
-                    casePion.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
-                    casePion.Name = $"CaseL{IndiceLigne + 1}C{IndiceColonne + 1}";
+                    casePion.Image = imgPionAbs;
+                    casePion.Name = $"picCaseL{IndiceLigne + 1}C{IndiceColonne + 1}";
                     casePion.Click += Colonne_Click;
                     grilleDeJeu.Controls.Add(casePion, IndiceColonne, IndiceLigne);
                 }
@@ -300,33 +310,38 @@ namespace Puissance_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Colonne_Click(object sender, EventArgs e)
+        private void Colonne_Click(object? sender, EventArgs e)
         {
             int colonneJoueeJoueur;
             int colonneJoueeIA;
-            PictureBox colonneClick = (PictureBox)sender;
+            PictureBox colonneClick;
 
-            //en fonction du bouton cliqué, met la bonne colonne
-            colonneJoueeJoueur = Convert.ToInt32(colonneClick.Name.Last() - 48);
+            if (sender is not null) {
+                colonneClick = (PictureBox)sender;
 
-            //si la colonne n'est pas pleine, il joue le coup sinon il fait rien
-            if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] == 0)
-            {
-                //joue le pion du joueur dans la colonne et vérification si le coup est gagnant
-                Partie.Jeu(colonneJoueeJoueur);
-                MajGrille();
-                AffichageGagnant();
-                ChangerPseudoJActif();
-                //L'IA joue son coup
-                if (Partie.ChoixMode == false && Partie.Gagnant != 1)
+                //en fonction du bouton cliqué, met la bonne colonne
+                colonneJoueeJoueur = Convert.ToInt32(colonneClick.Name.Last() - 48);
+
+                //si la colonne n'est pas pleine, il joue le coup sinon il fait rien
+                if (Partie.GrilleJeu[0, colonneJoueeJoueur - 1] == 0)
                 {
-                    colonneJoueeIA = Partie.J2.CoupIA(Partie);
-                    Partie.Jeu(colonneJoueeIA);
+                    //joue le pion du joueur dans la colonne et vérification si le coup est gagnant
+                    Partie.Jeu(colonneJoueeJoueur);
                     MajGrille();
                     AffichageGagnant();
                     ChangerPseudoJActif();
+                    //L'IA joue son coup
+                    if (Partie.ChoixMode == false && Partie.Gagnant != 1)
+                    {
+                        colonneJoueeIA = Partie.J2.CoupIA(Partie);
+                        Partie.Jeu(colonneJoueeIA);
+                        MajGrille();
+                        AffichageGagnant();
+                        ChangerPseudoJActif();
+                    }
                 }
             }
+            
         }
 
         /// <summary>
@@ -345,17 +360,17 @@ namespace Puissance_4
                     // On colorie les cases en fonction du numéro qu'il y a dans la case de la matrice du Partie (1 -> Rouge (J1) ; 2 -> Jaune (J2))
                     if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 1)
                     {
-                        caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-rouge.png");
+                        caseTraitee.Image = imgPionRouge;
 
                     }
                     else if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 2)
                     {
-                        caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-jaune.png");
+                        caseTraitee.Image = imgPionJaune;
 
                     }
-                    else if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 0 && caseTraitee.Image != Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png"))
+                    else if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 0 && caseTraitee.Image.Tag is not null && (string)caseTraitee.Image.Tag != "pionAbs")
                     {
-                        caseTraitee.Image = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
+                        caseTraitee.Image = imgPionAbs;
                     }
 
                 }

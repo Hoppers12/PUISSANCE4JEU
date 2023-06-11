@@ -74,9 +74,6 @@ C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\bin\Debug\
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\bin\Debug\net6.0-windows\BibliothèquePuissance4.dll
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\bin\Debug\net6.0-windows\BibliothèquePuissance4.pdb
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.AssemblyReference.cache
-C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Accueil.resources
-C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.page_param_JVIA.resources
-C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.page_param_JVJ.resources
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Properties.Resources.resources
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.GenerateResource.cache
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.GeneratedMSBuildEditorConfig.editorconfig
@@ -89,11 +86,14 @@ C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.pdb
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.genruntimeconfig.cache
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\ref\Puissance 4.dll
-C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.PagePartie.resources
 C:\Users\clair\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.PagePartie.resources
-C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Resultat.resources
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmAccueil.resources
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmPagePartie.resources
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmParamJVIA.resources
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmParamJVJ.resources
 C:\Bureau\COURS\SAE2.01(puissance4)\Puissance4\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmResultat.resources
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmAccueil.resources
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmPagePartie.resources
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmParamJVIA.resources
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmParamJVJ.resources
+C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmResultat.resources
