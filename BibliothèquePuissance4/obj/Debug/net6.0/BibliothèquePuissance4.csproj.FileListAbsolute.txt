@@ -34,3 +34,15 @@ C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\refint\BibliothèquePuissance4.dll
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.pdb
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\BibliothèquePuissance4\obj\Debug\net6.0\ref\BibliothèquePuissance4.dll
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\bin\Debug\net6.0\BibliothèquePuissance4.deps.json
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\bin\Debug\net6.0\BibliothèquePuissance4.dll
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\bin\Debug\net6.0\BibliothèquePuissance4.pdb
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.csproj.AssemblyReference.cache
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.AssemblyInfoInputs.cache
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.AssemblyInfo.cs
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.csproj.CoreCompileInputs.cache
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.dll
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\refint\BibliothèquePuissance4.dll
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\BibliothèquePuissance4.pdb
+C:\Users\noasa\OneDrive\Bureau\groupeC\BibliothèquePuissance4\obj\Debug\net6.0\ref\BibliothèquePuissance4.dll

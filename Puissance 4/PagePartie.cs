@@ -67,7 +67,6 @@ namespace Puissance_4
             imgPionRouge = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-rouge.png");
             imgPionJaune = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-jaune.png");
             imgPionAbs = Image.FromFile($"{Application.StartupPath}../../../../assets/pion-absent.png");
-            imgPionAbs.Tag = "pionAbs";
 
             //prend les pseudos des joueurs si c'est une partie JVJ
             if (typeJeu)
@@ -368,7 +367,7 @@ namespace Puissance_4
                         caseTraitee.Image = imgPionJaune;
 
                     }
-                    else if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 0 && caseTraitee.Image.Tag is not null && (string)caseTraitee.Image.Tag != "pionAbs")
+                    else if (Partie.GrilleJeu[IndiceLigne, IndiceColonne] == 0)
                     {
                         caseTraitee.Image = imgPionAbs;
                     }

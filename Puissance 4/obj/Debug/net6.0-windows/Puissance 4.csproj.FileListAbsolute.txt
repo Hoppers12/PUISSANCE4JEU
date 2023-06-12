@@ -97,3 +97,28 @@ C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmParamJVIA.resources
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmParamJVJ.resources
 C:\Users\Claire\Documents\SAE 2.2\GroupeC2_SAE_PUISSANCE4\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmResultat.resources
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\bin\Debug\net6.0-windows\Puissance 4.exe
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\bin\Debug\net6.0-windows\Puissance 4.deps.json
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\bin\Debug\net6.0-windows\Puissance 4.runtimeconfig.json
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\bin\Debug\net6.0-windows\Puissance 4.dll
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\bin\Debug\net6.0-windows\Puissance 4.pdb
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\bin\Debug\net6.0-windows\BibliothèquePuissance4.dll
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\bin\Debug\net6.0-windows\BibliothèquePuissance4.pdb
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.AssemblyReference.cache
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmAccueil.resources
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmPagePartie.resources
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmParamJVIA.resources
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmParamJVJ.resources
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.Properties.Resources.resources
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance_4.frmResultat.resources
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.GenerateResource.cache
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.AssemblyInfoInputs.cache
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.AssemblyInfo.cs
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.CoreCompileInputs.cache
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.csproj.CopyComplete
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.dll
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\refint\Puissance 4.dll
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.pdb
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\Puissance 4.genruntimeconfig.cache
+C:\Users\noasa\OneDrive\Bureau\groupeC\Puissance 4\obj\Debug\net6.0-windows\ref\Puissance 4.dll
