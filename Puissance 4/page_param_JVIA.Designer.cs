@@ -100,7 +100,7 @@
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Microsoft Sans Serif", 55.2F, FontStyle.Bold, GraphicsUnit.Point);
             lblTitre.ForeColor = Color.MidnightBlue;
-            lblTitre.Location = new Point(49, 64);
+            lblTitre.Location = new Point(99, 64);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(677, 85);
             lblTitre.TabIndex = 3;
@@ -111,7 +111,7 @@
             lblPseudo.AutoSize = true;
             lblPseudo.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             lblPseudo.ForeColor = Color.DarkOrange;
-            lblPseudo.Location = new Point(30, 293);
+            lblPseudo.Location = new Point(49, 286);
             lblPseudo.Name = "lblPseudo";
             lblPseudo.Size = new Size(201, 25);
             lblPseudo.TabIndex = 7;
@@ -120,7 +120,7 @@
             // lblPseudoJ1
             // 
             lblPseudoJ1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPseudoJ1.Location = new Point(269, 298);
+            lblPseudoJ1.Location = new Point(267, 290);
             lblPseudoJ1.Margin = new Padding(3, 2, 3, 2);
             lblPseudoJ1.MaxLength = 10;
             lblPseudoJ1.Name = "lblPseudoJ1";
@@ -136,7 +136,7 @@
             btnJouer.BackColor = Color.RoyalBlue;
             btnJouer.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnJouer.ForeColor = Color.Gold;
-            btnJouer.Location = new Point(305, 444);
+            btnJouer.Location = new Point(316, 444);
             btnJouer.Margin = new Padding(3, 2, 3, 2);
             btnJouer.Name = "btnJouer";
             btnJouer.Size = new Size(243, 58);
@@ -151,7 +151,7 @@
             btnAccueil.BackColor = Color.RoyalBlue;
             btnAccueil.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAccueil.ForeColor = Color.Gold;
-            btnAccueil.Location = new Point(10, 9);
+            btnAccueil.Location = new Point(21, 21);
             btnAccueil.Margin = new Padding(3, 2, 3, 2);
             btnAccueil.Name = "btnAccueil";
             btnAccueil.Size = new Size(95, 27);

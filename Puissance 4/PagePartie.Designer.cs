@@ -36,6 +36,7 @@ namespace Puissance_4
             lblTypePartie = new Label();
             lblTailleGrille = new Label();
             grpRegles = new GroupBox();
+            txtRegles = new TextBox();
             label2 = new Label();
             lblJActif = new Label();
             grpJoueurActif = new GroupBox();
@@ -44,7 +45,6 @@ namespace Puissance_4
             pictureBox1 = new PictureBox();
             lblPseudoJ2 = new Label();
             lblPseudoJ1 = new Label();
-            txtRegles = new TextBox();
             grpRegles.SuspendLayout();
             grpJoueurActif.SuspendLayout();
             grpJoueurs.SuspendLayout();
@@ -86,6 +86,19 @@ namespace Puissance_4
             grpRegles.TabIndex = 10;
             grpRegles.TabStop = false;
             grpRegles.Text = "Règles du jeu";
+            // 
+            // txtRegles
+            // 
+            txtRegles.BackColor = Color.Gold;
+            txtRegles.BorderStyle = BorderStyle.None;
+            txtRegles.Enabled = false;
+            txtRegles.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            txtRegles.Location = new Point(18, 32);
+            txtRegles.Multiline = true;
+            txtRegles.Name = "txtRegles";
+            txtRegles.Size = new Size(204, 205);
+            txtRegles.TabIndex = 15;
+            txtRegles.Text = "Placez un pion lorsque votre pseudo est colorée. Le premier joueur à aligner 4 pions de sa couleur gagne la partie !";
             // 
             // label2
             // 
@@ -174,19 +187,6 @@ namespace Puissance_4
             lblPseudoJ1.TabIndex = 0;
             lblPseudoJ1.Text = "(pseudo J1)";
             // 
-            // txtRegles
-            // 
-            txtRegles.BackColor = Color.Gold;
-            txtRegles.BorderStyle = BorderStyle.None;
-            txtRegles.Enabled = false;
-            txtRegles.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            txtRegles.Location = new Point(18, 32);
-            txtRegles.Multiline = true;
-            txtRegles.Name = "txtRegles";
-            txtRegles.Size = new Size(204, 205);
-            txtRegles.TabIndex = 15;
-            txtRegles.Text = "Placez un pion lorsque votre pseudo est colorée. Le premier joueur à aligner 4 pions de sa couleur gagne la partie !";
-            // 
             // frmPagePartie
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -223,14 +223,14 @@ namespace Puissance_4
         private Label lblTailleGrille;
         private GroupBox grpRegles;
         private Label label2;
-        private Label lblJActif;
         private GroupBox grpJoueurActif;
         private GroupBox grpJoueurs;
-        private Label lblPseudoJ1;
         private Label lblPseudoJ2;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private TextBox txtRegles;
+        internal Label lblJActif;
+        internal Label lblPseudoJ1;
     }
 
 }

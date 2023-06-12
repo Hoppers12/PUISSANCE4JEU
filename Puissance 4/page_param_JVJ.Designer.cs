@@ -49,7 +49,7 @@
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Microsoft Sans Serif", 49.8000031F, FontStyle.Bold, GraphicsUnit.Point);
             lblTitre.ForeColor = Color.MidnightBlue;
-            lblTitre.Location = new Point(49, 64);
+            lblTitre.Location = new Point(75, 64);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(724, 76);
             lblTitre.TabIndex = 0;
@@ -63,11 +63,11 @@
             grpChoixPseudo.Controls.Add(lblJ1);
             grpChoixPseudo.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             grpChoixPseudo.ForeColor = Color.Red;
-            grpChoixPseudo.Location = new Point(28, 193);
+            grpChoixPseudo.Location = new Point(75, 193);
             grpChoixPseudo.Margin = new Padding(3, 2, 3, 2);
             grpChoixPseudo.Name = "grpChoixPseudo";
             grpChoixPseudo.Padding = new Padding(3, 2, 3, 2);
-            grpChoixPseudo.Size = new Size(372, 191);
+            grpChoixPseudo.Size = new Size(343, 191);
             grpChoixPseudo.TabIndex = 1;
             grpChoixPseudo.TabStop = false;
             grpChoixPseudo.Text = "Choix Pseudos";
@@ -133,7 +133,7 @@
             grpChoixGrille.Margin = new Padding(3, 2, 3, 2);
             grpChoixGrille.Name = "grpChoixGrille";
             grpChoixGrille.Padding = new Padding(3, 2, 3, 2);
-            grpChoixGrille.Size = new Size(372, 191);
+            grpChoixGrille.Size = new Size(343, 191);
             grpChoixGrille.TabIndex = 2;
             grpChoixGrille.TabStop = false;
             grpChoixGrille.Text = "Choix Grille";
@@ -143,7 +143,7 @@
             rdoGrilleAleatoire.AutoSize = true;
             rdoGrilleAleatoire.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             rdoGrilleAleatoire.ForeColor = Color.DarkOrange;
-            rdoGrilleAleatoire.Location = new Point(107, 139);
+            rdoGrilleAleatoire.Location = new Point(51, 139);
             rdoGrilleAleatoire.Margin = new Padding(3, 2, 3, 2);
             rdoGrilleAleatoire.Name = "rdoGrilleAleatoire";
             rdoGrilleAleatoire.Size = new Size(111, 28);
@@ -156,7 +156,7 @@
             rdoGrilleMini.AutoSize = true;
             rdoGrilleMini.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             rdoGrilleMini.ForeColor = Color.DarkOrange;
-            rdoGrilleMini.Location = new Point(107, 89);
+            rdoGrilleMini.Location = new Point(51, 89);
             rdoGrilleMini.Margin = new Padding(3, 2, 3, 2);
             rdoGrilleMini.Name = "rdoGrilleMini";
             rdoGrilleMini.Size = new Size(132, 29);
@@ -170,7 +170,7 @@
             rdoGrilleClassique.Checked = true;
             rdoGrilleClassique.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             rdoGrilleClassique.ForeColor = Color.DarkOrange;
-            rdoGrilleClassique.Location = new Point(107, 41);
+            rdoGrilleClassique.Location = new Point(51, 41);
             rdoGrilleClassique.Margin = new Padding(3, 2, 3, 2);
             rdoGrilleClassique.Name = "rdoGrilleClassique";
             rdoGrilleClassique.Size = new Size(174, 29);
@@ -184,7 +184,7 @@
             btnJouer.BackColor = Color.RoyalBlue;
             btnJouer.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
             btnJouer.ForeColor = Color.Gold;
-            btnJouer.Location = new Point(305, 444);
+            btnJouer.Location = new Point(316, 444);
             btnJouer.Margin = new Padding(3, 2, 3, 2);
             btnJouer.Name = "btnJouer";
             btnJouer.Size = new Size(243, 58);
@@ -198,7 +198,7 @@
             btnAccueil.BackColor = Color.RoyalBlue;
             btnAccueil.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAccueil.ForeColor = Color.Gold;
-            btnAccueil.Location = new Point(10, 10);
+            btnAccueil.Location = new Point(21, 21);
             btnAccueil.Margin = new Padding(3, 2, 3, 2);
             btnAccueil.Name = "btnAccueil";
             btnAccueil.Size = new Size(88, 26);

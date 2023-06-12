@@ -36,16 +36,16 @@ namespace Puissance_4
         }
 
         public frmResultat(frmPagePartie partieFinie)
-    {
+        {
             partie = partieFinie;
             this.MaximizeBox = false;
             pseudoGagnant = "";
             InitializeComponent();
             lblPseudoVainqueur.Text = "Match nul !";
-    }
+        }
 
         /// <summary>
-        /// Methode d'événement clique sur le bouton retour accueil
+        /// Méthode d'événement loesque l'utilisateur clique sur le bouton retour accueil
         /// il ferme la page résultat et partie et retourne à l'accueil
         /// </summary>
         /// <param name="sender"></param>
@@ -60,9 +60,9 @@ namespace Puissance_4
 
 
         /// <summary>
-        /// methode evenementielle appelé au click sur le bouton rejouer
+        /// méthode évènementielle appelée au click sur le bouton rejouer
         /// elle permet de réinitialiser la grille tout en permettant
-        /// de rejouer une partie avec les meme paramétres
+        /// de rejouer une partie avec les mêmes paramètres
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -70,19 +70,27 @@ namespace Puissance_4
         {
             partie.Partie.InitGrille();
             partie.MajGrille();
+
+            //Réinitialise le joueur qui joue en premier
+            partie.lblJActif.Text = partie.lblPseudoJ1.Text;
+            partie.lblJActif.BackColor = Color.Red;
+
+            //redéfinit la partie comme "en cours" 
             partie.Partie.Gagnant = -1;
+
+            //réactive la page de partie
             partie.Enabled = true;
             this.Close();
         }
 
         /// <summary>
         /// Methode evenementielle appelé au click sur le bouton quitter. 
-        /// toutes les pages de jeux ouvertes
+        /// Elle ferme toutes les pages de jeux ouvertes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnQuitterJeu_Click(object sender, EventArgs e)
-        {
+        {            
             this.Close();
             partie.Dispose();
         }

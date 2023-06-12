@@ -38,6 +38,7 @@
             lblPuissance4 = new Label();
             picDeco1 = new PictureBox();
             picDeco2 = new PictureBox();
+            lblCreateurs = new Label();
             ((System.ComponentModel.ISupportInitialize)picInfoJVJ).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picInfoJVIA).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picGrilleDeco).BeginInit();
@@ -51,10 +52,10 @@
             btnJvj.BackColor = Color.RoyalBlue;
             btnJvj.Font = new Font("Segoe UI Black", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnJvj.ForeColor = Color.Yellow;
-            btnJvj.Location = new Point(344, 313);
+            btnJvj.Location = new Point(315, 313);
             btnJvj.Margin = new Padding(3, 2, 3, 2);
             btnJvj.Name = "btnJvj";
-            btnJvj.Size = new Size(243, 58);
+            btnJvj.Size = new Size(244, 58);
             btnJvj.TabIndex = 1;
             btnJvj.Text = " Joueur VS Joueur ";
             btnJvj.UseVisualStyleBackColor = false;
@@ -67,10 +68,10 @@
             btnJvia.BackColor = Color.RoyalBlue;
             btnJvia.Font = new Font("Segoe UI Black", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnJvia.ForeColor = Color.Yellow;
-            btnJvia.Location = new Point(344, 390);
+            btnJvia.Location = new Point(315, 390);
             btnJvia.Margin = new Padding(3, 2, 3, 2);
             btnJvia.Name = "btnJvia";
-            btnJvia.Size = new Size(243, 58);
+            btnJvia.Size = new Size(244, 58);
             btnJvia.TabIndex = 2;
             btnJvia.Text = " Joueur VS Ordi";
             btnJvia.UseVisualStyleBackColor = false;
@@ -83,7 +84,7 @@
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Source Sans Pro Black", 40F, FontStyle.Bold, GraphicsUnit.Point);
             lblTitre.ForeColor = Color.Red;
-            lblTitre.Location = new Point(289, 186);
+            lblTitre.Location = new Point(256, 188);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(340, 68);
             lblTitre.TabIndex = 3;
@@ -93,7 +94,7 @@
             // 
             picInfoJVJ.BackColor = Color.RoyalBlue;
             picInfoJVJ.Image = (Image)resources.GetObject("picInfoJVJ.Image");
-            picInfoJVJ.Location = new Point(591, 305);
+            picInfoJVJ.Location = new Point(566, 313);
             picInfoJVJ.Margin = new Padding(3, 2, 3, 2);
             picInfoJVJ.Name = "picInfoJVJ";
             picInfoJVJ.Size = new Size(32, 22);
@@ -107,7 +108,7 @@
             // 
             picInfoJVIA.BackColor = Color.RoyalBlue;
             picInfoJVIA.Image = (Image)resources.GetObject("picInfoJVIA.Image");
-            picInfoJVIA.Location = new Point(591, 390);
+            picInfoJVIA.Location = new Point(566, 390);
             picInfoJVIA.Margin = new Padding(3, 2, 3, 2);
             picInfoJVIA.Name = "picInfoJVIA";
             picInfoJVIA.Size = new Size(32, 22);
@@ -134,7 +135,7 @@
             lblPuissance4.BackColor = Color.Transparent;
             lblPuissance4.Font = new Font("Microsoft Sans Serif", 60F, FontStyle.Bold, GraphicsUnit.Point);
             lblPuissance4.ForeColor = Color.MidnightBlue;
-            lblPuissance4.Location = new Point(125, 46);
+            lblPuissance4.Location = new Point(148, 58);
             lblPuissance4.Name = "lblPuissance4";
             lblPuissance4.Size = new Size(576, 91);
             lblPuissance4.TabIndex = 0;
@@ -143,29 +144,41 @@
             // picDeco1
             // 
             picDeco1.Image = (Image)resources.GetObject("picDeco1.Image");
-            picDeco1.Location = new Point(56, 9);
+            picDeco1.Location = new Point(13, 9);
             picDeco1.Margin = new Padding(3, 2, 3, 2);
             picDeco1.Name = "picDeco1";
-            picDeco1.Size = new Size(190, 165);
+            picDeco1.Size = new Size(214, 175);
             picDeco1.TabIndex = 8;
             picDeco1.TabStop = false;
             // 
             // picDeco2
             // 
             picDeco2.Image = (Image)resources.GetObject("picDeco2.Image");
-            picDeco2.Location = new Point(632, 9);
+            picDeco2.Location = new Point(624, 9);
             picDeco2.Margin = new Padding(3, 2, 3, 2);
             picDeco2.Name = "picDeco2";
-            picDeco2.Size = new Size(193, 175);
+            picDeco2.Size = new Size(223, 175);
             picDeco2.TabIndex = 9;
             picDeco2.TabStop = false;
+            // 
+            // lblCreateurs
+            // 
+            lblCreateurs.AutoSize = true;
+            lblCreateurs.Font = new Font("Segoe UI Black", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCreateurs.ForeColor = Color.WhiteSmoke;
+            lblCreateurs.Location = new Point(276, 506);
+            lblCreateurs.Name = "lblCreateurs";
+            lblCreateurs.Size = new Size(571, 15);
+            lblCreateurs.TabIndex = 10;
+            lblCreateurs.Text = "CIURLIK Robin, DAVID Claire, MENIVAL Efrem, PARENT Léa, SAVOYE Noa, SOARIZIKY Annaïsse";
             // 
             // frmAccueil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
-            ClientSize = new Size(859, 565);
+            ClientSize = new Size(860, 565);
+            Controls.Add(lblCreateurs);
             Controls.Add(lblPuissance4);
             Controls.Add(picGrilleDeco);
             Controls.Add(picInfoJVIA);
@@ -200,5 +213,6 @@
         private Label lblPuissance4;
         private PictureBox picDeco1;
         private PictureBox picDeco2;
+        private Label lblCreateurs;
     }
 }

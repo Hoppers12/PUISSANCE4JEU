@@ -143,7 +143,7 @@ namespace Puissance_4
             }
         }
 
-        
+
     }
 
 
