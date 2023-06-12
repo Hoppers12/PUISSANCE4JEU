@@ -30,9 +30,9 @@ namespace Puissance_4
             partie = partieFinie;
             this.MaximizeBox = false;
 
-                pseudoGagnant = vainqueur.Pseudo;
-                InitializeComponent();
-                lblPseudoVainqueur.Text = pseudoGagnant + " a remporté la partie";
+            pseudoGagnant = vainqueur.Pseudo;
+            InitializeComponent();
+            lblPseudoVainqueur.Text = pseudoGagnant + " a remporté la partie";
         }
 
         public frmResultat(frmPagePartie partieFinie)

@@ -131,11 +131,11 @@
         /// </summary>
         public void InitGrille()
         {
-            for (int i = 0; i < limiteLigne; i++)
+            for (int indLigneRemplie = 0; indLigneRemplie < limiteLigne; indLigneRemplie++)
             {
-                for (int j = 0; j < limiteColonne; j++)
+                for (int indColonneRemplie = 0; indColonneRemplie < limiteColonne; indColonneRemplie++)
                 {
-                    grilleJeu[i, j] = 0;           
+                    grilleJeu[indLigneRemplie, indColonneRemplie] = 0;           
                 }
             }
         }
@@ -334,9 +334,9 @@
         {
             int nbColonnesComplete = 0;
 
-            for (int j = 0; j < limiteColonne; j++)
+            for (int indColonneVerifie = 0; indColonneVerifie < limiteColonne; indColonneVerifie++)
             {  // On vérifie si toutes les cases de la ligne la + haute son comblées
-                if (grilleJeu[0, j] != 0)
+                if (grilleJeu[0, indColonneVerifie] != 0)
                 {
                     nbColonnesComplete++;
                 }

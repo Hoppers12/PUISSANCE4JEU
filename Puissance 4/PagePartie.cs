@@ -315,7 +315,8 @@ namespace Puissance_4
             int colonneJoueeIA;
             PictureBox colonneClick;
 
-            if (sender is not null) {
+            if (sender is not null)
+            {
                 colonneClick = (PictureBox)sender;
 
                 //en fonction du bouton cliqué, met la bonne colonne
@@ -340,7 +341,7 @@ namespace Puissance_4
                     }
                 }
             }
-            
+
         }
 
         /// <summary>
