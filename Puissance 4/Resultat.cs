@@ -74,6 +74,7 @@ namespace Puissance_4
             //Réinitialise le joueur qui joue en premier
             partie.lblJActif.Text = partie.lblPseudoJ1.Text;
             partie.lblJActif.BackColor = Color.Red;
+            partie.Partie.JoueurSuivant = true;
 
             //redéfinit la partie comme "en cours" 
             partie.Partie.Gagnant = -1;

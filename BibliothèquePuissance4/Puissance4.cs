@@ -75,6 +75,7 @@
         public Joueur J1 { get => j1; }
         public Joueur J2 { get => j2;}
         public bool ChoixMode { get => choixMode; }
+        public bool JoueurSuivant { set => joueurSuivant = value; }
 
 
         /// <summary>
