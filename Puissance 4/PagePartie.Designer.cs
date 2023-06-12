@@ -92,13 +92,13 @@ namespace Puissance_4
             txtRegles.BackColor = Color.Gold;
             txtRegles.BorderStyle = BorderStyle.None;
             txtRegles.Enabled = false;
-            txtRegles.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            txtRegles.Location = new Point(18, 32);
+            txtRegles.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            txtRegles.Location = new Point(24, 32);
             txtRegles.Multiline = true;
             txtRegles.Name = "txtRegles";
-            txtRegles.Size = new Size(204, 205);
+            txtRegles.Size = new Size(191, 193);
             txtRegles.TabIndex = 15;
-            txtRegles.Text = "Placez un pion lorsque votre pseudo est colorée. Le premier joueur à aligner 4 pions de sa couleur gagne la partie !";
+            txtRegles.Text = "Placez un pion en appuyant sur la colonne ou les flèches lorsque votre pseudo est affiché. Le premier joueur à aligner 4 pions de sa couleur gagne la partie !";
             // 
             // label2
             // 
